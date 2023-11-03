@@ -13,6 +13,7 @@ config_version=5
 config/name="new thing"
 run/main_scene="res://levels/testlevel.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
+boot_splash/bg_color=Color(0.396078, 0.270588, 0.12549, 1)
 config/icon="res://icon.svg"
 
 [input]
@@ -62,3 +63,4 @@ taunt={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.541176, 0.501961, 0.282353, 1)
