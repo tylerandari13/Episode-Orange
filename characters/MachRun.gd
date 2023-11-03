@@ -8,6 +8,7 @@ var acceeration : float = 0.0
 @export var ground_state : State
 @export var slide_state : State
 @export var superjump_state : State
+@export var grab_state : State
 
 var mach : float = 0.0
 var direction : float = 0.0
@@ -58,6 +59,9 @@ func state_process(_delta):
 func state_input(event : InputEvent):
 	if(event.is_action_pressed("jump") && character.is_on_floor()):
 		character.velocity.y = character.jump_velocity
+	if(event.is_action_pressed("grab")):
+		grab_state.dir = direction
+		next_state = grab_state
 
 func override_speed(speed : float):
 	mach_override = true
