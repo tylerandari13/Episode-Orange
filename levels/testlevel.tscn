@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://b0eymceneu6aj"]
+[gd_scene load_steps=17 format=3 uid="uid://b0eymceneu6aj"]
 
 [ext_resource type="Texture2D" uid="uid://bnpwguc2tdjq6" path="res://images/orange/tiles/ground.png" id="1_cmwdr"]
+[ext_resource type="Texture2D" uid="uid://c4k3qo37rr1cu" path="res://images/orange/objects/house.png" id="1_tsb5v"]
 [ext_resource type="Texture2D" uid="uid://be0nhyoo75lyj" path="res://images/orange/tiles/groundslope1.5.png" id="2_ij1su"]
 [ext_resource type="Texture2D" uid="uid://l0rlak84nnvn" path="res://images/orange/tiles/groundslope1.png" id="3_neh1y"]
 [ext_resource type="Texture2D" uid="uid://b1e3lxnipbnov" path="res://images/orange/tiles/groundslope2.png" id="4_lhif2"]
@@ -264,6 +265,10 @@ sources/21 = SubResource("TileSetAtlasSource_t22cl")
 [node name="testlevel" type="Node2D"]
 position = Vector2(1, 0)
 scale = Vector2(1.5, 1.5)
+
+[node name="House" type="Sprite2D" parent="."]
+position = Vector2(734.667, 30.6667)
+texture = ExtResource("1_tsb5v")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_5nruo")
