@@ -1,0 +1,19 @@
+(supertux-sprite
+  (action
+    (name "normal")
+    (hitbox 2 32 32 32)
+    (images "gumdrop/gumdrop1-0.png")
+  )
+  (action
+    (name "swinging")
+	(fps 32)
+	(hitbox 2 32 32 32)
+    (images "gumdrop/gumdrop1-0.png"
+            "gumdrop/gumdrop1-1.png"
+            "gumdrop/gumdrop1-2.png"
+            "gumdrop/gumdrop1-3.png"
+            "gumdrop/gumdrop1-4.png"
+            "gumdrop/gumdrop1-5.png"
+    )
+  )
+)

@@ -1,0 +1,17 @@
+(supertux-sprite
+      (action 
+          (name "default")
+          (images "shield-0.png"))
+      (action 
+          (name "fire")
+          (images "fire-0.png"))
+      (action 
+          (name "ice")
+          (images "ice-0.png"))
+      (action 
+          (name "air")
+          (images "air-0.png"))
+      (action 
+          (name "earth")
+          (images "earth-0.png"))
+)

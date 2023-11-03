@@ -1,0 +1,11 @@
+(supertux-sprite
+      (action
+        (name "default")
+        (surfaces
+        (surface
+        (diffuse-texture (file "BYR_color_wheel.svg.png"))
+        (displacement-texture (file "BYR_color_wheel.svg-trans.png"))
+      )
+    )
+  )
+)

@@ -1,0 +1,32 @@
+(supertux-sprite
+       (action
+         (name "gameover")
+         (fps 30.0)
+         (hitbox 18 6 32 32)
+         (images "small/gameover-0.png"
+                 "small/gameover-1.png"))
+
+       (action
+         (name "right")
+         (fps 5.0)
+         (hitbox 8 16 32 32)
+         (images "small/idle-0.png"))
+
+       (action
+         (name "left")
+         (fps 5.0)
+         (hitbox 8 16 32 32)
+         (mirror-action "right"))
+
+       (action
+         (name "ride-right")
+         (fps 5.0)
+         (hitbox 0 32 32 32)
+         (images "small/ride.png"))
+
+        (action
+         (name "ride-left")
+         (fps 5.0)
+         (hitbox 0 32 32 32)
+         (mirror-action "ride-right"))
+)

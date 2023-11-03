@@ -1,0 +1,64 @@
+(supertux-sprite
+ (action
+  (name "left")
+  (hitbox 17 14 31 31)
+  (fps 20)
+  (images "frame0001.png"
+          "frame0002.png"
+          "frame0003.png"
+          "frame0004.png"
+          "frame0005.png"
+          "frame0006.png"
+		  "frame0007.png"
+		  "frame0008.png"
+		  "frame0008.png"
+		  "frame0008.png"
+		  "frame0008.png"
+		  "frame0008.png"))
+
+ (action
+  (name "right")
+  (hitbox 17 14 31 31)
+  (fps 20)
+  (mirror-action "left"))
+
+ (action
+  (name "left-down")
+  (loops 1)
+  (hitbox 17 14 31 31)
+  (fps 30)
+  (images "frame0008.png"
+		  "bounce1.png"
+		  "bounce2.png"
+		  "bounce3.png"))
+
+ (action
+  (name "right-down")
+  (loops 1)
+  (hitbox 17 14 31 31)
+  (fps 30)
+  (mirror-action "left-down"))
+  
+ (action
+  (name "left-up")
+  (loops 1)
+  (hitbox 17 14 31 31)
+  (fps 30)
+  (images "bounce3.png"
+		  "bounce3.png"
+		  "bounce2.png"
+		  "bounce1.png"
+		  "frame0008.png"))
+
+ (action
+  (name "right-up")
+  (loops 1)
+  (hitbox 17 14 31 31)
+  (fps 30)
+  (mirror-action "left-up"))
+
+ (action
+  (name "squished")
+  (hitbox 1 -19 31.8 31.8)
+  (images "squished.png"))
+)

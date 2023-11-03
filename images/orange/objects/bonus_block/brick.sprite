@@ -1,0 +1,51 @@
+(supertux-sprite
+      (action
+        (name "empty")
+        (surfaces
+        (surface
+        (diffuse-texture (file "empty.png"))
+        (displacement-texture (file "displacement.png")))))
+
+ (action
+  (name "normal")
+  (hitbox 32 32 32 32)
+  (images "../brick/brick.png"))
+
+ (action
+  (name "piece1")
+  (fps 1)
+  ;(hitbox 32 32 32 32)
+  (images "../brick/bread.png"))
+
+ (action
+  (name "piece2")
+  (fps 1)
+  ;(hitbox 32 32 32 32)
+  (images "../brick/lettuce.png"))
+
+ (action
+  (name "piece3")
+  (fps 1)
+  ;(hitbox 32 32 32 32)
+  (images "../brick/ham.png"))
+
+ (action
+  (name "piece4")
+  (fps 1)
+  ;(hitbox 32 32 32 32)
+  (images "../brick/tomato.png"))
+
+ (action
+  (name "piece5")
+  (fps 1)
+  ;(hitbox 32 32 32 32)
+  (images "../brick/cheese.png"))
+
+ (action
+  (name "piece6")
+  (fps 1)
+  ;(hitbox 32 16 32 32)
+  (images "../brick/bread.png"))
+
+
+ )

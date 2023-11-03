@@ -1,0 +1,11 @@
+(supertux-sprite
+      (action
+        (name "default")
+        (surfaces
+        (surface
+        (diffuse-texture (file "squares.png"))
+        (displacement-texture (file "squares-trans.png"))
+      )
+    )
+  )
+)

@@ -1,0 +1,28 @@
+(supertux-sprite
+      (action 
+          (name "flower")
+          (fps 15.0)
+          (images "orangeflower0000.png"
+            "orangeflower0001.png"
+            "orangeflower0002.png"
+            "orangeflower0003.png"
+            "orangeflower0004.png"
+            "orangeflower0005.png"
+            "orangeflower0004.png"
+            "orangeflower0003.png"
+            "orangeflower0002.png"
+            "orangeflower0001.png"
+            ))
+      (action 
+          (name "tulip")
+          (fps 13.0)
+          (images "orangetulip0000.png"
+            "orangetulip0001.png"
+            "orangetulip0002.png"
+            "orangetulip0001.png"
+            "orangetulip0000.png"
+            "orangetulip0003.png"
+            "orangetulip0004.png"
+            "orangetulip0003.png"
+            ))
+)

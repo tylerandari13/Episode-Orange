@@ -1,0 +1,6 @@
+(supertux-sprite
+       (action
+         (name "lollipop")
+         (hitbox 32 32 192 192)
+         (images "images/lollipop.png"))
+)

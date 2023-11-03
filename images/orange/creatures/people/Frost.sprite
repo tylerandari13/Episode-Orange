@@ -1,0 +1,12 @@
+(supertux-sprite
+	(action
+	  (name "right")
+	  (hitbox 0 13 32 32)
+	  (images "Frost.png")
+	)
+	(action
+	  (name "left")
+	  (hitbox 0 13 32 32)
+	  (mirror-action "right")
+	)
+)

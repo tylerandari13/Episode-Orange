@@ -1,0 +1,6 @@
+(supertux-sprite
+       (action
+         (name "default")
+         (hitbox 32 0 96 64)
+         (images "images/cottoncandy.png"))
+)

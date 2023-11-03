@@ -1,0 +1,11 @@
+(supertux-sprite
+      (action
+        (name "default")
+        (surfaces
+        (surface
+        (diffuse-texture (file "mirror.png"))
+        (displacement-texture (file "mirror4.png"))
+      )
+    )
+  )
+)

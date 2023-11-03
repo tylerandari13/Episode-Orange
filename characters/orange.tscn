@@ -1,0 +1,161 @@
+[gd_scene load_steps=25 format=3 uid="uid://dmm4hlogobbev"]
+
+[ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
+[ext_resource type="Texture2D" uid="uid://bn621b4ipij27" path="res://images/creatures/tux/big/stand-0.png" id="2_cp6g8"]
+[ext_resource type="Texture2D" uid="uid://b8dwxnjkox2cf" path="res://images/creatures/tux/big/stand-1.png" id="3_7xue2"]
+[ext_resource type="Texture2D" uid="uid://840c7js8tin1" path="res://images/creatures/tux/big/stand-2.png" id="4_ii3xc"]
+[ext_resource type="Texture2D" uid="uid://dh3f5i6kf88qm" path="res://images/creatures/tux/big/duck-0.png" id="5_fskra"]
+[ext_resource type="Texture2D" uid="uid://1bv8qyy77rtv" path="res://images/creatures/tux/big/fall-1.png" id="6_g78mr"]
+[ext_resource type="Texture2D" uid="uid://cf20jpgkahelp" path="res://images/creatures/tux/big/fall-2.png" id="7_22y01"]
+[ext_resource type="Texture2D" uid="uid://bybqgiva7h4e3" path="res://images/creatures/tux/big/fall-3.png" id="8_t20h8"]
+[ext_resource type="Texture2D" uid="uid://g0cky25yyuyo" path="res://images/creatures/tux/big/jump-0.png" id="9_doesb"]
+[ext_resource type="Texture2D" uid="uid://crfx2x8nlnnfx" path="res://images/creatures/tux/big/walk-0.png" id="10_pge3y"]
+[ext_resource type="Texture2D" uid="uid://vvduipf7y1a1" path="res://images/creatures/tux/big/walk-1.png" id="11_nd1d5"]
+[ext_resource type="Texture2D" uid="uid://byxreiu5kuy4w" path="res://images/creatures/tux/big/walk-2.png" id="12_oirxs"]
+[ext_resource type="Texture2D" uid="uid://bvfs3g6a585lx" path="res://images/creatures/tux/big/walk-3.png" id="13_fqj1r"]
+[ext_resource type="Script" path="res://characters/StateMachine.gd" id="14_oqpne"]
+[ext_resource type="Texture2D" uid="uid://bfdo0dvce2skq" path="res://images/creatures/tux/big/walk-4.png" id="14_tvlg1"]
+[ext_resource type="Script" path="res://characters/GroundState.gd" id="15_d2gkj"]
+[ext_resource type="Script" path="res://characters/AirState.gd" id="16_q58r3"]
+[ext_resource type="Script" path="res://characters/LandingState.gd" id="17_4w3if"]
+[ext_resource type="Script" path="res://characters/MachRun.gd" id="19_menka"]
+[ext_resource type="Script" path="res://characters/MachSlide.gd" id="20_effgp"]
+[ext_resource type="Script" path="res://characters/SuperJump.gd" id="21_55frq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8po63"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cp6g8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7xue2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ii3xc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7xue2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_fskra")
+}],
+"loop": false,
+"name": &"duck",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_g78mr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_22y01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_t20h8")
+}],
+"loop": false,
+"name": &"fall",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_doesb")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_pge3y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_nd1d5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_oirxs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_fqj1r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_tvlg1")
+}],
+"loop": true,
+"name": &"run",
+"speed": 15.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxq3j"]
+height = 60.0
+
+[sub_resource type="GDScript" id="GDScript_06dlf"]
+script/source = "extends Label
+
+@export var state_machine : StateMachine
+
+func _process(_delta):
+	if(state_machine.current_state.name == \"MachRun\"):
+		text = \"State: Mach \" + str(state_machine.current_state.mach)
+	else:
+		text = \"State: \" + state_machine.current_state.name
+"
+
+[node name="orange" type="CharacterBody2D"]
+floor_max_angle = 1.1781
+floor_snap_length = 32.0
+script = ExtResource("1_s0qxb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8po63")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+shape = SubResource("CapsuleShape2D_bxq3j")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state")]
+script = ExtResource("14_oqpne")
+character = NodePath("..")
+current_state = NodePath("Ground")
+
+[node name="Ground" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "mach_state")]
+script = ExtResource("15_d2gkj")
+air_state = NodePath("../Air")
+mach_state = NodePath("../MachRun")
+
+[node name="Air" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state")]
+script = ExtResource("16_q58r3")
+ground_state = NodePath("../Landing")
+
+[node name="Landing" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state")]
+script = ExtResource("17_4w3if")
+ground_state = NodePath("../Ground")
+
+[node name="MachRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state", "slide_state", "superjump_state")]
+script = ExtResource("19_menka")
+ground_state = NodePath("../Ground")
+slide_state = NodePath("../MachSlide")
+superjump_state = NodePath("../SuperJump")
+
+[node name="MachSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state")]
+script = ExtResource("20_effgp")
+mach_state = NodePath("../MachRun")
+
+[node name="SuperJump" type="Node" parent="StateMachine"]
+script = ExtResource("21_55frq")
+
+[node name="StateDebug" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+offset_left = -60.0
+offset_top = -58.0
+offset_right = 137.0
+offset_bottom = -32.0
+text = "State:"
+script = SubResource("GDScript_06dlf")
+state_machine = NodePath("../StateMachine")

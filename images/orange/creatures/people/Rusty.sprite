@@ -1,0 +1,12 @@
+(supertux-sprite
+	(action
+	  (name "right")
+	  (hitbox -1 -1 32 32)
+	  (images "Rusty.png")
+	)
+	(action
+	  (name "left")
+	  (hitbox -1 -1 32 32)
+	  (mirror-action "right")
+	)
+)

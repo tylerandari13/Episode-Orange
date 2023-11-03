@@ -1,0 +1,25 @@
+(supertux-sprite
+      (action 
+          (name "default")
+          (images "Goal_ring.png"))
+      (action 
+          (name "left")
+          (fps 13.0)
+          (hitbox -34 0 64 190)
+          (images "left0000.png"
+            "left0001.png"
+            "left0002.png"
+            "left0003.png"
+            "left0004.png"
+            ))
+      (action 
+          (name "right")
+          (fps 13.0)
+          (hitbox 0 0 64 190)
+          (images "right0000.png"
+            "right0001.png"
+            "right0002.png"
+            "right0003.png"
+            "right0004.png"
+            ))  
+)

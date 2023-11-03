@@ -1,0 +1,26 @@
+(supertux-sprite
+      (action 
+          (name "default")
+          (hitbox 32 64 64 32)
+          (images "default/cup0000.png")
+      )
+      (action
+          (name "splash")
+          (fps 24)
+          (loops 1)
+          (hitbox 32 64 64 32)
+          (images "default/cup0001.png"
+                  "default/cup0002.png"
+                  "default/cup0003.png"
+                  "default/cup0004.png"
+                  "default/cup0005.png"
+                  "default/cup0006.png"
+                  "default/cup0007.png"
+                  "default/cup0008.png"
+                  "default/cup0009.png"
+                  "default/cup0010.png"
+                  "default/cup0011.png"
+                  "default/cup0000.png"
+          )
+      )
+)

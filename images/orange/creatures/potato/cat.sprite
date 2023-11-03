@@ -1,0 +1,20 @@
+(supertux-sprite
+       (action
+         (name "gameover")
+         (fps 30.0)
+         (hitbox 18 6 64 64)
+         (images "small/gameover-0.png"
+                 "small/gameover-1.png"))
+
+       (action
+         (name "right")
+         (fps 5.0)
+         (hitbox 32 32 64 64)
+         (images "cat/right.png"))
+
+       (action
+         (name "left")
+         (fps 5.0)
+         (hitbox 32 32 64 64)
+         (mirror-action "right"))
+)

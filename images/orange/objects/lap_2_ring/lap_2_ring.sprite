@@ -1,0 +1,21 @@
+(supertux-sprite
+      (action 
+          (name "left")
+          (images "lap2left.png"))
+      (action 
+          (name "right")
+          (images "lap2right.png")) 
+      (action 
+          (name "top")
+          (images "lap2top.png"))
+      (action 
+          (name "bottom")
+          (images "lap2bottom.png"))
+
+      (action 
+          (name "bottom2")
+          (mirror-action "bottom"))
+      (action 
+          (name "left2")
+          (mirror-action "left"))
+)

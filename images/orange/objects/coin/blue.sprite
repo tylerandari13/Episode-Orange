@@ -1,0 +1,30 @@
+(supertux-sprite
+      (action 
+          (name "normal")
+          (fps 15.0)
+          (images "blue-0.png"
+                  "blue-1.png"
+                  "blue-2.png"
+                  "blue-3.png"
+                  "blue-4.png"
+                  "blue-5.png"
+                  "blue-6.png"
+                  "blue-7.png"
+                  "blue-8.png"
+                  "blue-9.png"
+                  "blue-10.png"
+                  "blue-11.png"
+                  "blue-12.png"
+                  "blue-13.png"
+                  "blue-14.png"
+                  "blue-15.png"))
+      (action
+          (name "still")
+          (images "blue-0.png"))
+      (action
+          (name "editor-path")
+          (images "path_coin.png"))
+      (action
+          (name "editor-heavy")
+          (images "heavy_coin.png"))
+)

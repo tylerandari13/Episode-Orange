@@ -1,0 +1,28 @@
+(supertux-sprite
+      (action
+         (fps 15)
+         (name "normal")
+         (images "yellow/full-0.png"
+                 "yellow/full-1.png"
+                 "yellow/full-2.png"
+                 "yellow/full-3.png"
+                 "yellow/full-4.png"
+                 "yellow/full-2.png"
+                 "yellow/full-1.png"
+                 "yellow/full-0.png"
+                 "yellow/full-0.png"
+                 "yellow/full-0.png"
+                 ))
+      (action
+         (name "empty")
+         (surfaces
+          (surface
+           (diffuse-texture (file "yellow/empty.png"))
+           (displacement-texture (file "../../../objects/bonus_block/displacement.png")))))
+      (action
+         (name "on")
+         (images "../../../objects/bonus_block/on.png"))
+      (action
+         (name "off")
+         (images "../../../objects/bonus_block/off.png"))
+)

@@ -1,0 +1,6 @@
+(supertux-sprite
+      (action 
+          (name "default")
+          (hitbox 0 0 64 32)
+          (images "../../../objects/invisible/invisible.png"))
+)

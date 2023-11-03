@@ -1,0 +1,19 @@
+(supertux-sprite
+  (action
+    (name "normal")
+    (hitbox 2 32 32 32)
+    (images "spring1-0.png")
+  )
+  (action
+    (name "swinging")
+	(fps 32)
+	(hitbox 2 32 32 32)
+    (images "spring1-0.png"
+            "spring1-1.png"
+            "spring1-2.png"
+            "spring1-3.png"
+            "spring1-4.png"
+            "spring1-5.png"
+    )
+  )
+)

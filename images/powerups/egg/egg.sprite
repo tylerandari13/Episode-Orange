@@ -1,0 +1,13 @@
+(supertux-sprite
+  (action
+    (name "default")
+    (hitbox 16 16 32 32)
+    (images "orange.png")
+  )
+  (action
+    (name "shadow")
+    (hitbox 16 16 32 32)
+    (images "border.png")
+  )
+)
+

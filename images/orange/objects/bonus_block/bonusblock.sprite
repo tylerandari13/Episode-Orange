@@ -1,0 +1,34 @@
+(supertux-sprite
+      (action
+         (fps 15)
+         (name "normal")
+         (hitbox 32 32 32 32)
+         (images "blue/basket0000.png"
+                 "blue/basket0001.png"
+                 "blue/basket0002.png"
+                 "blue/basket0003.png"
+                 "blue/basket0004.png"
+                 "blue/basket0005.png"
+                 "blue/basket0006.png"
+                 "blue/basket0007.png"
+                 "blue/basket0008.png"
+                 "blue/basket0007.png"
+                 "blue/basket0006.png"
+                 "blue/basket0005.png"
+                 "blue/basket0004.png"
+                 "blue/basket0003.png"
+                 "blue/basket0002.png"
+                 "blue/basket0001.png"
+      ))
+      (action
+         (name "empty")
+         (hitbox 32 32 32 32)
+         (images "blue/basket0009.png"
+      ))
+      (action
+         (name "on")
+         (images "on.png"))
+      (action
+         (name "off")
+         (images "off.png"))
+)
