@@ -159,3 +159,6 @@ offset_bottom = -32.0
 text = "State:"
 script = SubResource("GDScript_06dlf")
 state_machine = NodePath("../StateMachine")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 9)

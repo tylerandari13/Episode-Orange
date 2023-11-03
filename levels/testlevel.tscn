@@ -271,11 +271,3 @@ layer_0/tile_data = PackedInt32Array(196608, 65552, 1, 196609, 65552, 1, 196610,
 
 [node name="orange" parent="." instance=ExtResource("7_susa7")]
 position = Vector2(92, 53)
-
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="orange"]
-remote_path = NodePath("../../Camera2D")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(92, 53)
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
