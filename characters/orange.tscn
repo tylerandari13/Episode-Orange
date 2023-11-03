@@ -92,8 +92,8 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bxq3j"]
-height = 60.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_044oe"]
+height = 59.0
 
 [sub_resource type="GDScript" id="GDScript_06dlf"]
 script/source = "extends Label
@@ -117,8 +117,8 @@ sprite_frames = SubResource("SpriteFrames_8po63")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
-shape = SubResource("CapsuleShape2D_bxq3j")
+position = Vector2(0, 9.5)
+shape = SubResource("CapsuleShape2D_044oe")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state")]
 script = ExtResource("14_oqpne")

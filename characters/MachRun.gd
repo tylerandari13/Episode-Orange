@@ -25,7 +25,7 @@ func state_process(_delta):
 	if((direction == -1 && Input.is_action_pressed("left"))
 	|| (direction == 1 && Input.is_action_pressed("right"))
 	|| mach < 300):
-		if(character.is_on_floor()):
+		if(character.is_on_floor() && mach < 750):
 			mach += acceeration
 	if((direction == 1 && Input.is_action_pressed("left"))
 	|| (direction == -1 && Input.is_action_pressed("right"))):
