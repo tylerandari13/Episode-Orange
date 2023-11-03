@@ -129,27 +129,37 @@ current_state = NodePath("Ground")
 script = ExtResource("15_d2gkj")
 air_state = NodePath("../Air")
 mach_state = NodePath("../MachRun")
+can_move = null
 
 [node name="Air" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state")]
 script = ExtResource("16_q58r3")
 ground_state = NodePath("../Landing")
+can_move = null
+use_grvity = null
 
 [node name="Landing" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state")]
 script = ExtResource("17_4w3if")
 ground_state = NodePath("../Ground")
+can_move = null
+use_grvity = null
 
 [node name="MachRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state", "slide_state", "superjump_state")]
 script = ExtResource("19_menka")
 ground_state = NodePath("../Ground")
 slide_state = NodePath("../MachSlide")
 superjump_state = NodePath("../SuperJump")
+can_move = null
+use_grvity = null
 
 [node name="MachSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state")]
 script = ExtResource("20_effgp")
 mach_state = NodePath("../MachRun")
+can_move = null
+use_grvity = null
 
-[node name="SuperJump" type="Node" parent="StateMachine"]
+[node name="SuperJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state")]
 script = ExtResource("21_55frq")
+air_state = NodePath("../Air")
 
 [node name="StateDebug" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -60.0

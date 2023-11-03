@@ -1,8 +1,9 @@
 extends Node
 
 class_name State
-@export var can_move : bool = true
 @export var use_directions : bool = true
+@export var use_friction : bool = true
+@export var use_gravity : bool = true
 var character : CharacterBody2D
 var next_state : State
 
