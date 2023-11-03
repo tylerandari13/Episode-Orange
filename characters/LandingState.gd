@@ -3,8 +3,8 @@ extends State
 class_name LandingState
 
 @export var ground_state : State
-var wait_time : float = 0.1
 
+var wait_time : float = 0.1
 var cur_time : float = 0.0
 
 func on_enter():

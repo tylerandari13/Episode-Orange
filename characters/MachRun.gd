@@ -12,11 +12,20 @@ var acceeration : float = 0.0
 var mach : float = 0.0
 var direction : float = 0.0
 
+var mach_override : bool = false
+var direction_override : bool = false
+
 func on_enter():
 	speed = character.speed
 	acceeration = character.acceleration
-	mach = 0
-	direction = ((float(character.animated_sprite.flip_h) * 2) - 1) * -1
+	if(mach_override):
+		mach_override = false
+	else:
+		mach = 0
+	if(direction_override):
+		direction_override = false
+	else:
+		direction = ((float(character.animated_sprite.flip_h) * 2) - 1) * -1
 
 func state_process(_delta):
 	if(!Input.is_action_pressed("run") && character.is_on_floor()):
@@ -37,4 +46,11 @@ func state_input(event : InputEvent):
 		character.velocity.y = character.jump_velocity
 	if(event.is_action_pressed("up")):
 		next_state = superjump_state
-	
+
+func override_speed(speed : float):
+	mach_override = true
+	mach = speed
+
+func override_direction(_direction : float):
+	direction_override = true
+	direction = _direction

@@ -4,6 +4,7 @@ class_name StateMachine
 
 @export var character : CharacterBody2D
 @export var current_state : State
+@export var previous_state : State
 
 var states : Array[State]
 
@@ -34,6 +35,7 @@ func switch_states(new_state : State):
 		current_state.on_exit()
 		current_state.next_state = null
 
+	previous_state = current_state
 	current_state = new_state
 	current_state.on_enter()
 	

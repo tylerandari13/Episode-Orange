@@ -120,10 +120,11 @@ autoplay = "default"
 position = Vector2(0, 9.5)
 shape = SubResource("CapsuleShape2D_044oe")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "previous_state")]
 script = ExtResource("14_oqpne")
 character = NodePath("..")
 current_state = NodePath("Ground")
+previous_state = NodePath("Air")
 
 [node name="Ground" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "mach_state")]
 script = ExtResource("15_d2gkj")
@@ -140,16 +141,12 @@ use_grvity = null
 [node name="Landing" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state")]
 script = ExtResource("17_4w3if")
 ground_state = NodePath("../Ground")
-can_move = null
-use_grvity = null
 
 [node name="MachRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state", "slide_state", "superjump_state")]
 script = ExtResource("19_menka")
 ground_state = NodePath("../Ground")
 slide_state = NodePath("../MachSlide")
 superjump_state = NodePath("../SuperJump")
-can_move = null
-use_grvity = null
 
 [node name="MachSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state")]
 script = ExtResource("20_effgp")
@@ -157,9 +154,10 @@ mach_state = NodePath("../MachRun")
 can_move = null
 use_grvity = null
 
-[node name="SuperJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state")]
+[node name="SuperJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "mach_state")]
 script = ExtResource("21_55frq")
 air_state = NodePath("../Air")
+mach_state = NodePath("../MachRun")
 
 [node name="StateDebug" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -60.0
