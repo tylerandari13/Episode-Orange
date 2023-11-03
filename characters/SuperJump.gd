@@ -31,7 +31,7 @@ func state_process(delta):
 			current_time += delta
 			character.velocity.y = 0
 			if(current_time > grab_time):
-				mach_state.override_speed(character.speed)
+				mach_state.override_speed(mach_state.mach3)
 				mach_state.override_direction(direction)
 				character.velocity.y = character.jump_velocity * 0.5
 				next_state = mach_state
@@ -45,6 +45,7 @@ func state_process(delta):
 				use_gravity = false
 				superjumping = true
 				character.animated_sprite.play("jump")
+				character.velocity.x = 0
 				character.velocity.y = character.jump_velocity * 1.5
 	if(Input.is_action_pressed("left")):
 		if(!superjumping):

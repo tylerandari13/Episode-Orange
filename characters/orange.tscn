@@ -102,7 +102,7 @@ script/source = "extends Label
 
 func _process(_delta):
 	if(state_machine.current_state.name == \"MachRun\"):
-		text = \"State: Mach \" + str(state_machine.current_state.mach)
+		text = \"State: Mach \" + str(state_machine.current_state.get_mach()) + \" (\" + str(state_machine.current_state.get_mach(true)) + \")\"
 	else:
 		text = \"State: \" + state_machine.current_state.name
 "
@@ -151,8 +151,6 @@ superjump_state = NodePath("../SuperJump")
 [node name="MachSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state")]
 script = ExtResource("20_effgp")
 mach_state = NodePath("../MachRun")
-can_move = null
-use_grvity = null
 
 [node name="SuperJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "mach_state")]
 script = ExtResource("21_55frq")
