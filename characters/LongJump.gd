@@ -18,7 +18,7 @@ func state_process(_delta):
 	
 	if(character.is_on_wall()):
 		wall_state.direction = direction
-		wall_state.override_speed(mach_state.mach3)
+		wall_state.override_speed(mach_state.mach2)
 		next_state = wall_state
 
 func on_enter():
