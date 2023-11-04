@@ -9,6 +9,7 @@ var acceeration : float = 0.0
 @export var slide_state : State
 @export var superjump_state : State
 @export var grab_state : State
+@export var wall_state : State
 
 var mach : float = 0.0
 var direction : float = 0.0
@@ -32,7 +33,7 @@ func on_enter():
 	if(direction_override):
 		direction_override = false
 	else:
-		direction = ((float(character.animated_sprite.flip_h) * 2) - 1) * -1
+		direction = character.direction
 
 func state_process(_delta):
 	if(!Input.is_action_pressed("run") && character.is_on_floor()):
@@ -55,6 +56,17 @@ func state_process(_delta):
 
 	if(Input.is_action_pressed("up") && get_mach() >= 3):
 		next_state = superjump_state
+	
+	if(character.is_on_wall()):
+		if(character.is_on_floor()):
+			if(get_mach() > 1):
+				character.velocity.x = -250 * direction
+			character.velocity.y = -250
+			next_state = ground_state
+		else:
+			wall_state.direction = direction
+			wall_state.override_speed(mach)
+			next_state = wall_state
 
 func state_input(event : InputEvent):
 	if(event.is_action_pressed("jump") && character.is_on_floor()):
@@ -63,9 +75,9 @@ func state_input(event : InputEvent):
 		grab_state.dir = direction
 		next_state = grab_state
 
-func override_speed(speed : float):
+func override_speed(_speed : float):
 	mach_override = true
-	mach = speed
+	mach = _speed
 
 func override_direction(_direction : float):
 	direction_override = true

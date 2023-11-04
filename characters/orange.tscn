@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=29 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
 [ext_resource type="Texture2D" uid="uid://bn621b4ipij27" path="res://images/creatures/tux/big/stand-0.png" id="2_cp6g8"]
@@ -23,6 +23,8 @@
 [ext_resource type="Script" path="res://characters/MachSlide.gd" id="20_effgp"]
 [ext_resource type="Script" path="res://characters/SuperJump.gd" id="21_55frq"]
 [ext_resource type="Script" path="res://characters/Grab.gd" id="22_5flmp"]
+[ext_resource type="Script" path="res://characters/LongJump.gd" id="24_s2vs2"]
+[ext_resource type="Script" path="res://characters/WallRun.gd" id="25_jf7wy"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8po63"]
 animations = [{
@@ -102,8 +104,8 @@ animations = [{
 "speed": 15.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_044oe"]
-height = 59.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2kdpa"]
+size = Vector2(20, 60)
 
 [sub_resource type="GDScript" id="GDScript_06dlf"]
 script/source = "extends Label
@@ -118,18 +120,18 @@ func _process(_delta):
 "
 
 [node name="orange" type="CharacterBody2D"]
+floor_constant_speed = true
 floor_max_angle = 1.1781
 floor_snap_length = 32.0
 script = ExtResource("1_s0qxb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8po63")
-animation = &"grab"
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9.5)
-shape = SubResource("CapsuleShape2D_044oe")
+shape = SubResource("RectangleShape2D_2kdpa")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "previous_state")]
 script = ExtResource("14_oqpne")
@@ -145,19 +147,20 @@ grab_state = NodePath("../Grab")
 
 [node name="Air" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state", "grab_state")]
 script = ExtResource("16_q58r3")
-ground_state = NodePath("../Landing")
+ground_state = NodePath("../Ground")
 grab_state = NodePath("../Grab")
 
 [node name="Landing" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state")]
 script = ExtResource("17_4w3if")
 ground_state = NodePath("../Ground")
 
-[node name="MachRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state", "slide_state", "superjump_state", "grab_state")]
+[node name="MachRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state", "slide_state", "superjump_state", "grab_state", "wall_state")]
 script = ExtResource("19_menka")
 ground_state = NodePath("../Ground")
 slide_state = NodePath("../MachSlide")
 superjump_state = NodePath("../SuperJump")
 grab_state = NodePath("../Grab")
+wall_state = NodePath("../WallRun")
 
 [node name="MachSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state")]
 script = ExtResource("20_effgp")
@@ -168,10 +171,22 @@ script = ExtResource("21_55frq")
 air_state = NodePath("../Air")
 mach_state = NodePath("../MachRun")
 
-[node name="Grab" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state", "ground_state")]
+[node name="Grab" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state", "ground_state", "long_state", "wall_state")]
 script = ExtResource("22_5flmp")
 mach_state = NodePath("../MachRun")
 ground_state = NodePath("../Ground")
+long_state = NodePath("../LongJump")
+wall_state = NodePath("../WallRun")
+
+[node name="LongJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state", "ground_state", "wall_state")]
+script = ExtResource("24_s2vs2")
+mach_state = NodePath("../MachRun")
+ground_state = NodePath("../Ground")
+wall_state = NodePath("../WallRun")
+
+[node name="WallRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state")]
+script = ExtResource("25_jf7wy")
+air_state = NodePath("../Air")
 
 [node name="StateDebug" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -60.0

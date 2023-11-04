@@ -37,7 +37,8 @@ func state_process(delta):
 				next_state = mach_state
 	else:
 		if(current_time < floor_time):
-			current_time += delta
+			if(character.is_on_floor()):
+				current_time += delta
 			character.animated_sprite.play("duck")
 		else:
 			if(!Input.is_action_pressed("up")):

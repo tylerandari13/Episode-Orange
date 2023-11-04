@@ -11,19 +11,22 @@ extends CharacterBody2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var direction : float = 0
 
 func _physics_process(delta):
-		# Add the gravity.
-		if(!is_on_floor() && state_machine.current_state.use_gravity):
-			velocity.y += gravity * delta
-			
-		if(state_machine.current_state.use_friction):
-			velocity_x = velocity_x * 0.7
+	# Add the gravity.
+	if(!is_on_floor() && state_machine.current_state.use_gravity):
+		velocity.y += gravity * delta
+		
+	if(state_machine.current_state.use_friction):
+		velocity_x = velocity_x * 0.7
 
-		if(state_machine.current_state.use_directions):
-			if(velocity.x > 0):
-				animated_sprite.flip_h = false
-			elif(velocity.x < 0):
-				animated_sprite.flip_h = true
+	if(state_machine.current_state.use_directions):
+		if(velocity.x > 0):
+			animated_sprite.flip_h = false
+		elif(velocity.x < 0):
+			animated_sprite.flip_h = true
 
-		move_and_slide()
+	direction = ((float(animated_sprite.flip_h) * 2) - 1) * -1
+
+	move_and_slide()
