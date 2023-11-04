@@ -184,9 +184,11 @@ mach_state = NodePath("../MachRun")
 ground_state = NodePath("../Ground")
 wall_state = NodePath("../WallRun")
 
-[node name="WallRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state")]
+[node name="WallRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "long_state", "mach_state")]
 script = ExtResource("25_jf7wy")
 air_state = NodePath("../Air")
+long_state = NodePath("../LongJump")
+mach_state = NodePath("../MachRun")
 
 [node name="StateDebug" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -60.0

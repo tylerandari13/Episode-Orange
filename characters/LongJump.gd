@@ -15,12 +15,12 @@ func state_process(_delta):
 			next_state = mach_state
 		else:
 			next_state = ground_state
-	
+
 	if(character.is_on_wall()):
 		wall_state.direction = direction
 		wall_state.override_speed(mach_state.mach2)
 		next_state = wall_state
 
 func on_enter():
-	direction = 1 if character.velocity.x > 0 else -1
+	direction = character.direction
 	character.velocity.y = character.jump_velocity
