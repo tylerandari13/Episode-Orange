@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=31 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
 [ext_resource type="Texture2D" uid="uid://bn621b4ipij27" path="res://images/creatures/tux/big/stand-0.png" id="2_cp6g8"]
@@ -25,6 +25,7 @@
 [ext_resource type="Script" path="res://characters/Grab.gd" id="22_5flmp"]
 [ext_resource type="Script" path="res://characters/LongJump.gd" id="24_s2vs2"]
 [ext_resource type="Script" path="res://characters/WallRun.gd" id="25_jf7wy"]
+[ext_resource type="Script" path="res://characters/Dive.gd" id="26_j236h"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8po63"]
 animations = [{
@@ -107,6 +108,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2kdpa"]
 size = Vector2(20, 60)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p28o8"]
+size = Vector2(20, 30.5)
+
 [sub_resource type="GDScript" id="GDScript_06dlf"]
 script/source = "extends Label
 
@@ -129,9 +133,15 @@ script = ExtResource("1_s0qxb")
 sprite_frames = SubResource("SpriteFrames_8po63")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="StandCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9.5)
 shape = SubResource("RectangleShape2D_2kdpa")
+
+[node name="DuckCollision" type="CollisionShape2D" parent="."]
+position = Vector2(0, 24.25)
+shape = SubResource("RectangleShape2D_p28o8")
+disabled = true
+debug_color = Color(0.854902, 0, 0.886275, 0.419608)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "previous_state")]
 script = ExtResource("14_oqpne")
@@ -154,13 +164,14 @@ grab_state = NodePath("../Grab")
 script = ExtResource("17_4w3if")
 ground_state = NodePath("../Ground")
 
-[node name="MachRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state", "slide_state", "superjump_state", "grab_state", "wall_state")]
+[node name="MachRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state", "slide_state", "superjump_state", "grab_state", "wall_state", "dive_state")]
 script = ExtResource("19_menka")
 ground_state = NodePath("../Ground")
 slide_state = NodePath("../MachSlide")
 superjump_state = NodePath("../SuperJump")
 grab_state = NodePath("../Grab")
 wall_state = NodePath("../WallRun")
+dive_state = NodePath("../Dive")
 
 [node name="MachSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state")]
 script = ExtResource("20_effgp")
@@ -188,6 +199,10 @@ wall_state = NodePath("../WallRun")
 script = ExtResource("25_jf7wy")
 air_state = NodePath("../Air")
 long_state = NodePath("../LongJump")
+mach_state = NodePath("../MachRun")
+
+[node name="Dive" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state")]
+script = ExtResource("26_j236h")
 mach_state = NodePath("../MachRun")
 
 [node name="StateDebug" type="Label" parent="." node_paths=PackedStringArray("state_machine")]

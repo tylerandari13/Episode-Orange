@@ -10,6 +10,7 @@ var acceeration : float = 0.0
 @export var superjump_state : State
 @export var grab_state : State
 @export var wall_state : State
+@export var dive_state : State
 
 var mach : float = 0.0
 var direction : float = 0.0
@@ -53,9 +54,6 @@ func state_process(_delta):
 		slide_state.mach = get_mach()
 		next_state = slide_state
 	character.velocity.x = direction * (speed + mach)
-
-	if(Input.is_action_pressed("up") && get_mach() >= 3):
-		next_state = superjump_state
 	
 	if(character.is_on_wall()):
 		if(character.is_on_floor()):
@@ -74,6 +72,14 @@ func state_input(event : InputEvent):
 	if(event.is_action_pressed("grab")):
 		grab_state.dir = direction
 		next_state = grab_state
+	if(Input.is_action_pressed("up") && get_mach() >= 3):
+		next_state = superjump_state
+	if(Input.is_action_pressed("down")):
+		if(character.is_on_floor()):
+			pass #roll
+		else:
+			dive_state.override_speed(speed)
+			next_state = dive_state
 
 func override_speed(_speed : float):
 	mach_override = true
