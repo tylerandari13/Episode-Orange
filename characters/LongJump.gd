@@ -15,9 +15,9 @@ func state_process(_delta):
 	if(character.is_on_floor() && character.velocity.y >= 0):
 		if(Input.is_action_pressed("run")):
 			mach_state.override_speed(mach_state.mach3)
-			next_state = mach_state
 		else:
-			next_state = ground_state
+			mach_state.override_speed(mach_state.mach2)
+		next_state = mach_state
 
 	if(character.is_on_wall()):
 		wall_state.direction = direction
