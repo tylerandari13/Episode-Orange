@@ -1,11 +1,17 @@
-[gd_scene load_steps=31 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=38 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
+[ext_resource type="Texture2D" uid="uid://do1f1j8ln6011" path="res://images/creatures/tux/big/crawl0000.png" id="2_5eepp"]
 [ext_resource type="Texture2D" uid="uid://bn621b4ipij27" path="res://images/creatures/tux/big/stand-0.png" id="2_cp6g8"]
 [ext_resource type="Texture2D" uid="uid://b8dwxnjkox2cf" path="res://images/creatures/tux/big/stand-1.png" id="3_7xue2"]
+[ext_resource type="Texture2D" uid="uid://cp7kaa1wgj3hl" path="res://images/creatures/tux/big/crawl0001.png" id="3_woa3w"]
 [ext_resource type="Texture2D" uid="uid://840c7js8tin1" path="res://images/creatures/tux/big/stand-2.png" id="4_ii3xc"]
+[ext_resource type="Texture2D" uid="uid://0u3eo3m1kwxk" path="res://images/creatures/tux/big/crawl0002.png" id="4_jpwyf"]
+[ext_resource type="Texture2D" uid="uid://dwqyg3galyini" path="res://images/creatures/tux/big/crawl0003.png" id="5_28x0v"]
 [ext_resource type="Texture2D" uid="uid://dh3f5i6kf88qm" path="res://images/creatures/tux/big/duck-0.png" id="5_fskra"]
 [ext_resource type="Texture2D" uid="uid://1bv8qyy77rtv" path="res://images/creatures/tux/big/fall-1.png" id="6_g78mr"]
+[ext_resource type="Texture2D" uid="uid://174bmpcgf7as" path="res://images/creatures/tux/big/crawl0004.png" id="6_y6ynn"]
+[ext_resource type="Texture2D" uid="uid://85qgnfucfmyt" path="res://images/creatures/tux/big/crawl0005.png" id="7_4o4vn"]
 [ext_resource type="Texture2D" uid="uid://cf20jpgkahelp" path="res://images/creatures/tux/big/fall-2.png" id="7_22y01"]
 [ext_resource type="Texture2D" uid="uid://bybqgiva7h4e3" path="res://images/creatures/tux/big/fall-3.png" id="8_t20h8"]
 [ext_resource type="Texture2D" uid="uid://blcxkhgj6xpq0" path="res://images/creatures/tux/big/walljump-2.png" id="9_6fl05"]
@@ -26,9 +32,33 @@
 [ext_resource type="Script" path="res://characters/LongJump.gd" id="24_s2vs2"]
 [ext_resource type="Script" path="res://characters/WallRun.gd" id="25_jf7wy"]
 [ext_resource type="Script" path="res://characters/Dive.gd" id="26_j236h"]
+[ext_resource type="Script" path="res://characters/Duck.gd" id="27_wcmxe"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8po63"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5eepp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_woa3w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jpwyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_28x0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_y6ynn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_4o4vn")
+}],
+"loop": true,
+"name": &"crawl",
+"speed": 15.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_cp6g8")
@@ -131,7 +161,10 @@ script = ExtResource("1_s0qxb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8po63")
+animation = &"crawl"
 autoplay = "default"
+frame = 5
+frame_progress = 1.0
 
 [node name="StandCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9.5)
@@ -149,11 +182,14 @@ character = NodePath("..")
 current_state = NodePath("Ground")
 previous_state = NodePath("Air")
 
-[node name="Ground" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "mach_state", "grab_state")]
+[node name="BASE MOVES" type="Node" parent="StateMachine"]
+
+[node name="Ground" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "mach_state", "grab_state", "duck_state")]
 script = ExtResource("15_d2gkj")
 air_state = NodePath("../Air")
 mach_state = NodePath("../MachRun")
 grab_state = NodePath("../Grab")
+duck_state = NodePath("../Duck")
 
 [node name="Air" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state", "grab_state")]
 script = ExtResource("16_q58r3")
@@ -204,6 +240,12 @@ mach_state = NodePath("../MachRun")
 [node name="Dive" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state")]
 script = ExtResource("26_j236h")
 mach_state = NodePath("../MachRun")
+
+[node name="Duck" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state")]
+script = ExtResource("27_wcmxe")
+ground_state = NodePath("../Ground")
+
+[node name="TRANSFORMATIONS" type="Node" parent="StateMachine"]
 
 [node name="StateDebug" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -60.0

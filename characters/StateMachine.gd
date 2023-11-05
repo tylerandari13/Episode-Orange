@@ -10,13 +10,11 @@ var states : Array[State]
 
 func _ready():
 	for child in get_children():
-		if child is State:
+		if(child is State):
 			states.append(child)
-
-			# Set the states up with what they need to function.
 			child.character = character
 
-		else:
+		elif(!(child is Node)):
 			push_warning("You good bro? " + child.name + " isnt a State for StateMachine.")
 
 func  _physics_process(delta):
@@ -34,6 +32,8 @@ func switch_states(new_state : State):
 	if(current_state != null):
 		current_state.on_exit()
 		current_state.next_state = null
+	if(new_state == null):
+		push_warning("You good bro? The state was set to null. Make sure you set the @export variable correctly lmao.")
 
 	previous_state = current_state
 	current_state = new_state

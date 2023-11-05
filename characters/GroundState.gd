@@ -5,6 +5,7 @@ class_name GroundState
 @export var air_state : State
 @export var mach_state : State
 @export var grab_state : State
+@export var duck_state : State
 
 var speed : float = 0.0
 var jump_velocity : float = 0.0
@@ -50,3 +51,5 @@ func state_input(event : InputEvent):
 	if(event.is_action_pressed("grab")):
 		grab_state.dir = last_dir
 		next_state = grab_state
+	if(event.is_action_pressed("down")):
+		next_state = duck_state

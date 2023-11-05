@@ -9,6 +9,9 @@ extends CharacterBody2D
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine : StateMachine = $StateMachine
 
+@onready var stand_collision : CollisionShape2D = $StandCollision
+@onready var duck_collision : CollisionShape2D = $DuckCollision
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var direction : float = 0
@@ -30,3 +33,7 @@ func _physics_process(delta):
 	direction = ((float(animated_sprite.flip_h) * 2) - 1) * -1
 
 	move_and_slide()
+
+func set_ducking(ducking):
+	stand_collision.disabled = ducking
+	duck_collision.disabled = !ducking
