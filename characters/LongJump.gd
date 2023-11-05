@@ -7,6 +7,9 @@ class_name LongJumpState
 @export var wall_state : State
 
 var direction : float = 1
+var speed : float = 0
+
+
 
 func state_process(_delta):
 	if(character.is_on_floor() && character.velocity.y >= 0):
