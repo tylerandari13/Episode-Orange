@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var jump_velocity : float = -600.0
 @export var velocity_x : float = 0
 @export var velocity_y : float = 0
+@export var is_player : bool = true
 
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine : StateMachine = $StateMachine
