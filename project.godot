@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="new thing"
+config/name="Episode Orange"
 run/main_scene="res://levels/testlevel.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 boot_splash/image="res://images/engine/menu/logo.png"
