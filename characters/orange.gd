@@ -22,8 +22,8 @@ func _physics_process(delta):
 	if(!is_on_floor() && state_machine.current_state.use_gravity):
 		velocity.y += gravity * delta
 		
-	if(state_machine.current_state.use_friction):
-		velocity_x = velocity_x * 0.7
+	#if(state_machine.current_state.use_friction):
+	#	velocity_x = velocity_x * 0.7
 
 	if(state_machine.current_state.use_directions):
 		if(velocity.x > 0):

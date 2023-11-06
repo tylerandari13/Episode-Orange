@@ -18,6 +18,7 @@ var direction : float = 0
 func on_enter():
 	current_time = 0
 	direction = 1 if character.velocity.x > 0 else -1
+	character.set_ducking(true)
 	
 func state_process(delta):
 	if(superjumping):
@@ -42,6 +43,7 @@ func state_process(delta):
 			character.animated_sprite.play("duck")
 		else:
 			if(!Input.is_action_pressed("up")):
+				character.set_ducking(false)
 				current_time = 0
 				use_gravity = false
 				superjumping = true
