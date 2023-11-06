@@ -207,3 +207,4 @@ state_machine = NodePath("../StateMachine")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 9)
+zoom = Vector2(0.8, 0.8)
