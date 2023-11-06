@@ -107,7 +107,7 @@ func _process(_delta):
 [node name="orange" type="CharacterBody2D"]
 floor_constant_speed = true
 floor_max_angle = 1.1781
-floor_snap_length = 32.0
+floor_snap_length = 64.0
 script = ExtResource("1_s0qxb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
