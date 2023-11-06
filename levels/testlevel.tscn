@@ -15,6 +15,11 @@ position = Vector2(74, -125)
 scale = Vector2(2, 2)
 texture = ExtResource("1_tsb5v")
 
+[node name="House2" type="Sprite2D" parent="."]
+position = Vector2(102, -3249)
+scale = Vector2(2, 2)
+texture = ExtResource("1_tsb5v")
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_qtfcg")
 format = 2
@@ -47,4 +52,4 @@ scene = "res://levels/actuallevel_1.tscn"
 [node name="loadanyscene" parent="." instance=ExtResource("10_8ickp")]
 position = Vector2(22, -3091)
 scale = Vector2(8, 8)
-scene = "res://file_dialog_test.tscn"
+scene = "res://menus/custom_levels.tscn"
