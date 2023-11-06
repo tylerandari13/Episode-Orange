@@ -52,6 +52,7 @@ func state_process(_delta):
 	if((direction == 1 && Input.is_action_pressed("left"))
 	|| (direction == -1 && Input.is_action_pressed("right"))):
 		slide_state.mach = get_mach()
+		slide_state.dir = direction * -1
 		next_state = slide_state
 	character.velocity.x = direction * (speed + mach)
 	

@@ -161,6 +161,7 @@ dive_state = NodePath("../Dive")
 [node name="MachSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state")]
 script = ExtResource("20_effgp")
 mach_state = NodePath("../MachRun")
+use_directions = false
 
 [node name="SuperJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "mach_state")]
 script = ExtResource("21_55frq")
