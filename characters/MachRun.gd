@@ -90,16 +90,16 @@ func override_direction(_direction : float):
 	direction_override = true
 	direction = _direction
 
-func get_mach(precise : bool = false):
+func get_mach(precise : bool = false, _mach = character.mach):
 	if(precise):
-		return character.mach
+		return _mach
 	else:
-		if(character.mach < mach2):
+		if(_mach < mach2):
 			return 1
-		if(character.mach >= mach2 && character.mach < mach3):
+		if(_mach >= mach2 && _mach < mach3):
 			return 2
-		if(character.mach >= mach3 && character.mach < mach4):
+		if(_mach >= mach3 && _mach < mach4):
 			return 3
-		if(character.mach > mach4):
+		if(_mach > mach4):
 			return 4
 		return 0
