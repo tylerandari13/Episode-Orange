@@ -1,23 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://j6qqgdfp1gnu"]
+[gd_scene load_steps=6 format=3 uid="uid://j6qqgdfp1gnu"]
 
 [ext_resource type="Texture2D" uid="uid://c4k3qo37rr1cu" path="res://images/orange/objects/house.png" id="1_koatt"]
 [ext_resource type="PackedScene" uid="uid://dmm4hlogobbev" path="res://characters/orange.tscn" id="1_v0q2h"]
 [ext_resource type="TileSet" uid="uid://cakojuklpvh4f" path="res://tilemaps/tiles.tres" id="3_m1yhd"]
 [ext_resource type="Script" path="res://characters/Trigger.gd" id="4_lc4n2"]
 
-[sub_resource type="GDScript" id="GDScript_h3crw"]
-script/source = "extends Node2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	print(get_tree())
-"
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8msht"]
 
 [node name="actuallevel1" type="Node2D"]
-script = SubResource("GDScript_h3crw")
 
 [node name="House" type="Sprite2D" parent="."]
 position = Vector2(87, -126)

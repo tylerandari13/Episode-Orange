@@ -11,8 +11,8 @@ var acceeration : float = 0.0
 @export var grab_state : State
 @export var wall_state : State
 @export var dive_state : State
+@export var roll_state : State
 
-var mach : float = 0.0
 var direction : float = 0.0
 
 var mach_override : bool = false
@@ -30,7 +30,7 @@ func on_enter():
 	if(mach_override):
 		mach_override = false
 	else:
-		mach = 0
+		character.mach = 0
 	if(direction_override):
 		direction_override = false
 	else:
@@ -42,19 +42,18 @@ func state_process(_delta):
 
 	if((direction == -1 && Input.is_action_pressed("left"))
 	|| (direction == 1 && Input.is_action_pressed("right"))
-	|| mach < mach3):
+	|| character.mach < mach3):
 		if(character.is_on_floor()):
-			if(mach < mach3):
-				mach += acceeration
-			elif(mach < machtop):
-				mach += acceeration / 32
+			if(character.mach < mach3):
+				character.mach += acceeration
+			elif(character.mach < machtop):
+				character.mach += acceeration / 32
 				
 	if((direction == 1 && Input.is_action_pressed("left"))
 	|| (direction == -1 && Input.is_action_pressed("right"))):
-		slide_state.mach = get_mach()
 		slide_state.dir = direction * -1
 		next_state = slide_state
-	character.velocity.x = direction * (speed + mach)
+	character.velocity.x = direction * (speed + character.mach)
 	
 	if(character.is_on_wall()):
 		if(character.is_on_floor()):
@@ -64,7 +63,7 @@ func state_process(_delta):
 			next_state = ground_state
 		else:
 			wall_state.direction = direction
-			wall_state.override_speed(mach)
+			wall_state.override_speed(character.mach)
 			next_state = wall_state
 
 func state_input(event : InputEvent):
@@ -77,14 +76,15 @@ func state_input(event : InputEvent):
 		next_state = superjump_state
 	if(Input.is_action_pressed("down")):
 		if(character.is_on_floor()):
-			pass #roll
+			roll_state.override_speed(speed)
+			next_state = roll_state
 		else:
 			dive_state.override_speed(speed)
 			next_state = dive_state
 
 func override_speed(_speed : float):
 	mach_override = true
-	mach = _speed
+	character.mach = _speed
 
 func override_direction(_direction : float):
 	direction_override = true
@@ -92,14 +92,14 @@ func override_direction(_direction : float):
 
 func get_mach(precise : bool = false):
 	if(precise):
-		return mach
+		return character.mach
 	else:
-		if(mach < mach2):
+		if(character.mach < mach2):
 			return 1
-		if(mach >= mach2 && mach < mach3):
+		if(character.mach >= mach2 && character.mach < mach3):
 			return 2
-		if(mach >= mach3 && mach < mach4):
+		if(character.mach >= mach3 && character.mach < mach4):
 			return 3
-		if(mach > mach4):
+		if(character.mach > mach4):
 			return 4
 		return 0

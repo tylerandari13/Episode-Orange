@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=35 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
 [ext_resource type="Texture2D" uid="uid://4owiu2xmfh2p" path="res://images/creatures/orange/stand/frame0000.png" id="8_c3atd"]
@@ -29,6 +29,7 @@
 [ext_resource type="Script" path="res://characters/WallRun.gd" id="25_jf7wy"]
 [ext_resource type="Script" path="res://characters/Dive.gd" id="26_j236h"]
 [ext_resource type="Script" path="res://characters/Duck.gd" id="27_wcmxe"]
+[ext_resource type="Script" path="res://characters/Roll.gd" id="30_fv1ce"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8po63"]
 animations = [{
@@ -149,7 +150,7 @@ grab_state = NodePath("../Grab")
 script = ExtResource("17_4w3if")
 ground_state = NodePath("../Ground")
 
-[node name="MachRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state", "slide_state", "superjump_state", "grab_state", "wall_state", "dive_state")]
+[node name="MachRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state", "slide_state", "superjump_state", "grab_state", "wall_state", "dive_state", "roll_state")]
 script = ExtResource("19_menka")
 ground_state = NodePath("../Ground")
 slide_state = NodePath("../MachSlide")
@@ -157,6 +158,7 @@ superjump_state = NodePath("../SuperJump")
 grab_state = NodePath("../Grab")
 wall_state = NodePath("../WallRun")
 dive_state = NodePath("../Dive")
+roll_state = NodePath("../Roll")
 
 [node name="MachSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state")]
 script = ExtResource("20_effgp")
@@ -194,6 +196,11 @@ mach_state = NodePath("../MachRun")
 [node name="Duck" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state")]
 script = ExtResource("27_wcmxe")
 ground_state = NodePath("../Ground")
+
+[node name="Roll" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state", "dive_state")]
+script = ExtResource("30_fv1ce")
+mach_state = NodePath("../MachRun")
+dive_state = NodePath("../Dive")
 
 [node name="TRANSFORMATIONS" type="Node" parent="StateMachine"]
 

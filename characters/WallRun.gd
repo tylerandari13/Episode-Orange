@@ -6,7 +6,6 @@ class_name WallRunState
 @export var long_state : State
 @export var mach_state : State
 
-var speed : float = 0
 var speed_overriode : bool = false
 
 var jump_speed : float = 0
@@ -26,11 +25,11 @@ func state_process(delta):
 	if(Input.is_action_pressed("run")):
 		if(character.is_on_wall()):
 			character.velocity.x = direction
-			character.velocity.y = speed * -1
-			speed += character.acceleration
+			character.velocity.y = character.mach * -1
+			character.mach += character.acceleration
 		else:
 			character.velocity.y = 0
-			mach_state.override_speed(speed)
+			mach_state.override_speed(character.mach)
 			next_state = mach_state
 	else:
 		character.velocity.y = -100
@@ -45,7 +44,7 @@ func on_enter():
 	if(speed_overriode):
 		speed_overriode = false
 	else:
-		speed = 0
+		character.mach = 0
 	if(jump_speed_overriode):
 		jump_speed_overriode = false
 	else:
@@ -56,7 +55,7 @@ func on_exit():
 
 func override_speed(_speed : float):
 	speed_overriode = true
-	speed = _speed
+	character.mach = _speed
 
 func override_jump_speed(_speed : float):
 	jump_speed_overriode = true
