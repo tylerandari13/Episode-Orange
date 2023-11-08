@@ -31,12 +31,23 @@ func on_physics_process(delta):
 			change_state("MachSlide")
 	else:
 		change_state("Ground")
+	if(owner.is_on_wall()):
+		if(owner.is_on_floor()):
+			owner.velocity = Vector2(150 * owner.direction * -1, -100)
+			change_state("Air")
+		else:
+			change_state("Wallrun")
 
 
 # Called when there is an input event while this state is active.
 func on_input(event: InputEvent):
 	if(event.is_action_pressed("jump") && owner.is_on_floor()):
 		owner.velocity.y = owner.jump_velocity
+	if(event.is_action_pressed("down")):
+		if(owner.is_on_floor()):
+			change_state("Roll")
+		else:
+			change_state("Dive")
 
 
 # Called when the state machine exits this state.

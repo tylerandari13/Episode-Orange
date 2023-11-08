@@ -5,9 +5,12 @@ extends CharacterBody2D
 @export var speed : float = 400.0
 @export var jump_velocity : float = -700.0
 
-@export_group("Mach Speed")
+@export_group("Mach Speeds")
 @export var mach1 : float = 0
 @export var mach2 : float = 425
+
+@export var grab_speed : float = 588
+
 @export var mach3 : float = 750
 @export var mach4 : float = 1000
 @export var machtop : float = 1500

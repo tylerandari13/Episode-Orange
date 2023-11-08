@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=31 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
 [ext_resource type="Texture2D" uid="uid://4owiu2xmfh2p" path="res://images/creatures/orange/stand/frame0000.png" id="8_c3atd"]
@@ -22,6 +22,10 @@
 [ext_resource type="Texture2D" uid="uid://dp00otb7vxmbf" path="res://images/creatures/orange/stand/frame0014.png" id="22_ngak8"]
 [ext_resource type="Script" path="res://scripts/orange_states/machslide.gd" id="22_s6boe"]
 [ext_resource type="Texture2D" uid="uid://0kh6v4v701a" path="res://images/creatures/orange/stand/frame0015.png" id="23_b6kei"]
+[ext_resource type="Script" path="res://scripts/orange_states/dive.gd" id="23_bhv2m"]
+[ext_resource type="Script" path="res://scripts/orange_states/roll.gd" id="24_n4xaw"]
+[ext_resource type="Script" path="res://scripts/orange_states/wallrun.gd" id="25_styjb"]
+[ext_resource type="Script" path="res://scripts/orange_states/walljump.gd" id="26_wsqqh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8po63"]
 animations = [{
@@ -146,3 +150,15 @@ script = ExtResource("21_d1wrk")
 
 [node name="MachSlide" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("22_s6boe")
+
+[node name="Dive" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("23_bhv2m")
+
+[node name="Roll" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("24_n4xaw")
+
+[node name="Wallrun" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("25_styjb")
+
+[node name="WallJump" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("26_wsqqh")
