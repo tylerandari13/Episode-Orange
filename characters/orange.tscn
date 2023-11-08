@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=36 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
 [ext_resource type="Texture2D" uid="uid://4owiu2xmfh2p" path="res://images/creatures/orange/stand/frame0000.png" id="8_c3atd"]
@@ -29,6 +29,8 @@
 [ext_resource type="Script" path="res://scripts/orange_states/grab.gd" id="27_lbva5"]
 [ext_resource type="Script" path="res://scripts/orange_states/longjump.gd" id="28_5qwyk"]
 [ext_resource type="Script" path="res://scripts/orange_states/superjump.gd" id="29_sshbj"]
+[ext_resource type="Script" path="res://scripts/orange_states/duck.gd" id="30_mgshf"]
+[ext_resource type="Script" path="res://scripts/orange_states/duckjump.gd" id="31_buf3n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8po63"]
 animations = [{
@@ -175,3 +177,9 @@ script = ExtResource("28_5qwyk")
 
 [node name="SuperJump" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("29_sshbj")
+
+[node name="Duck" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("30_mgshf")
+
+[node name="DuckJump" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("31_buf3n")
