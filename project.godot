@@ -12,12 +12,16 @@ config_version=5
 
 config/name="Episode Orange"
 run/main_scene="res://levels/testlevel.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="episode_orange"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 boot_splash/image="res://images/engine/menu/logo.png"
+boot_splash/fullsize=false
 config/icon="res://icon.svg"
 
 [display]
 
+window/subwindows/embed_subwindows=false
 window/stretch/mode="viewport"
 
 [editor]
