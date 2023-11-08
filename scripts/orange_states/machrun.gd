@@ -48,6 +48,8 @@ func on_input(event: InputEvent):
 			change_state("Roll")
 		else:
 			change_state("Dive")
+	if(event.is_action_pressed("up") && owner.get_mach() >= 3):
+		change_state("SuperJump")
 
 
 # Called when the state machine exits this state.

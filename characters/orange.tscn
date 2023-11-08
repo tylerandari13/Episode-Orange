@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=34 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
 [ext_resource type="Texture2D" uid="uid://4owiu2xmfh2p" path="res://images/creatures/orange/stand/frame0000.png" id="8_c3atd"]
@@ -26,6 +26,9 @@
 [ext_resource type="Script" path="res://scripts/orange_states/roll.gd" id="24_n4xaw"]
 [ext_resource type="Script" path="res://scripts/orange_states/wallrun.gd" id="25_styjb"]
 [ext_resource type="Script" path="res://scripts/orange_states/walljump.gd" id="26_wsqqh"]
+[ext_resource type="Script" path="res://scripts/orange_states/grab.gd" id="27_lbva5"]
+[ext_resource type="Script" path="res://scripts/orange_states/longjump.gd" id="28_5qwyk"]
+[ext_resource type="Script" path="res://scripts/orange_states/superjump.gd" id="29_sshbj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8po63"]
 animations = [{
@@ -123,6 +126,7 @@ shape = SubResource("RectangleShape2D_p28o8")
 disabled = true
 
 [node name="StateDebug" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+z_index = 1
 offset_left = -47.0
 offset_top = -87.0
 offset_right = 150.0
@@ -162,3 +166,12 @@ script = ExtResource("25_styjb")
 
 [node name="WallJump" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("26_wsqqh")
+
+[node name="Grab" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("27_lbva5")
+
+[node name="LongJump" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("28_5qwyk")
+
+[node name="SuperJump" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("29_sshbj")
