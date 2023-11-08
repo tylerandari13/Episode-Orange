@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=27 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
 [ext_resource type="Texture2D" uid="uid://4owiu2xmfh2p" path="res://images/creatures/orange/stand/frame0000.png" id="8_c3atd"]
@@ -17,8 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://cq810ysavrifu" path="res://images/creatures/orange/stand/frame0011.png" id="19_ph4nr"]
 [ext_resource type="Script" path="res://scripts/orange_states/air.gd" id="20_es5hx"]
 [ext_resource type="Texture2D" uid="uid://c0klsbgk7vmu5" path="res://images/creatures/orange/stand/frame0012.png" id="20_yxhtt"]
+[ext_resource type="Script" path="res://scripts/orange_states/machrun.gd" id="21_d1wrk"]
 [ext_resource type="Texture2D" uid="uid://lusjl86prg3h" path="res://images/creatures/orange/stand/frame0013.png" id="21_dgfhy"]
 [ext_resource type="Texture2D" uid="uid://dp00otb7vxmbf" path="res://images/creatures/orange/stand/frame0014.png" id="22_ngak8"]
+[ext_resource type="Script" path="res://scripts/orange_states/machslide.gd" id="22_s6boe"]
 [ext_resource type="Texture2D" uid="uid://0kh6v4v701a" path="res://images/creatures/orange/stand/frame0015.png" id="23_b6kei"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8po63"]
@@ -90,7 +92,7 @@ script/source = "extends Label
 
 func _process(_delta):
 	if(state_machine.current_state.name == \"MachRun\"):
-		text = \"State: Mach \" + str(state_machine.current_state.get_mach()) + \" (\" + str(state_machine.current_state.get_mach(true)) + \")\"
+		text = \"State: Mach \" + str(owner.get_mach()) + \" (\" + str(owner.get_mach(true)) + \")\"
 	else:
 		text = \"State: \" + state_machine.current_state.name
 "
@@ -138,3 +140,9 @@ script = ExtResource("19_nv42o")
 
 [node name="Air" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("20_es5hx")
+
+[node name="MachRun" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("21_d1wrk")
+
+[node name="MachSlide" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("22_s6boe")
