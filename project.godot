@@ -20,6 +20,14 @@ config/icon="res://icon.svg"
 
 window/stretch/mode="viewport"
 
+[editor]
+
+movie_writer/movie_file="/home/tylerandari12/godot_stuff/Episode-Orange/orange_movie_thing.avi"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/finite_state_machine/plugin.cfg")
+
 [input]
 
 up={
@@ -67,4 +75,3 @@ taunt={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.541176, 0.501961, 0.282353, 1)

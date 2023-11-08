@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=25 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
 [ext_resource type="Texture2D" uid="uid://4owiu2xmfh2p" path="res://images/creatures/orange/stand/frame0000.png" id="8_c3atd"]
@@ -8,28 +8,18 @@
 [ext_resource type="Texture2D" uid="uid://kitxtxa4g4sj" path="res://images/creatures/orange/stand/frame0004.png" id="12_ui1cb"]
 [ext_resource type="Texture2D" uid="uid://cmblcjkqklmqc" path="res://images/creatures/orange/stand/frame0005.png" id="13_cqjrv"]
 [ext_resource type="Texture2D" uid="uid://bjl3ys8inbw18" path="res://images/creatures/orange/stand/frame0006.png" id="14_5uck8"]
-[ext_resource type="Script" path="res://characters/StateMachine.gd" id="14_oqpne"]
-[ext_resource type="Script" path="res://characters/GroundState.gd" id="15_d2gkj"]
 [ext_resource type="Texture2D" uid="uid://beam7sp5bq6di" path="res://images/creatures/orange/stand/frame0007.png" id="15_vbixu"]
-[ext_resource type="Script" path="res://characters/AirState.gd" id="16_q58r3"]
 [ext_resource type="Texture2D" uid="uid://dboak020bm7e5" path="res://images/creatures/orange/stand/frame0008.png" id="16_x2v5f"]
-[ext_resource type="Script" path="res://characters/LandingState.gd" id="17_4w3if"]
 [ext_resource type="Texture2D" uid="uid://fpgt3sh5i2g8" path="res://images/creatures/orange/stand/frame0009.png" id="17_efwpu"]
+[ext_resource type="Script" path="res://scripts/OrangeStateMachine.gd" id="18_2mtmp"]
 [ext_resource type="Texture2D" uid="uid://dwal1jkhg06jl" path="res://images/creatures/orange/stand/frame0010.png" id="18_ji43f"]
-[ext_resource type="Script" path="res://characters/MachRun.gd" id="19_menka"]
+[ext_resource type="Script" path="res://scripts/orange_states/ground.gd" id="19_nv42o"]
 [ext_resource type="Texture2D" uid="uid://cq810ysavrifu" path="res://images/creatures/orange/stand/frame0011.png" id="19_ph4nr"]
-[ext_resource type="Script" path="res://characters/MachSlide.gd" id="20_effgp"]
+[ext_resource type="Script" path="res://scripts/orange_states/air.gd" id="20_es5hx"]
 [ext_resource type="Texture2D" uid="uid://c0klsbgk7vmu5" path="res://images/creatures/orange/stand/frame0012.png" id="20_yxhtt"]
-[ext_resource type="Script" path="res://characters/SuperJump.gd" id="21_55frq"]
 [ext_resource type="Texture2D" uid="uid://lusjl86prg3h" path="res://images/creatures/orange/stand/frame0013.png" id="21_dgfhy"]
-[ext_resource type="Script" path="res://characters/Grab.gd" id="22_5flmp"]
 [ext_resource type="Texture2D" uid="uid://dp00otb7vxmbf" path="res://images/creatures/orange/stand/frame0014.png" id="22_ngak8"]
 [ext_resource type="Texture2D" uid="uid://0kh6v4v701a" path="res://images/creatures/orange/stand/frame0015.png" id="23_b6kei"]
-[ext_resource type="Script" path="res://characters/LongJump.gd" id="24_s2vs2"]
-[ext_resource type="Script" path="res://characters/WallRun.gd" id="25_jf7wy"]
-[ext_resource type="Script" path="res://characters/Dive.gd" id="26_j236h"]
-[ext_resource type="Script" path="res://characters/Duck.gd" id="27_wcmxe"]
-[ext_resource type="Script" path="res://characters/Roll.gd" id="30_fv1ce"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8po63"]
 animations = [{
@@ -96,7 +86,7 @@ size = Vector2(20, 30.5)
 [sub_resource type="GDScript" id="GDScript_06dlf"]
 script/source = "extends Label
 
-@export var state_machine : StateMachine
+@export var state_machine : FiniteStateMachine
 
 func _process(_delta):
 	if(state_machine.current_state.name == \"MachRun\"):
@@ -126,84 +116,6 @@ scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_p28o8")
 disabled = true
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "current_state", "previous_state")]
-script = ExtResource("14_oqpne")
-character = NodePath("..")
-current_state = NodePath("Ground")
-previous_state = NodePath("Air")
-
-[node name="BASE MOVES" type="Node" parent="StateMachine"]
-
-[node name="Ground" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "mach_state", "grab_state", "duck_state")]
-script = ExtResource("15_d2gkj")
-air_state = NodePath("../Air")
-mach_state = NodePath("../MachRun")
-grab_state = NodePath("../Grab")
-duck_state = NodePath("../Duck")
-
-[node name="Air" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state", "grab_state")]
-script = ExtResource("16_q58r3")
-ground_state = NodePath("../Ground")
-grab_state = NodePath("../Grab")
-
-[node name="Landing" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state")]
-script = ExtResource("17_4w3if")
-ground_state = NodePath("../Ground")
-
-[node name="MachRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state", "slide_state", "superjump_state", "grab_state", "wall_state", "dive_state", "roll_state")]
-script = ExtResource("19_menka")
-ground_state = NodePath("../Ground")
-slide_state = NodePath("../MachSlide")
-superjump_state = NodePath("../SuperJump")
-grab_state = NodePath("../Grab")
-wall_state = NodePath("../WallRun")
-dive_state = NodePath("../Dive")
-roll_state = NodePath("../Roll")
-
-[node name="MachSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state")]
-script = ExtResource("20_effgp")
-mach_state = NodePath("../MachRun")
-use_directions = false
-
-[node name="SuperJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "mach_state")]
-script = ExtResource("21_55frq")
-air_state = NodePath("../Air")
-mach_state = NodePath("../MachRun")
-
-[node name="Grab" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state", "ground_state", "long_state", "wall_state")]
-script = ExtResource("22_5flmp")
-mach_state = NodePath("../MachRun")
-ground_state = NodePath("../Ground")
-long_state = NodePath("../LongJump")
-wall_state = NodePath("../WallRun")
-
-[node name="LongJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state", "ground_state", "wall_state")]
-script = ExtResource("24_s2vs2")
-mach_state = NodePath("../MachRun")
-ground_state = NodePath("../Ground")
-wall_state = NodePath("../WallRun")
-
-[node name="WallRun" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "long_state", "mach_state")]
-script = ExtResource("25_jf7wy")
-air_state = NodePath("../Air")
-long_state = NodePath("../LongJump")
-mach_state = NodePath("../MachRun")
-
-[node name="Dive" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state")]
-script = ExtResource("26_j236h")
-mach_state = NodePath("../MachRun")
-
-[node name="Duck" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state")]
-script = ExtResource("27_wcmxe")
-ground_state = NodePath("../Ground")
-
-[node name="Roll" type="Node" parent="StateMachine" node_paths=PackedStringArray("mach_state", "dive_state")]
-script = ExtResource("30_fv1ce")
-mach_state = NodePath("../MachRun")
-dive_state = NodePath("../Dive")
-
-[node name="TRANSFORMATIONS" type="Node" parent="StateMachine"]
-
 [node name="StateDebug" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -47.0
 offset_top = -87.0
@@ -211,8 +123,18 @@ offset_right = 150.0
 offset_bottom = -61.0
 text = "State:"
 script = SubResource("GDScript_06dlf")
-state_machine = NodePath("../StateMachine")
+state_machine = NodePath("../FiniteStateMachine")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 9)
 zoom = Vector2(0.8, 0.8)
+
+[node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("18_2mtmp")
+current_state = NodePath("Ground")
+
+[node name="Ground" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("19_nv42o")
+
+[node name="Air" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("20_es5hx")
