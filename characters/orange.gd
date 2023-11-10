@@ -30,7 +30,7 @@ var direction : float = 1
 func _physics_process(delta):
 	if(!is_on_floor() && state_machine.current_state.use_gravity):
 		velocity.y += gravity * delta
-	sprite.flip_h = true if direction < 0 else false
+	sprite.flip_h = direction < 0
 	move_and_slide()
 
 func set_ducking(ducking : bool):

@@ -17,12 +17,15 @@ func on_physics_process(delta):
 		change_state("MachRun")
 	if(owner.is_on_wall()):
 		change_state("Wallrun")
+	
 
 
 # Called when there is an input event while this state is active.
 func on_input(event: InputEvent):
 	if(event.is_action_pressed("down")):
 		change_state("Dive")
+	if(event.is_action_pressed("grab")):
+		change_state("Grab")
 
 
 # Called when the state machine exits this state.

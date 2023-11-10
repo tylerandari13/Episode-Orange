@@ -37,6 +37,8 @@ func on_physics_process(delta):
 			change_state("Air")
 		else:
 			change_state("Wallrun")
+	if(Input.is_action_pressed("up") && owner.get_mach() >= 3):
+		change_state("SuperJump")
 
 
 # Called when there is an input event while this state is active.
@@ -48,8 +50,6 @@ func on_input(event: InputEvent):
 			change_state("Roll")
 		else:
 			change_state("Dive")
-	if(event.is_action_pressed("up") && owner.get_mach() >= 3):
-		change_state("SuperJump")
 
 
 # Called when the state machine exits this state.

@@ -26,6 +26,11 @@ func on_physics_process(delta):
 			change_state("Air")
 		else:
 			change_state("WallRun")
+	if((owner.direction == 1 && Input.is_action_pressed("left"))
+		|| (owner.direction == -1 && Input.is_action_pressed("right"))):
+		owner.direction = owner.direction * -1
+		owner.velocity.x = 0
+		change_state("Ground")
 
 
 # Called when there is an input event while this state is active.
