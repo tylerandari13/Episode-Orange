@@ -17,6 +17,7 @@ extends CharacterBody2D
 
 @export_group("Room")
 @export var room : String
+@export var spawn : String
 @export var room_left : float
 @export var room_right : float
 @export var room_top : float
@@ -41,8 +42,7 @@ var cur_time : float = 0
 
 
 func _ready():
-	if(!room.is_empty()):
-		change_room(room, "main")
+	back_to_the_start()
 
 func _physics_process(delta):
 	if(!is_on_floor() && state_machine.current_state.use_gravity):
@@ -53,10 +53,19 @@ func _physics_process(delta):
 	if(!get_rooms().get(room).overlaps_body(self)):
 		cur_time += delta
 		if(cur_time >= offscreen_time):
-			change_room(room, "main")
+			back_to_the_start()
 			cur_time = 0
+	else:
+		cur_time = 0
 
 	move_and_slide()
+
+func back_to_the_start():
+	if(!room.is_empty()):
+		if(spawn.is_empty()):
+			change_room(room, "main")
+		else:
+			change_room(room, spawn)
 
 func get_rooms():
 	var retarray = {}
@@ -83,7 +92,7 @@ func get_mach(precise : bool = false, _mach = mach) -> float:
 			return 4
 		return 0
 
-func change_room(new_room : String, spawnpoint : String):
+func change_room(new_room : String, new_spawn : String):
 	var colobj = get_rooms().get(new_room).collision_object
 	var collision : Rect2 = colobj.shape.get_rect()
 	camera.set_limit(SIDE_LEFT, collision.position.x + colobj.position.x)
@@ -98,7 +107,11 @@ func change_room(new_room : String, spawnpoint : String):
 	camera.set_limit(SIDE_BOTTOM, collision.position.y + collision.size.y + colobj.position.y)
 	room_bottom = collision.position.y + collision.size.y + colobj.position.y
 
-	#print(get_rooms().get(room).get_node(spawnpoint).position)
-	position = get_rooms().get(new_room).get_node(spawnpoint).position
+	var _spawn = get_rooms().get(room).get_node(new_spawn)
+	if(_spawn):
+		position = _spawn.position
+	else:
+		push_warning("You good bro? The room " + new_room + " doesnt seem to have a spawnpoint named " + new_spawn + ".")
 	
 	room = new_room
+	spawn = new_spawn
