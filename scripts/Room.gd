@@ -1,7 +1,7 @@
 class_name Room
 extends Area2D
 @export_group("room_info")
-@export var collision_object : Node2D
+@export var collision_object : CollisionShape2D
 @export_group("misc")
 @export var is_room : bool = true
 

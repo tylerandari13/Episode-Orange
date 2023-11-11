@@ -3,8 +3,8 @@ extends Area2D
 
 var has_called : bool = false
 
-@export var room_name : String
-@export var room_spawnpoint : String
+@export var room_name : String = "main"
+@export var room_spawnpoint : String = "main"
 
 func _process(delta):
 	for body in get_overlapping_bodies():
