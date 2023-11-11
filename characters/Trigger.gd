@@ -7,7 +7,6 @@ class_name Trigger
 
 var has_called : bool = false
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if(overlaps_body(collidor_object)):
 		if(!has_called):

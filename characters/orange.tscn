@@ -138,7 +138,6 @@ script = SubResource("GDScript_06dlf")
 state_machine = NodePath("../FiniteStateMachine")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, 9)
 zoom = Vector2(0.8, 0.8)
 
 [node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
