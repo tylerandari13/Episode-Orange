@@ -139,6 +139,7 @@ state_machine = NodePath("../FiniteStateMachine")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.8, 0.8)
+editor_draw_limits = true
 
 [node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("18_2mtmp")

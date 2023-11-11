@@ -24,6 +24,7 @@ collision_object = NodePath("CollisionShape2D")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="main"]
 position = Vector2(5504, -1250)
 shape = SubResource("RectangleShape2D_lykf3")
+debug_color = Color(0, 0.6, 0.701961, 0.0392157)
 
 [node name="main" type="Node2D" parent="main"]
 
@@ -48,7 +49,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_tsb5v")
 
 [node name="orange" parent="." instance=ExtResource("7_susa7")]
-position = Vector2(-1, -111)
+position = Vector2(4, -181)
 room = "main"
 
 [node name="TestLevel2" parent="." instance=ExtResource("10_8ickp")]

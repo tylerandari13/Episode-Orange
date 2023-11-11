@@ -68,9 +68,10 @@ func get_mach(precise : bool = false, _mach = mach) -> float:
 
 func change_room(new_room : String, spawnpoint : String):
 	room = new_room
-	var collision : Rect2 = get_rooms().get(room).collision_object.shape.get_rect()
-	print("Should change room to " + new_room + " and spawn at spawnpoint " + spawnpoint + ".")
-	camera.set_limit(SIDE_LEFT, collision.position.x)
-	camera.set_limit(SIDE_RIGHT, collision.position.x + collision.size.x)
-	camera.set_limit(SIDE_TOP, collision.position.y)
-	camera.set_limit(SIDE_BOTTOM, collision.position.y + collision.size.y)
+	var colobj = get_rooms().get(room).collision_object
+	var collision : Rect2 = colobj.shape.get_rect()
+	print("Should change room to " + room + " and spawn at spawnpoint " + spawnpoint + ".")
+	camera.set_limit(SIDE_LEFT, collision.position.x + colobj.position.x)
+	camera.set_limit(SIDE_RIGHT, collision.position.x + collision.size.x + colobj.position.x)
+	camera.set_limit(SIDE_TOP, collision.position.y + colobj.position.y)
+	camera.set_limit(SIDE_BOTTOM, collision.position.y + collision.size.y + colobj.position.y)
