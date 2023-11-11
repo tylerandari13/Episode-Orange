@@ -3,7 +3,7 @@ extends Area2D
 class_name Trigger
 
 @export var collision_shape : CollisionShape2D
-@export var collidor_object : Node
+@export var collidor_object : Node = Node.new()
 
 var has_called : bool = false
 
