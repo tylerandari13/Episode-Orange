@@ -15,9 +15,16 @@ extends CharacterBody2D
 @export var mach4 : float = 1000
 @export var machtop : float = 1500
 
+@export_group("Room")
+@export var room : String
+@export var room_left : float
+@export var room_right : float
+@export var room_top : float
+@export var room_bottom : float
+
 @export_group("Misc")
 @export var is_player : bool = true
-@export var room : String
+@export var offscreen_time = 1
 
 signal room_changed(old_room : String, new_room : String)
 
@@ -30,6 +37,8 @@ signal room_changed(old_room : String, new_room : String)
 var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity") 
 var mach : float = 0
 var direction : float = 1
+var cur_time : float = 0
+
 
 func _ready():
 	if(!room.is_empty()):
@@ -38,14 +47,22 @@ func _ready():
 func _physics_process(delta):
 	if(!is_on_floor() && state_machine.current_state.use_gravity):
 		velocity.y += gravity * delta
+
 	sprite.flip_h = direction < 0
+
+	if(!get_rooms().get(room).overlaps_body(self)):
+		cur_time += delta
+		if(cur_time >= offscreen_time):
+			change_room(room, "main")
+			cur_time = 0
+
 	move_and_slide()
 
 func get_rooms():
 	var retarray = {}
-	for room in owner.get_children():
-		if("is_room" in room):
-			retarray[room.get_name()] = room
+	for _room in owner.get_children():
+		if("is_room" in _room):
+			retarray[_room.get_name()] = _room
 	return retarray
 
 func set_ducking(ducking : bool):
@@ -67,11 +84,22 @@ func get_mach(precise : bool = false, _mach = mach) -> float:
 		return 0
 
 func change_room(new_room : String, spawnpoint : String):
-	room = new_room
-	var colobj = get_rooms().get(room).collision_object
+	var colobj = get_rooms().get(new_room).collision_object
 	var collision : Rect2 = colobj.shape.get_rect()
-	print("Should change room to " + room + " and spawn at spawnpoint " + spawnpoint + ".")
+	print("Should change room to " + new_room + " and spawn at spawnpoint " + spawnpoint + ".")
 	camera.set_limit(SIDE_LEFT, collision.position.x + colobj.position.x)
+	room_left = collision.position.x + colobj.position.x
+	
 	camera.set_limit(SIDE_RIGHT, collision.position.x + collision.size.x + colobj.position.x)
+	room_right = collision.position.x + collision.size.x + colobj.position.x
+	
 	camera.set_limit(SIDE_TOP, collision.position.y + colobj.position.y)
+	room_top = collision.position.y + colobj.position.y
+	
 	camera.set_limit(SIDE_BOTTOM, collision.position.y + collision.size.y + colobj.position.y)
+	room_bottom = collision.position.y + collision.size.y + colobj.position.y
+
+	#print(get_rooms().get(room).get_node(spawnpoint).position)
+	position = get_rooms().get(new_room).get_node(spawnpoint).position
+	
+	room = new_room
