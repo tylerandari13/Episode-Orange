@@ -48,7 +48,6 @@ debug_color = Color(0, 0.6, 0.701961, 0.0392157)
 position = Vector2(7425, -266)
 
 [node name="orange" parent="." instance=ExtResource("1_v0q2h")]
-position = Vector2(62, 28)
 room = "main"
 
 [node name="TileMap" type="TileMap" parent="."]
