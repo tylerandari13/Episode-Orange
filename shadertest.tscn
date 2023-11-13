@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnjm5m8obsdfy"]
+
+[ext_resource type="Shader" path="res://shaders/testshader.gdshader" id="1_k0u6k"]
+[ext_resource type="Texture2D" uid="uid://4owiu2xmfh2p" path="res://images/creatures/orange/stand/frame0000.png" id="2_ve0or"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_apmel"]
+shader = ExtResource("1_k0u6k")
+
+[node name="Node2D" type="Node2D"]
+material = SubResource("ShaderMaterial_apmel")
+
+[node name="Frame0000" type="Sprite2D" parent="."]
+use_parent_material = true
+position = Vector2(494, 156)
+texture = ExtResource("2_ve0or")
