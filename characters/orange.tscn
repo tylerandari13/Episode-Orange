@@ -1,6 +1,7 @@
-[gd_scene load_steps=36 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=39 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
+[ext_resource type="Script" path="res://scripts/GUI.gd" id="2_05sji"]
 [ext_resource type="Texture2D" uid="uid://4owiu2xmfh2p" path="res://images/creatures/orange/stand/frame0000.png" id="8_c3atd"]
 [ext_resource type="Texture2D" uid="uid://c82w1b7hg3u2b" path="res://images/creatures/orange/stand/frame0001.png" id="9_lfrch"]
 [ext_resource type="Texture2D" uid="uid://b0xttjesiavuf" path="res://images/creatures/orange/stand/frame0002.png" id="10_la6o8"]
@@ -12,7 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://dboak020bm7e5" path="res://images/creatures/orange/stand/frame0008.png" id="16_x2v5f"]
 [ext_resource type="Texture2D" uid="uid://fpgt3sh5i2g8" path="res://images/creatures/orange/stand/frame0009.png" id="17_efwpu"]
 [ext_resource type="Script" path="res://scripts/OrangeStateMachine.gd" id="18_2mtmp"]
+[ext_resource type="Texture2D" uid="uid://d30jbh7xf5vdh" path="res://images/tv/screens/placeholder.png" id="18_e2ooa"]
 [ext_resource type="Texture2D" uid="uid://dwal1jkhg06jl" path="res://images/creatures/orange/stand/frame0010.png" id="18_ji43f"]
+[ext_resource type="Texture2D" uid="uid://cekkcxocj6aov" path="res://images/tv/tv_bg.png" id="18_npm7x"]
 [ext_resource type="Script" path="res://scripts/orange_states/ground.gd" id="19_nv42o"]
 [ext_resource type="Texture2D" uid="uid://cq810ysavrifu" path="res://images/creatures/orange/stand/frame0011.png" id="19_ph4nr"]
 [ext_resource type="Script" path="res://scripts/orange_states/air.gd" id="20_es5hx"]
@@ -99,9 +102,19 @@ script/source = "extends Label
 
 @export var state_machine : FiniteStateMachine
 
+var lastmach = 0
+var machtome = 0
+
 func _process(_delta):
 	if(state_machine.current_state.name == \"MachRun\"):
 		text = \"State: Mach \" + str(owner.get_mach()) + \" (\" + str(owner.get_mach(true)) + \")\"
+		if(lastmach != owner.get_mach()):
+			print(lastmach, \" -> \", owner.get_mach())
+			print(machtome)
+			print(\"\")
+			machtome = 0
+		lastmach = owner.get_mach()
+		machtome += _delta
 	else:
 		text = \"State: \" + state_machine.current_state.name
 "
@@ -112,7 +125,22 @@ floor_max_angle = 1.1781
 floor_snap_length = 64.0
 script = ExtResource("1_s0qxb")
 
+[node name="gui" type="Node2D" parent="."]
+use_parent_material = true
+script = ExtResource("2_05sji")
+
+[node name="TvBg" type="Sprite2D" parent="gui"]
+z_index = 100
+use_parent_material = true
+position = Vector2(563, -251)
+texture = ExtResource("18_npm7x")
+
+[node name="Placeholder" type="Sprite2D" parent="gui/TvBg"]
+use_parent_material = true
+texture = ExtResource("18_e2ooa")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_8po63")
 autoplay = "default"
 
