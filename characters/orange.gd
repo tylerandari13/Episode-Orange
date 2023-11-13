@@ -74,6 +74,19 @@ func get_rooms():
 			retarray[_room.get_name()] = _room
 	return retarray
 
+func get_room(new_room : String):
+	return get_rooms().get(new_room)
+
+func get_room_collision(new_room : String):
+	return get_room(new_room).collision_object
+
+func get_room_rect(new_room : String):
+	var retrect = get_room(new_room).collision_object.shape.get_rect()
+	var guh = get_room_collision(new_room)
+	retrect.position.x += guh.position.x
+	retrect.position.y += guh.position.y
+	return retrect
+
 func set_ducking(ducking : bool):
 	stand_collision.disabled = ducking
 	duck_collision.disabled = !ducking
@@ -93,21 +106,21 @@ func get_mach(precise : bool = false, _mach = mach) -> float:
 		return 0
 
 func change_room(new_room : String, new_spawn : String):
-	var colobj = get_rooms().get(new_room).collision_object
-	var collision : Rect2 = colobj.shape.get_rect()
-	camera.set_limit(SIDE_LEFT, collision.position.x + colobj.position.x)
-	room_left = collision.position.x + colobj.position.x
+	var colobj = get_room_collision(new_room)
+	var collision : Rect2 = get_room_rect(new_room)
+	camera.set_limit(SIDE_LEFT, collision.position.x)
+	room_left = collision.position.x
 	
-	camera.set_limit(SIDE_RIGHT, collision.position.x + collision.size.x + colobj.position.x)
-	room_right = collision.position.x + collision.size.x + colobj.position.x
+	camera.set_limit(SIDE_RIGHT, collision.position.x + collision.size.x)
+	room_right = collision.position.x + collision.size.x
 	
-	camera.set_limit(SIDE_TOP, collision.position.y + colobj.position.y)
-	room_top = collision.position.y + colobj.position.y
+	camera.set_limit(SIDE_TOP, collision.position.y)
+	room_top = collision.position.y
 	
-	camera.set_limit(SIDE_BOTTOM, collision.position.y + collision.size.y + colobj.position.y)
-	room_bottom = collision.position.y + collision.size.y + colobj.position.y
+	camera.set_limit(SIDE_BOTTOM, collision.position.y + collision.size.y)
+	room_bottom = collision.position.y + collision.size.y
 
-	var _spawn = get_rooms().get(room).get_node(new_spawn)
+	var _spawn = get_room(room).get_node(new_spawn)
 	if(_spawn):
 		position = _spawn.position
 	else:
