@@ -50,7 +50,7 @@ func _physics_process(delta):
 
 	sprite.flip_h = direction < 0
 
-	if(!get_rooms().get(room).overlaps_body(self)):
+	if(get_rooms().get(room) && !get_rooms().get(room).overlaps_body(self)):
 		cur_time += delta
 		if(cur_time >= offscreen_time):
 			back_to_the_start()
