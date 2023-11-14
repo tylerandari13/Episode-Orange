@@ -140,7 +140,6 @@ func _on_http_request_completed(result, response_code, headers, body):
 	else:
 		start_level_from_string(string.get_slice(\"#eolevel\", 1))
 
-
 func display_error_cat(errornum : int):
 	var error = httpcat.request(\"https://http.cat/\" + str(errornum) + \".jpg\")
 	if(error != OK):
