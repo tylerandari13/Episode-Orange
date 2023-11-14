@@ -50,6 +50,8 @@ func on_physics_process(delta):
 				superjumping = true
 				owner.velocity.x = 0
 				owner.velocity.y = owner.jump_velocity * 1.5
+			else:
+				use_gravity = true
 	if(Input.is_action_pressed("left")):
 		if(!superjumping):
 			owner.velocity.x = owner.speed * -0.5
