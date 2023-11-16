@@ -71,19 +71,32 @@ func back_to_the_start():
 		else:
 			change_room(room, spawn)
 
-func get_greatest_parent(get_window : bool = false):
-	var parent = self
-	while(parent.get_parent() != null && (get_window || (!get_window && !parent.get_parent() is Window))):
-		parent = parent.get_parent()
-	return parent
+func find_level_in_root():
+	for child in get_tree().root.get_children():
+		if(child is Level):
+			return child
 
 func get_room(new_room : String):
-	var room = get_greatest_parent().get_node(new_room)
+	var room = find_level_in_root().get_node(new_room)
 	if(!room):
-		var room_holder = get_greatest_parent().get_node("rooms")
+		var room_holder = find_level_in_root().get_node("rooms")
 		if(room_holder):
 			room = room_holder.get_node(new_room)
 	return room
+
+#func get_greatest_parent(get_window : bool = false):
+#	var parent = self
+#	while(parent.get_parent() != null && (get_window || (!get_window && !parent.get_parent() is Window))):
+#		parent = parent.get_parent()
+#	return parent
+
+#func get_room(new_room : String):
+#	var room = get_greatest_parent().get_node(new_room)
+#	if(!room):
+#		var room_holder = get_greatest_parent().get_node("rooms")
+#		if(room_holder):
+#			room = room_holder.get_node(new_room)
+#	return room
 
 func set_ducking(ducking : bool):
 	stand_collision.disabled = ducking
@@ -102,6 +115,14 @@ func get_mach(precise : bool = false, _mach = mach) -> float:
 		if(_mach >= mach4):
 			return 4
 		return 0
+
+func can_stand():
+	print(TranslationServer.get_all_languages())
+	return
+	set_ducking(false)
+	print(is_on_ceiling())
+	print(is_on_floor())
+	print(is_on_wall())
 
 func change_room(new_room : String, new_spawn : String):
 	var colobj = get_room(new_room).get_collision()

@@ -17,11 +17,10 @@ size = Vector2(7808, 1721)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhtra"]
 size = Vector2(87, 274)
 
-[node name="actuallevel1" type="Node2D" node_paths=PackedStringArray("player_spawner")]
+[node name="actuallevel1" type="Node2D"]
 script = ExtResource("1_1k8x2")
 start_room = "main"
 start_spawn = "main"
-player_spawner = NodePath("Players")
 
 [node name="Players" parent="." instance=ExtResource("2_1bkj0")]
 

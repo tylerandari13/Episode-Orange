@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cde4iwvwca2uc"]
+
+[ext_resource type="Script" path="res://scripts/PlayerPlaceholder.gd" id="1_vh07f"]
+
+[node name="PlayerZPlaceholder" type="Node"]
+script = ExtResource("1_vh07f")

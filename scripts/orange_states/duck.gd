@@ -14,6 +14,7 @@ func on_process(delta):
 # Called every physics frame when this state is active.
 func on_physics_process(delta):
 	if(!Input.is_action_pressed("down")):
+		owner.can_stand()
 		change_state("Ground")
 
 	var _direction = 0

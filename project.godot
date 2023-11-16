@@ -19,6 +19,10 @@ boot_splash/image="res://images/engine/menu/logo.png"
 boot_splash/fullsize=false
 config/icon="res://icon.svg"
 
+[autoload]
+
+Players="*res://characters/playerspawner.tscn"
+
 [display]
 
 window/subwindows/embed_subwindows=false
