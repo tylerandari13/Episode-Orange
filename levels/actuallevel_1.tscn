@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://j6qqgdfp1gnu"]
+[gd_scene load_steps=12 format=3 uid="uid://j6qqgdfp1gnu"]
 
+[ext_resource type="Script" path="res://scripts/Level.gd" id="1_1k8x2"]
 [ext_resource type="Texture2D" uid="uid://c4k3qo37rr1cu" path="res://images/orange/objects/house.png" id="1_koatt"]
-[ext_resource type="PackedScene" uid="uid://dmm4hlogobbev" path="res://characters/orange.tscn" id="1_v0q2h"]
+[ext_resource type="PackedScene" uid="uid://c27drgxl7l6ph" path="res://characters/playerspawner.tscn" id="2_1bkj0"]
 [ext_resource type="PackedScene" uid="uid://p3q6aqwpoxs2" path="res://characters/room.tscn" id="2_y8ya2"]
 [ext_resource type="TileSet" uid="uid://cakojuklpvh4f" path="res://tilemaps/tiles.tres" id="3_m1yhd"]
+[ext_resource type="PackedScene" uid="uid://1mihfxrqb87s" path="res://characters/playerspawn.tscn" id="3_rpf46"]
 [ext_resource type="Script" path="res://characters/Trigger.gd" id="4_lc4n2"]
 [ext_resource type="PackedScene" uid="uid://bb4k080jesf0u" path="res://characters/room_changer.tscn" id="6_8iiud"]
 
@@ -15,7 +17,13 @@ size = Vector2(7808, 1721)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhtra"]
 size = Vector2(87, 274)
 
-[node name="actuallevel1" type="Node2D"]
+[node name="actuallevel1" type="Node2D" node_paths=PackedStringArray("player_spawner")]
+script = ExtResource("1_1k8x2")
+start_room = "main"
+start_spawn = "main"
+player_spawner = NodePath("Players")
+
+[node name="Players" parent="." instance=ExtResource("2_1bkj0")]
 
 [node name="House" type="Sprite2D" parent="."]
 position = Vector2(87, -126)
@@ -30,11 +38,11 @@ position = Vector2(3136, -355.5)
 shape = SubResource("RectangleShape2D_j0hse")
 debug_color = Color(0, 0.6, 0.701961, 0.0392157)
 
-[node name="main" type="Node2D" parent="main"]
-position = Vector2(-23, 0)
+[node name="main" parent="main" instance=ExtResource("3_rpf46")]
+position = Vector2(3, 64)
 
-[node name="spawn1" type="Node2D" parent="main"]
-position = Vector2(6979, -259)
+[node name="spawn1" parent="main" instance=ExtResource("3_rpf46")]
+position = Vector2(7006, -191)
 
 [node name="main2" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("2_y8ya2")]
 collision_object = NodePath("CollisionShape2D")
@@ -44,11 +52,8 @@ position = Vector2(11266, -350)
 shape = SubResource("RectangleShape2D_j0hse")
 debug_color = Color(0, 0.6, 0.701961, 0.0392157)
 
-[node name="spawn1" type="Node2D" parent="main2"]
-position = Vector2(7425, -266)
-
-[node name="orange" parent="." instance=ExtResource("1_v0q2h")]
-room = "main"
+[node name="spawn1" parent="main2" instance=ExtResource("3_rpf46")]
+position = Vector2(7396, -192)
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("3_m1yhd")

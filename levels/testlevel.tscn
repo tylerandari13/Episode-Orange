@@ -1,13 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://b0eymceneu6aj"]
+[gd_scene load_steps=14 format=3 uid="uid://b0eymceneu6aj"]
 
+[ext_resource type="Script" path="res://scripts/Level.gd" id="1_2jifr"]
 [ext_resource type="PackedScene" uid="uid://p3q6aqwpoxs2" path="res://characters/room.tscn" id="1_exmr2"]
 [ext_resource type="Texture2D" uid="uid://c4k3qo37rr1cu" path="res://images/orange/objects/house.png" id="1_tsb5v"]
+[ext_resource type="PackedScene" uid="uid://c27drgxl7l6ph" path="res://characters/playerspawner.tscn" id="2_h8i0h"]
 [ext_resource type="TileSet" uid="uid://cakojuklpvh4f" path="res://tilemaps/tiles.tres" id="2_qtfcg"]
 [ext_resource type="TileSet" uid="uid://b2xh2kp4l3ef4" path="res://tilemaps/tiles-leaves.tres" id="3_0jqju"]
+[ext_resource type="PackedScene" uid="uid://1mihfxrqb87s" path="res://characters/playerspawn.tscn" id="4_7use3"]
 [ext_resource type="PackedScene" uid="uid://bw0qfnofivdin" path="res://characters/player_trigger.tscn" id="7_0nmop"]
-[ext_resource type="PackedScene" uid="uid://dmm4hlogobbev" path="res://characters/orange.tscn" id="7_susa7"]
 [ext_resource type="Texture2D" uid="uid://ouitansraa6b" path="res://images/orange/backgrounds/OrngMountains.png" id="8_orcw3"]
 [ext_resource type="PackedScene" uid="uid://dam7jdfk4nys" path="res://characters/level_door.tscn" id="10_8ickp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4jmo"]
+size = Vector2(338, 224)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lykf3"]
 size = Vector2(16256, 5187)
@@ -15,32 +20,13 @@ size = Vector2(16256, 5187)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xa7et"]
 size = Vector2(6161, 5316)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4jmo"]
-size = Vector2(338, 224)
+[node name="testlevel" type="Node2D" node_paths=PackedStringArray("player_spawner")]
+script = ExtResource("1_2jifr")
+start_room = "main"
+start_spawn = "main"
+player_spawner = NodePath("Players")
 
-[node name="testlevel" type="Node2D"]
-position = Vector2(1, 0)
-
-[node name="main" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("1_exmr2")]
-collision_object = NodePath("CollisionShape2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="main"]
-position = Vector2(5504, -1250)
-shape = SubResource("RectangleShape2D_lykf3")
-debug_color = Color(0, 0.6, 0.701961, 0.0392157)
-
-[node name="main" type="Node2D" parent="main"]
-
-[node name="room2" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("1_exmr2")]
-collision_object = NodePath("CollisionShape2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="room2"]
-position = Vector2(17133.5, -1255)
-shape = SubResource("RectangleShape2D_xa7et")
-debug_color = Color(0, 0.6, 0.701961, 0.0392157)
-
-[node name="main" type="Node2D" parent="room2"]
-position = Vector2(14850, -3292)
+[node name="Players" parent="." instance=ExtResource("2_h8i0h")]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -61,10 +47,6 @@ texture = ExtResource("1_tsb5v")
 position = Vector2(102, -3249)
 scale = Vector2(2, 2)
 texture = ExtResource("1_tsb5v")
-
-[node name="orange" parent="." instance=ExtResource("7_susa7")]
-position = Vector2(4, -181)
-room = "main"
 
 [node name="TestLevel2" parent="." instance=ExtResource("10_8ickp")]
 position = Vector2(-6, 50)
@@ -92,3 +74,32 @@ room_name = "room2"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomChanger"]
 position = Vector2(13411, -357)
 shape = SubResource("RectangleShape2D_o4jmo")
+
+[node name="main" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("1_exmr2")]
+collision_object = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="main"]
+position = Vector2(5504, -1250)
+shape = SubResource("RectangleShape2D_lykf3")
+debug_color = Color(0, 0.6, 0.701961, 0.0392157)
+
+[node name="main" parent="main" instance=ExtResource("4_7use3")]
+position = Vector2(3, 65)
+
+[node name="room2" parent="." node_paths=PackedStringArray("collision_object") instance=ExtResource("1_exmr2")]
+collision_object = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="room2"]
+position = Vector2(17133.5, -1255)
+shape = SubResource("RectangleShape2D_xa7et")
+debug_color = Color(0, 0.6, 0.701961, 0.0392157)
+
+[node name="main" parent="room2" instance=ExtResource("4_7use3")]
+position = Vector2(14773, -3200)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 550.0
+offset_top = 622.0
+offset_right = 614.0
+offset_bottom = 648.0
+text = "hi lmao"

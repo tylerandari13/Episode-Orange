@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx128fg53v0n5"]
+
+[ext_resource type="Texture2D" uid="uid://cekkcxocj6aov" path="res://images/tv/tv_bg.png" id="1_y2388"]
+[ext_resource type="Texture2D" uid="uid://d30jbh7xf5vdh" path="res://images/tv/screens/placeholder.png" id="2_55f6f"]
+
+[node name="Camera2D" type="Camera2D"]
+zoom = Vector2(0.8, 0.8)
+
+[node name="gui" type="Node2D" parent="."]
+use_parent_material = true
+
+[node name="TvBg" type="Sprite2D" parent="gui"]
+z_index = 100
+use_parent_material = true
+position = Vector2(563, -251)
+texture = ExtResource("1_y2388")
+
+[node name="Placeholder" type="Sprite2D" parent="gui/TvBg"]
+use_parent_material = true
+texture = ExtResource("2_55f6f")

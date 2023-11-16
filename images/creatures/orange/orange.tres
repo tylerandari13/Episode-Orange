@@ -1,0 +1,74 @@
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://c44jmvm73tp3d"]
+
+[ext_resource type="Texture2D" uid="uid://4owiu2xmfh2p" path="res://images/creatures/orange/stand/frame0000.png" id="1_ujkgj"]
+[ext_resource type="Texture2D" uid="uid://c82w1b7hg3u2b" path="res://images/creatures/orange/stand/frame0001.png" id="2_gfy0b"]
+[ext_resource type="Texture2D" uid="uid://b0xttjesiavuf" path="res://images/creatures/orange/stand/frame0002.png" id="3_sl7jc"]
+[ext_resource type="Texture2D" uid="uid://dsj4ajevx1sya" path="res://images/creatures/orange/stand/frame0003.png" id="4_j16e6"]
+[ext_resource type="Texture2D" uid="uid://kitxtxa4g4sj" path="res://images/creatures/orange/stand/frame0004.png" id="5_sw6b0"]
+[ext_resource type="Texture2D" uid="uid://cmblcjkqklmqc" path="res://images/creatures/orange/stand/frame0005.png" id="6_skgd4"]
+[ext_resource type="Texture2D" uid="uid://bjl3ys8inbw18" path="res://images/creatures/orange/stand/frame0006.png" id="7_1p8sg"]
+[ext_resource type="Texture2D" uid="uid://beam7sp5bq6di" path="res://images/creatures/orange/stand/frame0007.png" id="8_p4r2g"]
+[ext_resource type="Texture2D" uid="uid://dboak020bm7e5" path="res://images/creatures/orange/stand/frame0008.png" id="9_tjn24"]
+[ext_resource type="Texture2D" uid="uid://fpgt3sh5i2g8" path="res://images/creatures/orange/stand/frame0009.png" id="10_iirjh"]
+[ext_resource type="Texture2D" uid="uid://dwal1jkhg06jl" path="res://images/creatures/orange/stand/frame0010.png" id="11_lpbb7"]
+[ext_resource type="Texture2D" uid="uid://cq810ysavrifu" path="res://images/creatures/orange/stand/frame0011.png" id="12_hxyex"]
+[ext_resource type="Texture2D" uid="uid://c0klsbgk7vmu5" path="res://images/creatures/orange/stand/frame0012.png" id="13_nh0lg"]
+[ext_resource type="Texture2D" uid="uid://lusjl86prg3h" path="res://images/creatures/orange/stand/frame0013.png" id="14_528n0"]
+[ext_resource type="Texture2D" uid="uid://dp00otb7vxmbf" path="res://images/creatures/orange/stand/frame0014.png" id="15_5eclv"]
+[ext_resource type="Texture2D" uid="uid://0kh6v4v701a" path="res://images/creatures/orange/stand/frame0015.png" id="16_lmcaa"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ujkgj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_gfy0b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sl7jc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j16e6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_sw6b0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_skgd4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1p8sg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_p4r2g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_tjn24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_iirjh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_lpbb7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_hxyex")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_nh0lg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_528n0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_5eclv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_lmcaa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]

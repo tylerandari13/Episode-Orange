@@ -1,30 +1,12 @@
-[gd_scene load_steps=39 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=20 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
-[ext_resource type="Script" path="res://scripts/GUI.gd" id="2_05sji"]
-[ext_resource type="Texture2D" uid="uid://4owiu2xmfh2p" path="res://images/creatures/orange/stand/frame0000.png" id="8_c3atd"]
-[ext_resource type="Texture2D" uid="uid://c82w1b7hg3u2b" path="res://images/creatures/orange/stand/frame0001.png" id="9_lfrch"]
-[ext_resource type="Texture2D" uid="uid://b0xttjesiavuf" path="res://images/creatures/orange/stand/frame0002.png" id="10_la6o8"]
-[ext_resource type="Texture2D" uid="uid://dsj4ajevx1sya" path="res://images/creatures/orange/stand/frame0003.png" id="11_r6vbw"]
-[ext_resource type="Texture2D" uid="uid://kitxtxa4g4sj" path="res://images/creatures/orange/stand/frame0004.png" id="12_ui1cb"]
-[ext_resource type="Texture2D" uid="uid://cmblcjkqklmqc" path="res://images/creatures/orange/stand/frame0005.png" id="13_cqjrv"]
-[ext_resource type="Texture2D" uid="uid://bjl3ys8inbw18" path="res://images/creatures/orange/stand/frame0006.png" id="14_5uck8"]
-[ext_resource type="Texture2D" uid="uid://beam7sp5bq6di" path="res://images/creatures/orange/stand/frame0007.png" id="15_vbixu"]
-[ext_resource type="Texture2D" uid="uid://dboak020bm7e5" path="res://images/creatures/orange/stand/frame0008.png" id="16_x2v5f"]
-[ext_resource type="Texture2D" uid="uid://fpgt3sh5i2g8" path="res://images/creatures/orange/stand/frame0009.png" id="17_efwpu"]
+[ext_resource type="SpriteFrames" uid="uid://c44jmvm73tp3d" path="res://images/creatures/orange/orange.tres" id="2_f6qet"]
 [ext_resource type="Script" path="res://scripts/OrangeStateMachine.gd" id="18_2mtmp"]
-[ext_resource type="Texture2D" uid="uid://d30jbh7xf5vdh" path="res://images/tv/screens/placeholder.png" id="18_e2ooa"]
-[ext_resource type="Texture2D" uid="uid://dwal1jkhg06jl" path="res://images/creatures/orange/stand/frame0010.png" id="18_ji43f"]
-[ext_resource type="Texture2D" uid="uid://cekkcxocj6aov" path="res://images/tv/tv_bg.png" id="18_npm7x"]
 [ext_resource type="Script" path="res://scripts/orange_states/ground.gd" id="19_nv42o"]
-[ext_resource type="Texture2D" uid="uid://cq810ysavrifu" path="res://images/creatures/orange/stand/frame0011.png" id="19_ph4nr"]
 [ext_resource type="Script" path="res://scripts/orange_states/air.gd" id="20_es5hx"]
-[ext_resource type="Texture2D" uid="uid://c0klsbgk7vmu5" path="res://images/creatures/orange/stand/frame0012.png" id="20_yxhtt"]
 [ext_resource type="Script" path="res://scripts/orange_states/machrun.gd" id="21_d1wrk"]
-[ext_resource type="Texture2D" uid="uid://lusjl86prg3h" path="res://images/creatures/orange/stand/frame0013.png" id="21_dgfhy"]
-[ext_resource type="Texture2D" uid="uid://dp00otb7vxmbf" path="res://images/creatures/orange/stand/frame0014.png" id="22_ngak8"]
 [ext_resource type="Script" path="res://scripts/orange_states/machslide.gd" id="22_s6boe"]
-[ext_resource type="Texture2D" uid="uid://0kh6v4v701a" path="res://images/creatures/orange/stand/frame0015.png" id="23_b6kei"]
 [ext_resource type="Script" path="res://scripts/orange_states/dive.gd" id="23_bhv2m"]
 [ext_resource type="Script" path="res://scripts/orange_states/roll.gd" id="24_n4xaw"]
 [ext_resource type="Script" path="res://scripts/orange_states/wallrun.gd" id="25_styjb"]
@@ -35,64 +17,8 @@
 [ext_resource type="Script" path="res://scripts/orange_states/duck.gd" id="30_mgshf"]
 [ext_resource type="Script" path="res://scripts/orange_states/duckjump.gd" id="31_buf3n"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_8po63"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("8_c3atd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_lfrch")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_la6o8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_r6vbw")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_ui1cb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_cqjrv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_5uck8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_vbixu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_x2v5f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_efwpu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_ji43f")
-}, {
-"duration": 1.0,
-"texture": ExtResource("19_ph4nr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("20_yxhtt")
-}, {
-"duration": 1.0,
-"texture": ExtResource("21_dgfhy")
-}, {
-"duration": 1.0,
-"texture": ExtResource("22_ngak8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_b6kei")
-}],
-"loop": true,
-"name": &"default",
-"speed": 24.0
-}]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2kdpa"]
-size = Vector2(20, 60)
+size = Vector2(20, 29.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p28o8"]
 size = Vector2(20, 30.5)
@@ -119,33 +45,20 @@ func _process(_delta):
 		text = \"State: \" + state_machine.current_state.name
 "
 
-[node name="orange" type="CharacterBody2D"]
+[node name="orange" type="CharacterBody2D" node_paths=PackedStringArray("camera")]
 floor_constant_speed = true
 floor_max_angle = 1.1781
 floor_snap_length = 64.0
 script = ExtResource("1_s0qxb")
-
-[node name="gui" type="Node2D" parent="."]
-use_parent_material = true
-script = ExtResource("2_05sji")
-
-[node name="TvBg" type="Sprite2D" parent="gui"]
-z_index = 100
-use_parent_material = true
-position = Vector2(563, -251)
-texture = ExtResource("18_npm7x")
-
-[node name="Placeholder" type="Sprite2D" parent="gui/TvBg"]
-use_parent_material = true
-texture = ExtResource("18_e2ooa")
+camera = NodePath("tempcamera")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
-sprite_frames = SubResource("SpriteFrames_8po63")
+sprite_frames = ExtResource("2_f6qet")
 autoplay = "default"
 
 [node name="StandCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+position = Vector2(0, -26.5)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_2kdpa")
 
@@ -153,7 +66,7 @@ shape = SubResource("RectangleShape2D_2kdpa")
 position = Vector2(0, 34)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_p28o8")
-disabled = true
+debug_color = Color(0.207843, 0.513726, 1, 0.419608)
 
 [node name="StateDebug" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 z_index = 1
@@ -165,7 +78,10 @@ text = "State:"
 script = SubResource("GDScript_06dlf")
 state_machine = NodePath("../FiniteStateMachine")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+
+[node name="tempcamera" type="Camera2D" parent="."]
+visible = false
 zoom = Vector2(0.8, 0.8)
 editor_draw_limits = true
 

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://1mihfxrqb87s"]
+
+[ext_resource type="Script" path="res://scripts/spawn.gd" id="1_r6jiv"]
+[ext_resource type="SpriteFrames" uid="uid://c44jmvm73tp3d" path="res://images/creatures/orange/orange.tres" id="2_0h7i3"]
+
+[sub_resource type="Shader" id="Shader_27y00"]
+code = "shader_type canvas_item;
+
+void fragment() {
+	COLOR.a = COLOR.a * 0.5;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_roqqd"]
+shader = SubResource("Shader_27y00")
+
+[node name="spawn" type="Marker2D"]
+script = ExtResource("1_r6jiv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_roqqd")
+sprite_frames = ExtResource("2_0h7i3")
+autoplay = "default"

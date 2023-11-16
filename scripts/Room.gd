@@ -14,7 +14,22 @@ extends Area2D
 #func _process(delta):
 #	pass
 
-func get_spawnpoint(spawn : String) -> Vector2:
+func get_collision():
+	if(collision_object):
+		return collision_object
+	else:
+		for child in get_children():
+			if(child is CollisionShape2D):
+				return child
+	return CollisionShape2D.new()
+
+func get_rect():
+	var retrect = get_collision().shape.get_rect()
+	retrect.position.x += get_collision().position.x
+	retrect.position.y += get_collision().position.y
+	return retrect
+
+func get_spawnpoint(spawn : String):
 	if(get_node(spawn) is Node2D):
-		return get_node(spawn).position
-	return Vector2(0, 0)
+		return get_node(spawn)
+	return Node2D.new()

@@ -26,6 +26,7 @@ extends CharacterBody2D
 @export_group("Misc")
 @export var is_player : bool = true
 @export var offscreen_time = 1
+@export var camera : Camera2D
 
 signal room_changed(old_room : String, new_room : String)
 
@@ -33,7 +34,7 @@ signal room_changed(old_room : String, new_room : String)
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var stand_collision : CollisionShape2D = $StandCollision
 @onready var duck_collision : CollisionShape2D = $DuckCollision
-@onready var camera : Camera2D = $Camera2D
+@onready var remote_transform : RemoteTransform2D = $RemoteTransform2D
 
 var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity") 
 var mach : float = 0
@@ -44,19 +45,22 @@ var cur_time : float = 0
 func _ready():
 	back_to_the_start()
 
-func _physics_process(delta):
-	if(!is_on_floor() && state_machine.current_state.use_gravity):
-		velocity.y += gravity * delta
-
-	sprite.flip_h = direction < 0
-
-	if(get_rooms().get(room) && !get_rooms().get(room).overlaps_body(self)):
+func _process(delta):
+	if(get_room(room) && !get_room(room).overlaps_body(self)):
 		cur_time += delta
+		remote_transform.remote_path = NodePath()
 		if(cur_time >= offscreen_time):
 			back_to_the_start()
 			cur_time = 0
 	else:
 		cur_time = 0
+		remote_transform.remote_path = camera.get_path()
+
+func _physics_process(delta):
+	if(!is_on_floor() && state_machine.current_state.use_gravity):
+		velocity.y += gravity * delta
+
+	sprite.flip_h = direction < 0
 
 	move_and_slide()
 
@@ -67,29 +71,23 @@ func back_to_the_start():
 		else:
 			change_room(room, spawn)
 
-func get_rooms():
-	var retarray = {}
-	for _room in owner.get_children():
-		if("is_room" in _room):
-			retarray[_room.get_name()] = _room
-	return retarray
+func get_greatest_parent(get_window : bool = false):
+	var parent = self
+	while(parent.get_parent() != null && (get_window || (!get_window && !parent.get_parent() is Window))):
+		parent = parent.get_parent()
+	return parent
 
 func get_room(new_room : String):
-	return get_rooms().get(new_room)
-
-func get_room_collision(new_room : String):
-	return get_room(new_room).collision_object
-
-func get_room_rect(new_room : String):
-	var retrect = get_room(new_room).collision_object.shape.get_rect()
-	var guh = get_room_collision(new_room)
-	retrect.position.x += guh.position.x
-	retrect.position.y += guh.position.y
-	return retrect
+	var room = get_greatest_parent().get_node(new_room)
+	if(!room):
+		var room_holder = get_greatest_parent().get_node("rooms")
+		if(room_holder):
+			room = room_holder.get_node(new_room)
+	return room
 
 func set_ducking(ducking : bool):
 	stand_collision.disabled = ducking
-	duck_collision.disabled = !ducking
+	#duck_collision.disabled = !ducking
 
 func get_mach(precise : bool = false, _mach = mach) -> float:
 	if(precise):
@@ -106,8 +104,8 @@ func get_mach(precise : bool = false, _mach = mach) -> float:
 		return 0
 
 func change_room(new_room : String, new_spawn : String):
-	var colobj = get_room_collision(new_room)
-	var collision : Rect2 = get_room_rect(new_room)
+	var colobj = get_room(new_room).get_collision()
+	var collision : Rect2 = get_room(new_room).get_rect()
 	camera.set_limit(SIDE_LEFT, collision.position.x)
 	room_left = collision.position.x
 	
@@ -120,7 +118,7 @@ func change_room(new_room : String, new_spawn : String):
 	camera.set_limit(SIDE_BOTTOM, collision.position.y + collision.size.y)
 	room_bottom = collision.position.y + collision.size.y
 
-	var _spawn = get_room(room).get_node(new_spawn)
+	var _spawn = get_room(new_room).get_spawnpoint(new_spawn)
 	if(_spawn):
 		position = _spawn.position
 	else:
