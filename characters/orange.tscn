@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://scripts/orange_states/duckjump.gd" id="31_buf3n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2kdpa"]
-size = Vector2(20, 29.5)
+size = Vector2(20, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p28o8"]
 size = Vector2(20, 30.5)
@@ -58,7 +58,7 @@ sprite_frames = ExtResource("2_f6qet")
 autoplay = "default"
 
 [node name="StandCollision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -26.5)
+position = Vector2(0, 4)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_2kdpa")
 
@@ -66,7 +66,6 @@ shape = SubResource("RectangleShape2D_2kdpa")
 position = Vector2(0, 34)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_p28o8")
-debug_color = Color(0.207843, 0.513726, 1, 0.419608)
 
 [node name="StateDebug" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 z_index = 1
