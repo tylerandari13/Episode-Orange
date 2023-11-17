@@ -118,12 +118,17 @@ func get_mach(precise : bool = false, _mach = mach) -> float:
 		return 0
 
 func can_stand():
-	print(TranslationServer.get_all_languages())
 	return
 	set_ducking(false)
 	print(is_on_ceiling())
 	print(is_on_floor())
 	print(is_on_wall())
+
+func try_grab():
+	if(Input.is_action_pressed("up")):
+		state_machine.change_state("Uppercut")
+	else:
+		state_machine.change_state("Grab")
 
 func change_room(new_room : String, new_spawn : String):
 	var colobj = get_room(new_room).get_collision()

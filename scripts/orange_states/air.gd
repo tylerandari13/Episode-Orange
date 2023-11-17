@@ -30,7 +30,7 @@ func on_physics_process(delta):
 # Called when there is an input event while this state is active.
 func on_input(event: InputEvent):
 	if(event.is_action_pressed("grab")):
-		change_state("Grab")
+		owner.try_grab()
 
 
 # Called when the state machine exits this state.

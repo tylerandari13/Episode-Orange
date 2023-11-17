@@ -19,7 +19,7 @@ func on_physics_process(delta):
 
 func on_input(event : InputEvent):
 	if(event.is_action_pressed("grab")):
-		change_state("Grab")
+		owner.try_grab()
 
 func on_exit():
 	has = false

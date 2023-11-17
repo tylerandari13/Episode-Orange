@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=21 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
 [ext_resource type="SpriteFrames" uid="uid://c44jmvm73tp3d" path="res://images/creatures/orange/orange.tres" id="2_f6qet"]
-[ext_resource type="Script" path="res://scripts/OrangeStateMachine.gd" id="18_2mtmp"]
+[ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="3_nxxjj"]
+[ext_resource type="Script" path="res://scripts/orange_states/uppercut.gd" id="17_omyox"]
 [ext_resource type="Script" path="res://scripts/orange_states/ground.gd" id="19_nv42o"]
 [ext_resource type="Script" path="res://scripts/orange_states/air.gd" id="20_es5hx"]
 [ext_resource type="Script" path="res://scripts/orange_states/machrun.gd" id="21_d1wrk"]
@@ -85,7 +86,7 @@ zoom = Vector2(0.8, 0.8)
 editor_draw_limits = true
 
 [node name="FiniteStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
-script = ExtResource("18_2mtmp")
+script = ExtResource("3_nxxjj")
 current_state = NodePath("Ground")
 
 [node name="Ground" type="Node" parent="FiniteStateMachine"]
@@ -126,3 +127,6 @@ script = ExtResource("30_mgshf")
 
 [node name="DuckJump" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("31_buf3n")
+
+[node name="Uppercut" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("17_omyox")
