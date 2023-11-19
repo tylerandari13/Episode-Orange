@@ -3,7 +3,7 @@ extends "res://scripts/OrangeState.gd"
 
 # Called when the state machine enters this state.
 func on_enter():
-	pass
+	owner.velocity.y = owner.jump_velocity
 
 
 # Called every frame when this state is active.
@@ -13,26 +13,20 @@ func on_process(delta):
 
 # Called every physics frame when this state is active.
 func on_physics_process(delta):
-	var _direction = 0
-	if(Input.is_action_pressed("left")):
-		_direction -= 1
-	if(Input.is_action_pressed("right")):
-		_direction += 1
-	
-	if(_direction == 0):
-		owner.velocity.x = owner.velocity.x * 0.8
-	else:
-		owner.velocity.x = _direction * owner.speed
-		owner.direction = _direction
+	owner.velocity.y += owner.gravity * delta
+
+	if(Input.is_action_pressed("left") && owner.velocity.x > owner.speed * -1):
+		owner.velocity.x -= 25
+	if(Input.is_action_pressed("right") && owner.velocity.x < owner.speed):
+		owner.velocity.x += 25
+
 	if(owner.is_on_floor()):
-		change_state("Ground")
+		change_state("Landing")
+
 
 # Called when there is an input event while this state is active.
 func on_input(event: InputEvent):
-	if(event.is_action_pressed("grab")):
-		owner.try_grab()
-	if(event.is_action_pressed("down")):
-		change_state("BodySlam")
+	pass
 
 
 # Called when the state machine exits this state.

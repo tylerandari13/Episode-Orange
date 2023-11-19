@@ -1,37 +1,33 @@
 extends "res://scripts/OrangeState.gd"
 
+var land_time = 0.3
+var cur_time = 0
 
 # Called when the state machine enters this state.
 func on_enter():
-	owner.velocity.y = owner.jump_velocity * -1
-	owner.set_ducking(true)
+	cur_time = 0
+	owner.velocity = Vector2(0, 0)
 
 
 # Called every frame when this state is active.
 func on_process(delta):
-	pass
+	if(cur_time >= land_time):
+		change_state("Ground")
+	else:
+		cur_time += delta
 
 
 # Called every physics frame when this state is active.
 func on_physics_process(delta):
-	if(owner.is_on_floor()):
-		if(Input.is_action_pressed("down")):
-			change_state("Roll")
-		else:
-			change_state("MachRun")
-	if(owner.is_on_wall()):
-		change_state("WallRun")
+	pass
 
 
 # Called when there is an input event while this state is active.
 func on_input(event: InputEvent):
-	if(event.is_action_pressed("jump")):
-		change_state("BodySlam")
-		if(!(Input.is_action_pressed("left") || Input.is_action_pressed("right"))):
-			owner.velocity.x = 0
+	pass
 
 
 # Called when the state machine exits this state.
 func on_exit():
-	owner.set_ducking(false)
+	pass
 

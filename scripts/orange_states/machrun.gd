@@ -42,17 +42,17 @@ func on_physics_process(delta):
 			change_state("Wallrun")
 	if(Input.is_action_pressed("up") && owner.get_mach() >= 3 && owner.is_on_floor()):
 		change_state("SuperJump")
+	if(Input.is_action_pressed("down")):
+		if(owner.is_on_floor()):
+			change_state("Roll")
+		else:
+			change_state("Dive")
 
 
 # Called when there is an input event while this state is active.
 func on_input(event: InputEvent):
 	if(event.is_action_pressed("jump") && owner.is_on_floor()):
 		owner.velocity.y = owner.jump_velocity
-	if(event.is_action_pressed("down")):
-		if(owner.is_on_floor()):
-			change_state("Roll")
-		else:
-			change_state("Dive")
 	if(event.is_action_pressed("grab")):
 		owner.try_grab()
 
