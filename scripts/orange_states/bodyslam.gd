@@ -1,6 +1,5 @@
 extends "res://scripts/OrangeState.gd"
 
-
 # Called when the state machine enters this state.
 func on_enter():
 	owner.velocity.y = owner.jump_velocity
@@ -21,7 +20,12 @@ func on_physics_process(delta):
 		owner.velocity.x += 25
 
 	if(owner.is_on_floor()):
-		change_state("Landing")
+		if(owner.get_floor_angle() == 0):
+			change_state("Landing")
+		else:
+			owner.direction = -1 if owner.get_real_velocity().x < 1 else 1
+			owner.mach = min(owner.velocity.abs().y, owner.mach3)
+			change_state("MachRun")
 
 
 # Called when there is an input event while this state is active.
