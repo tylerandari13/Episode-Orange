@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://c3746gmhgb8n"]
+[gd_scene load_steps=9 format=3 uid="uid://c3746gmhgb8n"]
+
+[ext_resource type="Script" path="res://scripts/Menu.gd" id="1_qmt1b"]
 
 [sub_resource type="GDScript" id="GDScript_dnww3"]
 script/source = "extends Button
@@ -160,13 +162,15 @@ func _on_cat_request_completed(result, response_code, headers, body):
 	image_frame.texture = texture
 "
 
-[node name="Control" type="Control"]
+[node name="Control" type="Control" node_paths=PackedStringArray("camera")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_qmt1b")
+camera = NodePath("Camera2D")
 
 [node name="from_file" type="Button" parent="." node_paths=PackedStringArray("file_dialog")]
 layout_mode = 0
@@ -267,6 +271,9 @@ httprequest = NodePath("../HTTPRequest")
 httpcat = NodePath("../HTTPcats")
 errortext = NodePath("../../Label")
 image_frame = NodePath("../../TextureRect")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
 
 [connection signal="button_up" from="from_file" to="from_file" method="_on_button_up"]
 [connection signal="button_up" from="from_string" to="from_string" method="_on_button_up"]

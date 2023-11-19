@@ -9,6 +9,7 @@ func _ready():
 	if(Players.get_player("orange") == null):
 		Players.spawn_player("orange")
 	var player_holder = Players.get_player("orange")
+	Players.enable_player("orange", true)
 	if(!start_room.is_empty() || !start_spawn.is_empty()):
 		player_holder.change_room("main" if start_room.is_empty() else start_room,
 								"main" if start_spawn.is_empty() else start_spawn)

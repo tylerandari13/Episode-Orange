@@ -41,7 +41,7 @@ var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
 var mach : float = 0
 var direction : float = 1
 var cur_time : float = 0
-
+var disabled : bool = false
 
 func _ready():
 	back_to_the_start()
@@ -63,7 +63,8 @@ func _physics_process(delta):
 
 	sprite.flip_h = direction < 0
 
-	move_and_slide()
+	if(!disabled):
+		move_and_slide()
 
 func back_to_the_start():
 	if(!room.is_empty()):
@@ -78,26 +79,14 @@ func find_level_in_root():
 			return child
 
 func get_room(new_room : String):
-	var room = find_level_in_root().get_node(new_room)
-	if(!room):
-		var room_holder = find_level_in_root().get_node("rooms")
-		if(room_holder):
-			room = room_holder.get_node(new_room)
-	return room
-
-#func get_greatest_parent(get_window : bool = false):
-#	var parent = self
-#	while(parent.get_parent() != null && (get_window || (!get_window && !parent.get_parent() is Window))):
-#		parent = parent.get_parent()
-#	return parent
-
-#func get_room(new_room : String):
-#	var room = get_greatest_parent().get_node(new_room)
-#	if(!room):
-#		var room_holder = get_greatest_parent().get_node("rooms")
-#		if(room_holder):
-#			room = room_holder.get_node(new_room)
-#	return room
+	var level = find_level_in_root()
+	if(level):
+		var room = find_level_in_root().get_node(new_room)
+		if(!room):
+			var room_holder = find_level_in_root().get_node("rooms")
+			if(room_holder):
+				room = room_holder.get_node(new_room)
+		return room
 
 func set_ducking(ducking : bool):
 	stand_collision.disabled = ducking
