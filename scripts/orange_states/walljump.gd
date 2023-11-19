@@ -16,6 +16,8 @@ func on_physics_process(delta):
 			change_state("Ground")
 	if(owner.is_on_wall() && owner.get_wall_normal().x != owner.direction):
 		change_state("Wallrun")
+	if(Input.is_action_pressed("down")):
+			change_state("Dive")
 
 func on_input(event : InputEvent):
 	if(event.is_action_pressed("grab")):
