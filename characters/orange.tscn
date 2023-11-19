@@ -71,7 +71,7 @@ scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_p28o8")
 
 [node name="StateDebug" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
-z_index = 1
+z_index = 2
 offset_left = -47.0
 offset_top = -87.0
 offset_right = 150.0
