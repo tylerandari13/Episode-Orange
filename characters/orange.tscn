@@ -31,19 +31,19 @@ script/source = "extends Label
 
 @export var state_machine : FiniteStateMachine
 
-var lastmach = 0
-var machtome = 0
+#var lastmach = 0
+#var machtome = 0
 
 func _process(_delta):
 	if(state_machine.current_state.name == \"MachRun\"):
 		text = \"State: Mach \" + str(owner.get_mach()) + \" (\" + str(owner.get_mach(true)) + \")\"
-		if(lastmach != owner.get_mach()):
-			print(lastmach, \" -> \", owner.get_mach())
-			print(machtome)
-			print(\"\")
-			machtome = 0
-		lastmach = owner.get_mach()
-		machtome += _delta
+#		if(lastmach != owner.get_mach()):
+#			print(lastmach, \" -> \", owner.get_mach())
+#			print(machtome)
+#			print(\"\")
+#			machtome = 0
+#		lastmach = owner.get_mach()
+#		machtome += _delta
 	else:
 		text = \"State: \" + state_machine.current_state.name
 "
