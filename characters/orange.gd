@@ -29,7 +29,7 @@ extends CharacterBody2D
 @export var offscreen_time = 1
 @export var camera : Camera2D
 
-signal room_changed(old_room : String, new_room : String)
+signal room_changed(new_room : String, new_spawn : String)
 
 @onready var state_machine : FiniteStateMachine = $FiniteStateMachine
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
@@ -142,3 +142,4 @@ func change_room(new_room : String, new_spawn : String):
 	
 	room = new_room
 	spawn = new_spawn
+	room_changed.emit(new_room, new_spawn)
