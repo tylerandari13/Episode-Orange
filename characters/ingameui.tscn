@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bavjaj2jalrjq"]
+
+[ext_resource type="Texture2D" uid="uid://cekkcxocj6aov" path="res://images/tv/tv_bg.png" id="1_kgkec"]
+[ext_resource type="Texture2D" uid="uid://d30jbh7xf5vdh" path="res://images/tv/screens/placeholder.png" id="2_sue8y"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -298.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 298.0
+grow_horizontal = 0
+texture = ExtResource("1_kgkec")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect"]
+layout_mode = 0
+offset_right = 288.0
+offset_bottom = 288.0
+texture = ExtResource("2_sue8y")

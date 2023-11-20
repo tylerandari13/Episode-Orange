@@ -53,7 +53,7 @@ floor_constant_speed = true
 floor_max_angle = 1.1781
 floor_snap_length = 64.0
 script = ExtResource("1_s0qxb")
-camera = NodePath("tempcamera")
+camera = NodePath("Camera2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
@@ -82,8 +82,7 @@ state_machine = NodePath("../FiniteStateMachine")
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 
-[node name="tempcamera" type="Camera2D" parent="."]
-visible = false
+[node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.8, 0.8)
 editor_draw_limits = true
 
