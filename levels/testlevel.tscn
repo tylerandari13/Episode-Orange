@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b0eymceneu6aj"]
+[gd_scene load_steps=17 format=3 uid="uid://b0eymceneu6aj"]
 
 [ext_resource type="Script" path="res://scripts/Level.gd" id="1_2jifr"]
 [ext_resource type="PackedScene" uid="uid://p3q6aqwpoxs2" path="res://characters/room.tscn" id="1_exmr2"]
@@ -7,9 +7,11 @@
 [ext_resource type="TileSet" uid="uid://b2xh2kp4l3ef4" path="res://tilemaps/tiles-leaves.tres" id="3_0jqju"]
 [ext_resource type="PackedScene" uid="uid://1mihfxrqb87s" path="res://characters/playerspawn.tscn" id="4_7use3"]
 [ext_resource type="PackedScene" uid="uid://cde4iwvwca2uc" path="res://characters/player_z_placeholder.tscn" id="6_ru4wa"]
-[ext_resource type="PackedScene" uid="uid://bw0qfnofivdin" path="res://characters/player_trigger.tscn" id="7_0nmop"]
 [ext_resource type="Texture2D" uid="uid://ouitansraa6b" path="res://images/orange/backgrounds/OrngMountains.png" id="8_orcw3"]
 [ext_resource type="PackedScene" uid="uid://dam7jdfk4nys" path="res://characters/level_door.tscn" id="10_8ickp"]
+[ext_resource type="PackedScene" uid="uid://bb4k080jesf0u" path="res://characters/room_changer.tscn" id="10_apoce"]
+[ext_resource type="PackedScene" uid="uid://dnvqpte415hn2" path="res://characters/collectible.tscn" id="11_s6o8k"]
+[ext_resource type="Texture2D" uid="uid://bmdo3dwkf3met" path="res://icon.svg" id="12_uild3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lykf3"]
 size = Vector2(16256, 5187)
@@ -19,6 +21,9 @@ size = Vector2(6161, 5316)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4jmo"]
 size = Vector2(338, 365)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76xd1"]
+size = Vector2(64, 64)
 
 [node name="testlevel" type="Node2D"]
 script = ExtResource("1_2jifr")
@@ -92,23 +97,36 @@ debug_color = Color(0, 0.6, 0.701961, 0.0392157)
 [node name="main" parent="room2" instance=ExtResource("4_7use3")]
 position = Vector2(14084, -3191)
 
-[node name="RoomChanger" parent="." instance=ExtResource("7_0nmop")]
-room_name = "room2"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomChanger"]
-position = Vector2(13877, -318.5)
-shape = SubResource("RectangleShape2D_o4jmo")
-
-[node name="RoomChanger2" parent="." instance=ExtResource("7_0nmop")]
-room_spawnpoint = "room2"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomChanger2"]
-position = Vector2(13843, -3243)
-shape = SubResource("RectangleShape2D_o4jmo")
-
 [node name="Label" type="Label" parent="."]
 offset_left = 550.0
 offset_top = 622.0
 offset_right = 614.0
 offset_bottom = 648.0
 text = "hi lmao"
+
+[node name="RoomChanger" parent="." instance=ExtResource("10_apoce")]
+room_name = "room2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomChanger"]
+position = Vector2(13828, -338)
+shape = SubResource("RectangleShape2D_o4jmo")
+
+[node name="RoomChanger2" parent="." instance=ExtResource("10_apoce")]
+room_spawnpoint = "room2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RoomChanger2"]
+position = Vector2(13839, -3240)
+shape = SubResource("RectangleShape2D_o4jmo")
+
+[node name="Collectible" parent="." instance=ExtResource("11_s6o8k")]
+position = Vector2(1603, -536)
+room_name = null
+room_spawnpoint = null
+
+[node name="Sprite2D" type="Sprite2D" parent="Collectible"]
+position = Vector2(9.77516e-06, -9.77516e-06)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("12_uild3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collectible"]
+shape = SubResource("RectangleShape2D_76xd1")
