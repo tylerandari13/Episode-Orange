@@ -9,14 +9,15 @@
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -298.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = 298.0
+offset_left = -271.0
+offset_top = -45.0
+offset_right = 17.0
+offset_bottom = 243.0
 grow_horizontal = 0
 texture = ExtResource("1_kgkec")
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect"]
+z_index = -1
 layout_mode = 0
 offset_right = 288.0
 offset_bottom = 288.0
