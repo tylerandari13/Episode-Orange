@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=24 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
 [ext_resource type="SpriteFrames" uid="uid://c44jmvm73tp3d" path="res://images/creatures/orange/orange.tres" id="2_f6qet"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/orange_states/landing.gd" id="19_qrm3d"]
 [ext_resource type="Script" path="res://scripts/orange_states/air.gd" id="20_es5hx"]
 [ext_resource type="Script" path="res://scripts/orange_states/machrun.gd" id="21_d1wrk"]
+[ext_resource type="Script" path="res://scripts/orange_states/machslide.gd" id="22_s6boe"]
 [ext_resource type="Script" path="res://scripts/orange_states/dive.gd" id="23_bhv2m"]
 [ext_resource type="Script" path="res://scripts/orange_states/roll.gd" id="24_n4xaw"]
 [ext_resource type="Script" path="res://scripts/orange_states/wallrun.gd" id="25_styjb"]
@@ -137,3 +138,6 @@ script = ExtResource("18_dlqmc")
 
 [node name="Landing" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("19_qrm3d")
+
+[node name="MachSlide" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("22_s6boe")

@@ -30,7 +30,7 @@ func on_physics_process(delta):
 			owner.direction = owner.direction * -1
 			change_state("MachDrift")
 	else:
-		change_state("Ground")
+		change_state("MachSlide")
 	if(owner.is_on_wall()):
 		if(owner.is_on_floor()):
 			if(owner.get_floor_angle() == 0):
