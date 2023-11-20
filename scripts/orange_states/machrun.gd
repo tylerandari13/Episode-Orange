@@ -28,7 +28,7 @@ func on_physics_process(delta):
 		if((owner.direction == 1 && Input.is_action_pressed("left"))
 		|| (owner.direction == -1 && Input.is_action_pressed("right"))):
 			owner.direction = owner.direction * -1
-			change_state("MachSlide")
+			change_state("MachDrift")
 	else:
 		change_state("Ground")
 	if(owner.is_on_wall()):
