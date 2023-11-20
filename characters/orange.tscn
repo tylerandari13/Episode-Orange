@@ -97,11 +97,23 @@ script = ExtResource("19_nv42o")
 [node name="Air" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("20_es5hx")
 
+[node name="Duck" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("30_mgshf")
+
+[node name="DuckJump" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("31_buf3n")
+
 [node name="MachRun" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("21_d1wrk")
 
 [node name="MachDrift" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("7_ikj6g")
+
+[node name="MachSlide" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("22_s6boe")
+
+[node name="SuperJump" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("29_sshbj")
 
 [node name="Dive" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("23_bhv2m")
@@ -121,15 +133,6 @@ script = ExtResource("27_lbva5")
 [node name="LongJump" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("28_5qwyk")
 
-[node name="SuperJump" type="Node" parent="FiniteStateMachine"]
-script = ExtResource("29_sshbj")
-
-[node name="Duck" type="Node" parent="FiniteStateMachine"]
-script = ExtResource("30_mgshf")
-
-[node name="DuckJump" type="Node" parent="FiniteStateMachine"]
-script = ExtResource("31_buf3n")
-
 [node name="Uppercut" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("17_omyox")
 
@@ -138,6 +141,3 @@ script = ExtResource("18_dlqmc")
 
 [node name="Landing" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("19_qrm3d")
-
-[node name="MachSlide" type="Node" parent="FiniteStateMachine"]
-script = ExtResource("22_s6boe")
