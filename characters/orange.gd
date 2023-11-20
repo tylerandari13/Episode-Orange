@@ -88,6 +88,9 @@ func get_room(new_room : String):
 				room = room_holder.get_node(new_room)
 		return room
 
+func get_current_room():
+	return get_room(room)
+
 func set_ducking(ducking : bool):
 	stand_collision.disabled = ducking
 	#duck_collision.disabled = !ducking

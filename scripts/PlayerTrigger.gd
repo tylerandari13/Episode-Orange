@@ -13,8 +13,6 @@ func _process(delta):
 			collision_process(body, delta)
 
 func _on_body_entered(body):
-	print("is_player" in body)
-	print(body is Player)
 	if("is_player" in body || body is Player):
 		collision_entered(body)
 

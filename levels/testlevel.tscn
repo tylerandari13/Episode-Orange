@@ -120,8 +120,6 @@ shape = SubResource("RectangleShape2D_o4jmo")
 
 [node name="Collectible" parent="." instance=ExtResource("11_s6o8k")]
 position = Vector2(1603, -536)
-room_name = null
-room_spawnpoint = null
 
 [node name="Sprite2D" type="Sprite2D" parent="Collectible"]
 position = Vector2(9.77516e-06, -9.77516e-06)

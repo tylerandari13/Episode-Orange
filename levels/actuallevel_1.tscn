@@ -1,18 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://j6qqgdfp1gnu"]
+[gd_scene load_steps=10 format=3 uid="uid://j6qqgdfp1gnu"]
 
 [ext_resource type="Script" path="res://scripts/Level.gd" id="1_1k8x2"]
 [ext_resource type="Texture2D" uid="uid://c4k3qo37rr1cu" path="res://images/orange/objects/house.png" id="1_koatt"]
 [ext_resource type="PackedScene" uid="uid://p3q6aqwpoxs2" path="res://characters/room.tscn" id="2_y8ya2"]
 [ext_resource type="TileSet" uid="uid://cakojuklpvh4f" path="res://tilemaps/tiles.tres" id="3_m1yhd"]
 [ext_resource type="PackedScene" uid="uid://1mihfxrqb87s" path="res://characters/playerspawn.tscn" id="3_rpf46"]
-[ext_resource type="Script" path="res://characters/Trigger.gd" id="4_lc4n2"]
 [ext_resource type="PackedScene" uid="uid://bb4k080jesf0u" path="res://characters/room_changer.tscn" id="6_8iiud"]
 [ext_resource type="PackedScene" uid="uid://cde4iwvwca2uc" path="res://characters/player_z_placeholder.tscn" id="6_rot1e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j0hse"]
 size = Vector2(7808, 1721)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8msht"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mhtra"]
 size = Vector2(87, 274)
@@ -60,17 +57,8 @@ layer_0/tile_data = PackedInt32Array(196603, 0, 0, 196604, 0, 0, 196605, 0, 0, 1
 
 [node name="PlayerZPlaceholder" parent="." instance=ExtResource("6_rot1e")]
 
-[node name="CollectibleSmall" type="Area2D" parent="." node_paths=PackedStringArray("collision_shape")]
-script = ExtResource("4_lc4n2")
-collision_shape = NodePath("CollisionShape2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CollectibleSmall"]
-shape = SubResource("RectangleShape2D_8msht")
-
 [node name="RoomChanger" parent="." instance=ExtResource("6_8iiud")]
 position = Vector2(6882, -395)
-room_name = "main2"
-room_spawnpoint = "spawn1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomChanger"]
 position = Vector2(235.5, 134)
@@ -79,9 +67,13 @@ debug_color = Color(0.819608, 0.403922, 0, 0.419608)
 
 [node name="RoomChanger2" parent="." instance=ExtResource("6_8iiud")]
 position = Vector2(6882, -395)
-room_spawnpoint = "spawn1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RoomChanger2"]
 position = Vector2(412, 136)
 shape = SubResource("RectangleShape2D_mhtra")
 debug_color = Color(0.819608, 0.403922, 0, 0.419608)
+
+[connection signal="body_entered" from="RoomChanger" to="RoomChanger" method="_on_body_entered" flags=18]
+[connection signal="body_exited" from="RoomChanger" to="RoomChanger" method="_on_body_exited" flags=18]
+[connection signal="body_entered" from="RoomChanger2" to="RoomChanger2" method="_on_body_entered" flags=18]
+[connection signal="body_exited" from="RoomChanger2" to="RoomChanger2" method="_on_body_exited" flags=18]
