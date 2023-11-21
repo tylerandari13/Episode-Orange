@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @export_category("Orange")
+@export var points : float = 0
 @export_group("Speed")
 @export var speed : float = 400.0
 @export var jump_velocity : float = -700.0
@@ -43,6 +44,7 @@ var mach : float = 0
 var direction : float = 1
 var cur_time : float = 0
 var disabled : bool = false
+var old_points = 0
 
 
 #Godot functions
@@ -59,6 +61,9 @@ func _process(delta):
 	else:
 		cur_time = 0
 		remote_transform.remote_path = camera.get_path()
+	if(old_points != points):
+		InGameUI.update_points(points)
+	old_points = points
 
 func _physics_process(delta):
 	if(!is_on_floor() && state_machine.current_state.use_gravity):
@@ -151,3 +156,10 @@ func get_mach(precise : bool = false, _mach = mach) -> float:
 		if(_mach >= mach4):
 			return 4
 		return 0
+
+# add/remove points
+func add_points(_points):
+	points += _points
+
+func remove_points(_points):
+	points -= _points

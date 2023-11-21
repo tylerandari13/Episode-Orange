@@ -1,12 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bavjaj2jalrjq"]
+[gd_scene load_steps=5 format=3 uid="uid://bavjaj2jalrjq"]
 
 [ext_resource type="Texture2D" uid="uid://cekkcxocj6aov" path="res://images/tv/tv_bg.png" id="1_kgkec"]
+[ext_resource type="Script" path="res://scripts/gamegui.gd" id="1_vh8ve"]
 [ext_resource type="Texture2D" uid="uid://d30jbh7xf5vdh" path="res://images/tv/screens/placeholder.png" id="2_sue8y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_5s2an"]
 font_size = 64
 
 [node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_vh8ve")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 1
