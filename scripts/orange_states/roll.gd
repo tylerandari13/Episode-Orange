@@ -8,7 +8,7 @@ func on_enter():
 
 # Called every frame when this state is active.
 func on_process(delta):
-	if(!Input.is_action_pressed("down")):
+	if(!Input.is_action_pressed("down") && owner.can_stand()):
 		change_state("MachRun")
 	if(!owner.is_on_floor()):
 		change_state("Dive")

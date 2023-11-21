@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=25 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
 [ext_resource type="SpriteFrames" uid="uid://c44jmvm73tp3d" path="res://images/creatures/orange/orange.tres" id="2_f6qet"]
@@ -26,6 +26,9 @@ size = Vector2(20, 60)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p28o8"]
 size = Vector2(20, 30.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mio6e"]
+size = Vector2(40, 59)
 
 [sub_resource type="GDScript" id="GDScript_06dlf"]
 script/source = "extends Label
@@ -70,6 +73,14 @@ shape = SubResource("RectangleShape2D_2kdpa")
 position = Vector2(0, 34)
 scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_p28o8")
+
+[node name="DuckCheck" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DuckCheck"]
+position = Vector2(0, -26.5)
+shape = SubResource("RectangleShape2D_mio6e")
+debug_color = Color(0.858824, 0, 0.87451, 0.419608)
 
 [node name="StateDebug" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 z_index = 2

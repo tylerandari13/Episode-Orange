@@ -36,6 +36,7 @@ signal room_changed(new_room : String, new_spawn : String)
 @onready var stand_collision : CollisionShape2D = $StandCollision
 @onready var duck_collision : CollisionShape2D = $DuckCollision
 @onready var remote_transform : RemoteTransform2D = $RemoteTransform2D
+@onready var duck_checker: Area2D = $DuckCheck
 
 var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity") 
 var mach : float = 0
@@ -93,7 +94,15 @@ func get_current_room():
 
 func set_ducking(ducking : bool):
 	stand_collision.disabled = ducking
-	#duck_collision.disabled = !ducking
+	duck_checker.visible = ducking
+
+func can_stand():
+	var colarray = duck_checker.get_overlapping_bodies()
+	var cant = false
+	for collision in colarray:
+		if(!collision is CollisionObject2D):
+			cant = true
+	return !cant
 
 func get_mach(precise : bool = false, _mach = mach) -> float:
 	if(precise):
@@ -108,13 +117,6 @@ func get_mach(precise : bool = false, _mach = mach) -> float:
 		if(_mach >= mach4):
 			return 4
 		return 0
-
-func can_stand():
-	return
-	set_ducking(false)
-	print(is_on_ceiling())
-	print(is_on_floor())
-	print(is_on_wall())
 
 func try_grab():
 	if(Input.is_action_pressed("up")):
