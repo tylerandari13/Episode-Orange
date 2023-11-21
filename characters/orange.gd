@@ -44,6 +44,8 @@ var direction : float = 1
 var cur_time : float = 0
 var disabled : bool = false
 
+
+#Godot functions
 func _ready():
 	back_to_the_start()
 
@@ -67,6 +69,7 @@ func _physics_process(delta):
 	if(!disabled):
 		move_and_slide()
 
+#manipulate Orange
 func back_to_the_start():
 	if(!room.is_empty()):
 		if(spawn.is_empty()):
@@ -74,49 +77,9 @@ func back_to_the_start():
 		else:
 			change_room(room, spawn)
 
-func find_level_in_root():
-	for child in get_tree().root.get_children():
-		if(child is Level):
-			return child
-
-func get_room(new_room : String):
-	var level = find_level_in_root()
-	if(level):
-		var room = find_level_in_root().get_node(new_room)
-		if(!room):
-			var room_holder = find_level_in_root().get_node("rooms")
-			if(room_holder):
-				room = room_holder.get_node(new_room)
-		return room
-
-func get_current_room():
-	return get_room(room)
-
 func set_ducking(ducking : bool):
 	stand_collision.disabled = ducking
 	duck_checker.visible = ducking
-
-func can_stand():
-	var colarray = duck_checker.get_overlapping_bodies()
-	var cant = false
-	for collision in colarray:
-		if(!collision is CollisionObject2D):
-			cant = true
-	return !cant
-
-func get_mach(precise : bool = false, _mach = mach) -> float:
-	if(precise):
-		return _mach
-	else:
-		if(_mach < mach2):
-			return 1
-		if(_mach >= mach2 && _mach < mach3):
-			return 2
-		if(_mach >= mach3 && _mach < mach4):
-			return 3
-		if(_mach >= mach4):
-			return 4
-		return 0
 
 func try_grab():
 	if(Input.is_action_pressed("up")):
@@ -148,3 +111,43 @@ func change_room(new_room : String, new_spawn : String):
 	room = new_room
 	spawn = new_spawn
 	room_changed.emit(new_room, new_spawn)
+
+#get stuff about Orange
+func find_level_in_root():
+	for child in get_tree().root.get_children():
+		if(child is Level):
+			return child
+
+func get_room(new_room : String):
+	var level = find_level_in_root()
+	if(level):
+		var room = find_level_in_root().get_node(new_room)
+		if(!room):
+			var room_holder = find_level_in_root().get_node("rooms")
+			if(room_holder):
+				room = room_holder.get_node(new_room)
+		return room
+
+func get_current_room():
+	return get_room(room)
+
+func can_stand():
+	var colarray = duck_checker.get_overlapping_bodies()
+	var cant = false
+	for collision in colarray:
+		cant = true
+	return !cant
+
+func get_mach(precise : bool = false, _mach = mach) -> float:
+	if(precise):
+		return _mach
+	else:
+		if(_mach < mach2):
+			return 1
+		if(_mach >= mach2 && _mach < mach3):
+			return 2
+		if(_mach >= mach3 && _mach < mach4):
+			return 3
+		if(_mach >= mach4):
+			return 4
+		return 0
