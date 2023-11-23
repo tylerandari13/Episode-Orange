@@ -34,8 +34,8 @@ func on_physics_process(delta):
 	if(owner.is_on_wall()):
 		if(owner.is_on_floor()):
 			if(owner.get_floor_angle() == 0):
-				owner.velocity = Vector2(150 * owner.direction * -1, -100)
-				change_state("Air")
+				owner.velocity = Vector2(70 * owner.direction * -1 * owner.get_mach(), owner.get_mach(true) * -0.3)
+				change_state("Landing")
 			else:
 				change_state("Wallrun")
 		else:
