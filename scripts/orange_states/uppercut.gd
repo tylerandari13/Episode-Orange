@@ -12,9 +12,9 @@ func on_process(delta):
 # Called every physics frame when this state is active.
 func on_physics_process(delta):
 	if(Input.is_action_pressed("left") && owner.velocity.x > owner.speed * -1):
-		owner.velocity.x -= 25
+		owner.velocity.x -= 2300 * delta
 	if(Input.is_action_pressed("right") && owner.velocity.x < owner.speed):
-		owner.velocity.x += 25
+		owner.velocity.x += 2300 * delta
 
 	if(owner.is_on_floor()):
 		change_state("Ground")

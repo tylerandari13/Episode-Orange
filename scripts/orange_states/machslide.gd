@@ -14,7 +14,7 @@ func on_process(delta):
 # Called every physics frame when this state is active.
 func on_physics_process(delta):
 	if((owner.direction > 0 && owner.velocity.x > 0) || (owner.direction < 0 && owner.velocity.x < 0)):
-		owner.velocity.x -= 20 * owner.direction
+		owner.velocity.x -= 1700 * owner.direction * delta
 	else:
 		change_state("Ground")
 
