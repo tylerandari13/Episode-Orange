@@ -21,6 +21,7 @@ func on_physics_process(delta):
 
 	if(owner.is_on_floor()):
 		if(owner.get_floor_angle() == 0):
+			owner.velocity = Vector2()
 			change_state("Landing")
 		else:
 			owner.direction = -1 if owner.get_real_velocity().x < 1 else 1

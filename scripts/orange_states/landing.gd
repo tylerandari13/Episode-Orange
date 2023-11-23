@@ -6,7 +6,6 @@ var cur_time = 0
 # Called when the state machine enters this state.
 func on_enter():
 	cur_time = 0
-	owner.velocity = Vector2(0, 0)
 
 
 # Called every frame when this state is active.
