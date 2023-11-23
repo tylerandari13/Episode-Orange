@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=28 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
 [ext_resource type="SpriteFrames" uid="uid://c44jmvm73tp3d" path="res://images/creatures/orange/orange.tres" id="2_f6qet"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="3_nxxjj"]
 [ext_resource type="Script" path="res://scripts/orange_states/machdrift.gd" id="7_ikj6g"]
 [ext_resource type="Script" path="res://scripts/orange_states/uppercut.gd" id="17_omyox"]
+[ext_resource type="Script" path="res://scripts/orange_states/grabslide.gd" id="18_87jgm"]
 [ext_resource type="Script" path="res://scripts/orange_states/bodyslam.gd" id="18_dlqmc"]
 [ext_resource type="Script" path="res://scripts/orange_states/ground.gd" id="19_nv42o"]
 [ext_resource type="Script" path="res://scripts/orange_states/landing.gd" id="19_qrm3d"]
@@ -160,6 +161,12 @@ script = ExtResource("26_wsqqh")
 
 [node name="Grab" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("27_lbva5")
+use_friction = false
+can_grab = false
+can_taunt = false
+
+[node name="GrabSlide" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("18_87jgm")
 use_friction = false
 can_grab = false
 can_taunt = false

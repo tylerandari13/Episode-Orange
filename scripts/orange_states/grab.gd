@@ -37,8 +37,11 @@ func on_physics_process(delta):
 
 # Called when there is an input event while this state is active.
 func on_input(event: InputEvent):
-	if(event.is_action_pressed("jump") && owner.is_on_floor()):
-		change_state("LongJump")
+	if(owner.is_on_floor()):
+		if(event.is_action_pressed("jump")):
+			change_state("LongJump")
+		if(event.is_action_pressed("down")):
+			change_state("GrabSlide")
 
 
 # Called when the state machine exits this state.
