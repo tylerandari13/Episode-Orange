@@ -131,6 +131,7 @@ script = ExtResource("21_d1wrk")
 [node name="MachDrift" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("7_ikj6g")
 can_grab = false
+can_taunt = false
 
 [node name="MachSlide" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("22_s6boe")
