@@ -160,6 +160,7 @@ script = ExtResource("26_wsqqh")
 
 [node name="Grab" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("27_lbva5")
+use_friction = false
 can_grab = false
 can_taunt = false
 
