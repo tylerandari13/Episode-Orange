@@ -4,7 +4,6 @@ extends Area2D
 func _ready():
 	body_entered.connect(self._on_body_entered)
 	body_exited.connect(self._on_body_exited)
-	post_ready()
 
 func _process(delta):
 	for body in get_overlapping_bodies():
@@ -25,5 +24,3 @@ func collision_entered(_player : CharacterBody2D): pass
 func collision_exited(_player : CharacterBody2D): pass
 
 func collision_process(_player : CharacterBody2D, _delta : float): pass
-
-func post_ready(): pass

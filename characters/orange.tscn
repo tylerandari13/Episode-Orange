@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=27 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
 [ext_resource type="SpriteFrames" uid="uid://c44jmvm73tp3d" path="res://images/creatures/orange/orange.tres" id="2_f6qet"]
+[ext_resource type="Texture2D" uid="uid://b0f81vevbiws8" path="res://images/creatures/shared/tauntbg.png" id="2_haw2b"]
 [ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="3_nxxjj"]
 [ext_resource type="Script" path="res://scripts/orange_states/machdrift.gd" id="7_ikj6g"]
 [ext_resource type="Script" path="res://scripts/orange_states/uppercut.gd" id="17_omyox"]
@@ -10,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/orange_states/landing.gd" id="19_qrm3d"]
 [ext_resource type="Script" path="res://scripts/orange_states/air.gd" id="20_es5hx"]
 [ext_resource type="Script" path="res://scripts/orange_states/machrun.gd" id="21_d1wrk"]
+[ext_resource type="Script" path="res://scripts/orange_states/taunt.gd" id="22_q02o1"]
 [ext_resource type="Script" path="res://scripts/orange_states/machslide.gd" id="22_s6boe"]
 [ext_resource type="Script" path="res://scripts/orange_states/dive.gd" id="23_bhv2m"]
 [ext_resource type="Script" path="res://scripts/orange_states/roll.gd" id="24_n4xaw"]
@@ -58,6 +60,10 @@ floor_max_angle = 1.1781
 floor_snap_length = 64.0
 script = ExtResource("1_s0qxb")
 camera = NodePath("Camera2D")
+
+[node name="TauntSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_haw2b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
@@ -110,9 +116,11 @@ script = ExtResource("20_es5hx")
 
 [node name="Duck" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("30_mgshf")
+can_taunt = false
 
 [node name="DuckJump" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("31_buf3n")
+can_taunt = false
 
 [node name="MachRun" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("21_d1wrk")
@@ -122,24 +130,30 @@ script = ExtResource("7_ikj6g")
 
 [node name="MachSlide" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("22_s6boe")
+can_taunt = false
 
 [node name="SuperJump" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("29_sshbj")
+can_taunt = false
 
 [node name="Dive" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("23_bhv2m")
+can_taunt = false
 
 [node name="Roll" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("24_n4xaw")
+can_taunt = false
 
 [node name="Wallrun" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("25_styjb")
+can_taunt = false
 
 [node name="WallJump" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("26_wsqqh")
 
 [node name="Grab" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("27_lbva5")
+can_taunt = false
 
 [node name="LongJump" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("28_5qwyk")
@@ -149,6 +163,12 @@ script = ExtResource("17_omyox")
 
 [node name="BodySlam" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("18_dlqmc")
+can_taunt = false
 
 [node name="Landing" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("19_qrm3d")
+can_taunt = false
+
+[node name="Taunt" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("22_q02o1")
+can_taunt = false

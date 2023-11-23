@@ -29,6 +29,7 @@ extends CharacterBody2D
 @export var is_player : bool = true
 @export var offscreen_time = 1
 @export var camera : Camera2D
+@export var taunt_time = 0.3
 
 signal room_changed(new_room : String, new_spawn : String)
 
@@ -73,6 +74,10 @@ func _physics_process(delta):
 
 	if(!disabled):
 		move_and_slide()
+
+func _input(event):
+	if(event.is_action_pressed("taunt") && state_machine.current_state.can_taunt):
+		state_machine.change_state("Taunt")
 
 #manipulate Orange
 func back_to_the_start():

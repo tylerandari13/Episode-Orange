@@ -7,7 +7,10 @@ var collected = false
 var texturepaths : Array
 func set_texturepaths(): return Array()
 
-func post_ready():
+func _ready():
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
+
 	if(texturepaths.size() < 1): return
 	var sprite = null
 	for child in get_children():
