@@ -35,6 +35,7 @@ signal room_changed(new_room : String, new_spawn : String)
 
 @onready var state_machine : FiniteStateMachine = $FiniteStateMachine
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var taunt_sprite : Sprite2D = $TauntSprite
 @onready var stand_collision : CollisionShape2D = $StandCollision
 @onready var duck_collision : CollisionShape2D = $DuckCollision
 @onready var remote_transform : RemoteTransform2D = $RemoteTransform2D

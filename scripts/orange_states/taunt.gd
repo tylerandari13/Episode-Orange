@@ -8,6 +8,8 @@ var last_vel : Vector2
 func on_enter():
 	cur_time = 0
 	last_vel = owner.velocity
+	owner.taunt_sprite.visible = true
+	owner.taunt_sprite.rotation = randi_range(0, 359)
 
 
 # Called every frame when this state is active.
@@ -32,5 +34,5 @@ func on_input(event: InputEvent):
 
 # Called when the state machine exits this state.
 func on_exit():
-	pass
+	owner.taunt_sprite.visible = false
 
