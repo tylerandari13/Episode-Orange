@@ -45,7 +45,7 @@ var mach : float = 0
 var direction : float = 1
 var cur_time : float = 0
 var disabled : bool = false
-var old_points = 0
+var old_points : int = 0
 
 
 #Godot functions
@@ -78,6 +78,8 @@ func _physics_process(delta):
 func _input(event):
 	if(event.is_action_pressed("taunt") && state_machine.current_state.can_taunt):
 		state_machine.change_state("Taunt")
+	if(event.is_action_pressed("grab") && state_machine.current_state.can_grab):
+		try_grab()
 
 #manipulate Orange
 func back_to_the_start():

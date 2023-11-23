@@ -16,7 +16,3 @@ func on_physics_process(delta):
 		change_state("Wallrun")
 	if(Input.is_action_pressed("down")):
 			change_state("Dive")
-
-func on_input(event : InputEvent):
-	if(event.is_action_pressed("grab")):
-		owner.try_grab()

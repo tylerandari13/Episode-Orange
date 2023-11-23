@@ -36,8 +36,6 @@ func on_physics_process(delta):
 func on_input(event: InputEvent):
 	if(event.is_action_pressed("jump")):
 		owner.velocity.y = owner.jump_velocity
-	if(event.is_action_pressed("grab")):
-		owner.try_grab()
 	if(event.is_action_pressed("down")):
 		change_state("Duck")
 

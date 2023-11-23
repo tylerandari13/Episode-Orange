@@ -29,8 +29,6 @@ func on_physics_process(delta):
 
 # Called when there is an input event while this state is active.
 func on_input(event: InputEvent):
-	if(event.is_action_pressed("grab")):
-		owner.try_grab()
 	if(event.is_action_pressed("down")):
 		change_state("BodySlam")
 

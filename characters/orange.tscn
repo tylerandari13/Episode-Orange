@@ -116,10 +116,12 @@ script = ExtResource("20_es5hx")
 
 [node name="Duck" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("30_mgshf")
+can_grab = false
 can_taunt = false
 
 [node name="DuckJump" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("31_buf3n")
+can_grab = false
 can_taunt = false
 
 [node name="MachRun" type="Node" parent="FiniteStateMachine"]
@@ -127,6 +129,7 @@ script = ExtResource("21_d1wrk")
 
 [node name="MachDrift" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("7_ikj6g")
+can_grab = false
 
 [node name="MachSlide" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("22_s6boe")
@@ -134,18 +137,22 @@ can_taunt = false
 
 [node name="SuperJump" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("29_sshbj")
+can_grab = false
 can_taunt = false
 
 [node name="Dive" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("23_bhv2m")
+can_grab = false
 can_taunt = false
 
 [node name="Roll" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("24_n4xaw")
+can_grab = false
 can_taunt = false
 
 [node name="Wallrun" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("25_styjb")
+can_grab = false
 can_taunt = false
 
 [node name="WallJump" type="Node" parent="FiniteStateMachine"]
@@ -153,6 +160,7 @@ script = ExtResource("26_wsqqh")
 
 [node name="Grab" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("27_lbva5")
+can_grab = false
 can_taunt = false
 
 [node name="LongJump" type="Node" parent="FiniteStateMachine"]
@@ -160,15 +168,19 @@ script = ExtResource("28_5qwyk")
 
 [node name="Uppercut" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("17_omyox")
+can_grab = false
 
 [node name="BodySlam" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("18_dlqmc")
+can_grab = false
 can_taunt = false
 
 [node name="Landing" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("19_qrm3d")
+can_grab = false
 can_taunt = false
 
 [node name="Taunt" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("22_q02o1")
+can_grab = false
 can_taunt = false

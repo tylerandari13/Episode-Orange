@@ -53,8 +53,6 @@ func on_physics_process(delta):
 func on_input(event: InputEvent):
 	if(event.is_action_pressed("jump") && owner.is_on_floor()):
 		owner.velocity.y = owner.jump_velocity
-	if(event.is_action_pressed("grab")):
-		owner.try_grab()
 
 
 # Called when the state machine exits this state.
