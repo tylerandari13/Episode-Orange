@@ -182,5 +182,7 @@ can_taunt = false
 
 [node name="Taunt" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("22_q02o1")
+use_gravity = false
+use_friction = false
 can_grab = false
 can_taunt = false
