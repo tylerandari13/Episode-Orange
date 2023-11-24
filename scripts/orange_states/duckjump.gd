@@ -34,5 +34,5 @@ func on_input(event: InputEvent):
 
 # Called when the state machine exits this state.
 func on_exit():
-	owner.set_ducking(true)
+	pass
 

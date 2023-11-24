@@ -3,7 +3,7 @@ extends "res://scripts/OrangeState.gd"
 
 # Called when the state machine enters this state.
 func on_enter():
-	owner.set_ducking(true)
+	pass
 
 
 # Called every frame when this state is active.
@@ -39,5 +39,5 @@ func on_input(event: InputEvent):
 
 # Called when the state machine exits this state.
 func on_exit():
-	owner.set_ducking(false)
+	pass
 

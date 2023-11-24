@@ -51,6 +51,7 @@ var old_points : int = 0
 
 #Godot functions
 func _ready():
+	state_machine.state_changed.connect(state_changed)
 	back_to_the_start()
 
 func _process(delta):
@@ -81,6 +82,9 @@ func _input(event):
 		state_machine.change_state("Taunt")
 	if(event.is_action_pressed("grab") && state_machine.current_state.can_grab):
 		try_grab()
+
+func state_changed(new_state : StateMachineState):
+	set_ducking(new_state.duck_state)
 
 #manipulate Orange
 func back_to_the_start():

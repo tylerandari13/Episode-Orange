@@ -6,3 +6,4 @@ extends StateMachineState
 @export var use_friction : bool = true
 @export var can_grab : bool = true
 @export var can_taunt : bool = true
+@export var duck_state : bool = false

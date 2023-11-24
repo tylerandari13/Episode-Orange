@@ -119,11 +119,13 @@ script = ExtResource("20_es5hx")
 script = ExtResource("30_mgshf")
 can_grab = false
 can_taunt = false
+duck_state = true
 
 [node name="DuckJump" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("31_buf3n")
 can_grab = false
 can_taunt = false
+duck_state = true
 
 [node name="MachRun" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("21_d1wrk")
@@ -141,16 +143,19 @@ can_taunt = false
 script = ExtResource("29_sshbj")
 can_grab = false
 can_taunt = false
+duck_state = true
 
 [node name="Dive" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("23_bhv2m")
 can_grab = false
 can_taunt = false
+duck_state = true
 
 [node name="Roll" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("24_n4xaw")
 can_grab = false
 can_taunt = false
+duck_state = true
 
 [node name="Wallrun" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("25_styjb")
@@ -171,6 +176,7 @@ script = ExtResource("18_87jgm")
 use_friction = false
 can_grab = false
 can_taunt = false
+duck_state = true
 
 [node name="LongJump" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("28_5qwyk")
@@ -183,11 +189,13 @@ can_grab = false
 script = ExtResource("18_dlqmc")
 can_grab = false
 can_taunt = false
+duck_state = true
 
 [node name="Landing" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("19_qrm3d")
 can_grab = false
 can_taunt = false
+duck_state = true
 
 [node name="Taunt" type="Node" parent="FiniteStateMachine"]
 script = ExtResource("22_q02o1")

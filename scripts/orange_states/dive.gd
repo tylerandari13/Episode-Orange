@@ -4,7 +4,6 @@ extends "res://scripts/OrangeState.gd"
 # Called when the state machine enters this state.
 func on_enter():
 	owner.velocity.y = owner.jump_velocity * -1
-	owner.set_ducking(true)
 
 
 # Called every frame when this state is active.
@@ -33,5 +32,5 @@ func on_input(event: InputEvent):
 
 # Called when the state machine exits this state.
 func on_exit():
-	owner.set_ducking(false)
+	pass
 
