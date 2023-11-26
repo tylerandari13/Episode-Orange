@@ -8,6 +8,8 @@ var texturepaths : Array
 func set_texturepaths(): return Array()
 
 func _ready():
+	print(typeof(load("res://icon.svg")))
+
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 
