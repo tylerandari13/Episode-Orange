@@ -23,6 +23,7 @@ config/icon="res://icon.svg"
 
 Players="*res://characters/playerspawner.tscn"
 InGameUI="*res://characters/ingameui.tscn"
+Debug="*res://characters/debug.tscn"
 
 [display]
 

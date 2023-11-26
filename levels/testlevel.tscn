@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b0eymceneu6aj"]
+[gd_scene load_steps=15 format=3 uid="uid://b0eymceneu6aj"]
 
 [ext_resource type="Script" path="res://scripts/Level.gd" id="1_2jifr"]
 [ext_resource type="PackedScene" uid="uid://p3q6aqwpoxs2" path="res://characters/room.tscn" id="1_exmr2"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://dam7jdfk4nys" path="res://characters/level_door.tscn" id="10_8ickp"]
 [ext_resource type="PackedScene" uid="uid://bb4k080jesf0u" path="res://characters/room_changer.tscn" id="10_apoce"]
 [ext_resource type="PackedScene" uid="uid://cy8cfjf3k1khg" path="res://characters/collectibles/collectible_small.tscn" id="11_4cfbd"]
-[ext_resource type="PackedScene" uid="uid://bw0qfnofivdin" path="res://characters/player_trigger.tscn" id="12_is04q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lykf3"]
 size = Vector2(16256, 5187)
@@ -21,34 +20,6 @@ size = Vector2(6161, 5316)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o4jmo"]
 size = Vector2(338, 365)
-
-[sub_resource type="GDScript" id="GDScript_2rghc"]
-script/source = "extends PlayerTrigger
-
-
-@onready var degrees = rad_to_deg(owner.rotation)
-
-func collision_entered(player : CharacterBody2D):
-	degrees += 90
-#	player.back_to_the_start()
-
-	var newcam = Camera2D.new() # incredible
-	newcam.zoom = Vector2(0.8, 0.8)
-	player.add_child(newcam)
-	newcam.make_current()
-
-#	player.camera.set_limit(SIDE_LEFT, 9223372036854775807)
-#	player.camera.set_limit(SIDE_RIGHT, -9223372036854775807)
-#	player.camera.set_limit(SIDE_TOP, 9223372036854775807)
-#	player.camera.set_limit(SIDE_BOTTOM, -9223372036854775807)
-
-func _process(delta):
-	if(owner.rotation < deg_to_rad(degrees)):
-		owner.rotation += deg_to_rad(1)
-"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ickp"]
-size = Vector2(103.5, 65.375)
 
 [node name="testlevel" type="Node2D"]
 script = ExtResource("1_2jifr")
@@ -145,11 +116,3 @@ motion_scale = Vector2(0.3, 0.3)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(440, -4)
 texture = ExtResource("8_orcw3")
-
-[node name="TestRot" parent="." instance=ExtResource("12_is04q")]
-position = Vector2(1632, -450)
-script = SubResource("GDScript_2rghc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TestRot"]
-position = Vector2(-2547.75, 238.688)
-shape = SubResource("RectangleShape2D_0ickp")
