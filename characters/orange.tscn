@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dmm4hlogobbev"]
+[gd_scene load_steps=29 format=3 uid="uid://dmm4hlogobbev"]
 
 [ext_resource type="Script" path="res://characters/orange.gd" id="1_s0qxb"]
 [ext_resource type="SpriteFrames" uid="uid://c44jmvm73tp3d" path="res://images/creatures/orange/orange.tres" id="2_f6qet"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://scripts/orange_states/machslide.gd" id="22_s6boe"]
 [ext_resource type="Script" path="res://scripts/orange_states/dive.gd" id="23_bhv2m"]
 [ext_resource type="Script" path="res://scripts/orange_states/roll.gd" id="24_n4xaw"]
+[ext_resource type="Script" path="res://scripts/orange_states/noclip.gd" id="24_utk8e"]
 [ext_resource type="Script" path="res://scripts/orange_states/wallrun.gd" id="25_styjb"]
 [ext_resource type="Script" path="res://scripts/orange_states/walljump.gd" id="26_wsqqh"]
 [ext_resource type="Script" path="res://scripts/orange_states/grab.gd" id="27_lbva5"]
@@ -203,3 +204,8 @@ use_gravity = false
 use_friction = false
 can_grab = false
 can_taunt = false
+
+[node name="Noclip" type="Node" parent="FiniteStateMachine"]
+script = ExtResource("24_utk8e")
+use_gravity = false
+use_friction = false

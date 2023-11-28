@@ -55,7 +55,7 @@ func _ready():
 	back_to_the_start()
 
 func _process(delta):
-	if(get_room(room) && !get_room(room).overlaps_body(self)):
+	if(get_room(room) && !get_room(room).overlaps_body(self) && state_machine.current_state.name != "Noclip"):
 		cur_time += delta
 		remote_transform.remote_path = NodePath()
 		if(cur_time >= offscreen_time):
