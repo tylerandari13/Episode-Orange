@@ -105,7 +105,7 @@ position = Vector2(13839, -3240)
 shape = SubResource("RectangleShape2D_o4jmo")
 
 [node name="Collectible" parent="." instance=ExtResource("11_4cfbd")]
-position = Vector2(1309, -752)
+position = Vector2(1475, -465)
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
