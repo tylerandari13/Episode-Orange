@@ -70,6 +70,7 @@ texture = ExtResource("2_haw2b")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
 sprite_frames = ExtResource("2_f6qet")
+animation = &"noclip"
 autoplay = "default"
 
 [node name="StandCollision" type="CollisionShape2D" parent="."]

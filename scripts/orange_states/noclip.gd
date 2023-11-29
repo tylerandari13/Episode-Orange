@@ -4,6 +4,7 @@ extends "res://scripts/OrangeState.gd"
 func on_enter():
 	owner.stand_collision.disabled = true
 	owner.duck_collision.disabled = true
+	owner.sprite.play("noclip")
 
 
 # Called every frame when this state is active.
@@ -35,4 +36,5 @@ func on_input(event: InputEvent):
 func on_exit():
 	owner.stand_collision.disabled = false
 	owner.duck_collision.disabled = false
+	owner.sprite.play("default")
 
