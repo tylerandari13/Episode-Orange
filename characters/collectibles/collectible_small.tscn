@@ -17,7 +17,6 @@ debug_color = Color(0, 0.65098, 0.0980392, 0.419608)
 autoplay = "default"
 
 [node name="NumText" type="Label" parent="."]
-visible = false
 z_index = 200
 offset_left = -32.0
 offset_top = -32.0

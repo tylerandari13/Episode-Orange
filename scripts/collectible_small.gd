@@ -16,6 +16,9 @@ func on_collected(player : CharacterBody2D):
 	number_text.text = str(points)
 	number_text.visible = true
 
+func _ready():
+	number_text.visible = false
+
 func _process(delta):
 	if(collected):
 		if(abs(number_text.position.y - origin_y) > 300):
