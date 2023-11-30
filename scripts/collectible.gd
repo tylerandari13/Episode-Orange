@@ -2,8 +2,8 @@ class_name CollectibleBase
 extends PlayerTrigger
 
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var alpha = sprite.modulate.a
 
-var alpha = modulate.a
 var collected = false
 
 var texturepaths : Array
@@ -21,13 +21,13 @@ func _ready():
 
 func collision_entered(player : CharacterBody2D):
 	if(!collected):
-		modulate.a = alpha * 0.5 if player.get_current_room().is_secret else 0
+		sprite.modulate.a = alpha * 0.5 if player.get_current_room().is_secret else 0
 		collected = true
 		on_collected(player)
 
 func respawn():
 	if(collected):
-		modulate.a = alpha
+		sprite.modulate.a = alpha
 		collected = false
 		on_respawn()
 
