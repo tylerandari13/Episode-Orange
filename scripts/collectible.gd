@@ -1,6 +1,8 @@
 class_name CollectibleBase
 extends PlayerTrigger
 
+@onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
+
 var alpha = modulate.a
 var collected = false
 
@@ -8,19 +10,14 @@ var texturepaths : Array
 func set_texturepaths(): return Array()
 
 func _ready():
-	print(typeof(load("res://icon.svg")))
-
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 
+	texturepaths = set_texturepaths()
 	if(texturepaths.size() < 1): return
-	var sprite = null
-	for child in get_children():
-		if(child is Sprite2D):
-			sprite = child
-			break
-	if(sprite):
-		sprite.texture = load(texturepaths[randi() % texturepaths.size()])
+
+	sprite.set_sprite_frames(load(texturepaths[randi() % texturepaths.size()]))
+	sprite.play("default")
 
 func collision_entered(player : CharacterBody2D):
 	if(!collected):
