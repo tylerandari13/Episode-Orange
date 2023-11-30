@@ -2,7 +2,7 @@ class_name CollectibleBase
 extends PlayerTrigger
 
 @export var number_text : Label
-@export var points = 10
+@export var points = 0
 
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var alpha = sprite.modulate.a
@@ -22,6 +22,8 @@ func _ready():
 
 	sprite.set_sprite_frames(load(texturepaths[randi() % texturepaths.size()]))
 	sprite.play("default")
+
+	number_text.visible = false
 
 func collision_entered(player : CharacterBody2D):
 	if(!collected):

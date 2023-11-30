@@ -8,6 +8,7 @@ size = Vector2(64, 64)
 [node name="Collectible2" type="Area2D" node_paths=PackedStringArray("number_text")]
 script = ExtResource("1_7ok18")
 number_text = NodePath("NumText")
+points = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_67a50")
