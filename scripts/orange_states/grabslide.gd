@@ -7,9 +7,11 @@ func on_enter():
 
 # Called every frame when this state is active.
 func on_process(delta):
-	owner.velocity.x += 250 * delta * owner.direction
-	if(owner.velocity.abs().x >= owner.mach3):
-		change_state("MachRun")
+	if(owner.velocity.abs().x >= owner.mach3 + owner.speed):
+		if(!Input.is_action_pressed("down") && owner.can_stand()):
+			change_state("MachRun")
+	else:
+		owner.velocity.x += 750 * delta * owner.direction
 
 
 # Called every physics frame when this state is active.
