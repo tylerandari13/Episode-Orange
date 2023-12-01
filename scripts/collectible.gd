@@ -22,10 +22,11 @@ func _ready():
 	if(set_textures().size() < 1): return
 	texturepath = set_textures()[randi() % set_textures().size()]
 
-	#load(texturepaths[randi() % texturepaths.size()])
-
 	sprite.set_sprite_frames(load(texturepath.path))
-	sprite.play("default")
+	if(randi() % 2 == 0):
+		sprite.play("default")
+	else:
+		sprite.play_backwards("default")
 
 	if(texturepath.hues.size() < 1): return
 	sprite.set_material(sprite.get_material().duplicate(true))
@@ -50,7 +51,6 @@ func respawn():
 func on_respawn(): pass
 
 func on_collected(player : CharacterBody2D): pass
-
 
 func _process(delta):
 	if(collected):
