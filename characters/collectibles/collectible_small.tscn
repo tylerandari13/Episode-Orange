@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cy8cfjf3k1khg"]
+[gd_scene load_steps=5 format=3 uid="uid://cy8cfjf3k1khg"]
 
 [ext_resource type="Script" path="res://scripts/collectible_small.gd" id="1_7ok18"]
 [ext_resource type="Shader" path="res://shaders/hue_shift.gdshader" id="2_fuqqi"]
@@ -8,17 +8,7 @@ size = Vector2(64, 64)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q62io"]
 shader = ExtResource("2_fuqqi")
-shader_parameter/Shift_Hue = 0.0
-
-[sub_resource type="GDScript" id="GDScript_b6afs"]
-script/source = "extends AnimatedSprite2D
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	set_material(get_material().duplicate(true))
-	material.set_shader_parameter(\"Shift_Hue\", randf())
-"
+shader_parameter/Shift_Hue = 0.05
 
 [node name="Collectible2" type="Area2D" node_paths=PackedStringArray("number_text")]
 script = ExtResource("1_7ok18")
@@ -32,7 +22,6 @@ debug_color = Color(0, 0.65098, 0.0980392, 0.419608)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_q62io")
 autoplay = "default"
-script = SubResource("GDScript_b6afs")
 
 [node name="NumText" type="Label" parent="."]
 z_index = 200

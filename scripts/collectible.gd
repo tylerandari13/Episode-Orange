@@ -10,20 +10,26 @@ extends PlayerTrigger
 
 var collected = false
 
-var texturepaths : Array
-func set_texturepaths(): return Array()
+var texturepath : Dictionary
+func set_textures(): return Array()
 
 func _ready():
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 
-	texturepaths = set_texturepaths()
-	if(texturepaths.size() < 1): return
+	number_text.visible = false
 
-	sprite.set_sprite_frames(load(texturepaths[randi() % texturepaths.size()]))
+	if(set_textures().size() < 1): return
+	texturepath = set_textures()[randi() % set_textures().size()]
+
+	#load(texturepaths[randi() % texturepaths.size()])
+
+	sprite.set_sprite_frames(load(texturepath.path))
 	sprite.play("default")
 
-	number_text.visible = false
+	if(texturepath.hues.size() < 1): return
+	sprite.set_material(sprite.get_material().duplicate(true))
+	sprite.material.set_shader_parameter("Shift_Hue", texturepath.hues[randi() % texturepath.hues.size()])
 
 func collision_entered(player : CharacterBody2D):
 	if(!collected):
