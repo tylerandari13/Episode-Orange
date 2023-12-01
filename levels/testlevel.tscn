@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b0eymceneu6aj"]
+[gd_scene load_steps=14 format=3 uid="uid://b0eymceneu6aj"]
 
 [ext_resource type="Script" path="res://scripts/Level.gd" id="1_2jifr"]
 [ext_resource type="PackedScene" uid="uid://p3q6aqwpoxs2" path="res://characters/room.tscn" id="1_exmr2"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://ouitansraa6b" path="res://images/orange/backgrounds/OrngMountains.png" id="8_orcw3"]
 [ext_resource type="PackedScene" uid="uid://dam7jdfk4nys" path="res://characters/level_door.tscn" id="10_8ickp"]
 [ext_resource type="PackedScene" uid="uid://bb4k080jesf0u" path="res://characters/room_changer.tscn" id="10_apoce"]
-[ext_resource type="PackedScene" uid="uid://cy8cfjf3k1khg" path="res://characters/collectibles/collectible_small.tscn" id="11_86i0p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lykf3"]
 size = Vector2(16256, 5187)
@@ -113,6 +112,3 @@ motion_scale = Vector2(0.3, 0.3)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
 position = Vector2(440, -4)
 texture = ExtResource("8_orcw3")
-
-[node name="respawn" parent="." instance=ExtResource("11_86i0p")]
-position = Vector2(1010, -689)
