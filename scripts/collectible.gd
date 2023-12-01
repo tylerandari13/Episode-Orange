@@ -19,6 +19,8 @@ func _ready():
 
 	number_text.visible = false
 
+	Globals.add_collectible(self)
+
 	if(set_textures().size() < 1): return
 	texturepath = set_textures()[randi() % set_textures().size()]
 
