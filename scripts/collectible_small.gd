@@ -16,6 +16,7 @@ func set_textures(): return [
 		hues = [
 			0.05,
 			0.8,
+			0.95,
 		]
 	},
 ]

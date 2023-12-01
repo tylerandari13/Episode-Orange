@@ -29,7 +29,8 @@ func _ready():
 
 	if(texturepath.hues.size() < 1): return
 	sprite.set_material(sprite.get_material().duplicate(true))
-	sprite.material.set_shader_parameter("Shift_Hue", texturepath.hues[randi() % texturepath.hues.size()])
+#	sprite.material.set_shader_parameter("Shift_Hue", texturepath.hues[randi() % texturepath.hues.size()])
+	sprite.material.set_shader_parameter("Shift_Hue", randi_range(0, 10) * 0.1)
 
 func collision_entered(player : CharacterBody2D):
 	if(!collected):
