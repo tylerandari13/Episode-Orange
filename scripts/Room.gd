@@ -6,14 +6,7 @@ extends Area2D
 @export_group("misc")
 @export var is_room : bool = true
 
-## Called when the node enters the scene tree for the first time.
-#func _ready():
-#	pass # Replace with function body.
-#
-#
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+var spawn_points : Dictionary
 
 func get_collision():
 	if(collision_object):
@@ -31,6 +24,10 @@ func get_rect():
 	return retrect
 
 func get_spawnpoint(spawn : String):
-	if(get_node(spawn) is Node2D):
-		return get_node(spawn)
-	return Node2D.new()
+	if(spawn in spawn_points):
+		return spawn_points[spawn]
+	else:
+		return RoomSpawnPoint.new()
+
+func add_spawn_point(spawn : Marker2D):
+	spawn_points[spawn.name] = spawn
