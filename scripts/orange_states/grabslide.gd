@@ -16,8 +16,9 @@ func on_process(delta):
 
 # Called every physics frame when this state is active.
 func on_physics_process(delta):
-	pass
-
+	if(owner.is_on_wall()):
+		owner.velocity = Vector2(70 * owner.direction * -1 * owner.get_mach(), owner.get_mach(true) * -0.3)
+		change_state("DuckJump")
 
 # Called when there is an input event while this state is active.
 func on_input(event: InputEvent):
