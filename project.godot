@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
+Globals="*res://characters/globals.tscn"
 Players="*res://characters/playerspawner.tscn"
 InGameUI="*res://characters/ingameui.tscn"
 Debug="*res://characters/debug.tscn"

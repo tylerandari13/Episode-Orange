@@ -8,6 +8,9 @@ extends Area2D
 
 var spawn_points : Dictionary
 
+func _ready():
+	Globals.add_room(self)
+
 func get_collision():
 	if(collision_object):
 		return collision_object

@@ -55,7 +55,7 @@ func _ready():
 	back_to_the_start()
 
 func _process(delta):
-	if(get_room(room) && !get_room(room).overlaps_body(self) && state_machine.current_state.name != "Noclip"):
+	if(Globals.get_room(room) && !Globals.get_room(room).overlaps_body(self) && state_machine.current_state.name != "Noclip"):
 		cur_time += delta
 		remote_transform.remote_path = NodePath()
 		if(cur_time >= offscreen_time):
@@ -105,8 +105,8 @@ func try_grab():
 		state_machine.change_state("Grab")
 
 func change_room(new_room : String, new_spawn : String):
-	var colobj = get_room(new_room).get_collision()
-	var collision : Rect2 = get_room(new_room).get_rect()
+	var colobj = Globals.get_room(new_room).get_collision()
+	var collision : Rect2 = Globals.get_room(new_room).get_rect()
 	camera.set_limit(SIDE_LEFT, collision.position.x)
 	room_left = collision.position.x
 	
@@ -119,7 +119,7 @@ func change_room(new_room : String, new_spawn : String):
 	camera.set_limit(SIDE_BOTTOM, collision.position.y + collision.size.y)
 	room_bottom = collision.position.y + collision.size.y
 
-	var _spawn = get_room(new_room).get_spawnpoint(new_spawn)
+	var _spawn = Globals.get_room(new_room).get_spawnpoint(new_spawn)
 	if(_spawn):
 		position = _spawn.position
 	else:
@@ -130,23 +130,8 @@ func change_room(new_room : String, new_spawn : String):
 	room_changed.emit(new_room, new_spawn)
 
 #get stuff about Orange
-func find_level_in_root():
-	for child in get_tree().root.get_children():
-		if(child is Level):
-			return child
-
-func get_room(new_room : String):
-	var level = find_level_in_root()
-	if(level):
-		var room = find_level_in_root().get_node(new_room)
-		if(!room):
-			var room_holder = find_level_in_root().get_node("rooms")
-			if(room_holder):
-				room = room_holder.get_node(new_room)
-		return room
-
 func get_current_room():
-	return get_room(room)
+	return Globals.get_room(room)
 
 func can_stand():
 	var colarray = duck_checker.get_overlapping_bodies()
