@@ -3,6 +3,7 @@ extends PlayerTrigger
 
 @export var number_text : Label
 @export var points = 0
+@export var respawn_during_escape = false
 
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var alpha = sprite.modulate.a
@@ -46,6 +47,8 @@ func collision_entered(player : CharacterBody2D):
 		number_text.visible = true
 		player.add_points(points)
 		on_collected(player)
+		if(!(player.get_current_room().is_secret && respawn_during_escape)):
+			queue_free()
 
 func respawn():
 	if(collected):
