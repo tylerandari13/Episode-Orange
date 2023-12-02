@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://cakojuklpvh4f"]
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://cakojuklpvh4f"]
 
 [ext_resource type="Texture2D" uid="uid://b51m0ca85tqe" path="res://images/tiles/collisions.png" id="1_4cauq"]
 [ext_resource type="PackedScene" uid="uid://cy8cfjf3k1khg" path="res://characters/collectibles/collectible_small.tscn" id="2_s86yp"]
+[ext_resource type="PackedScene" uid="uid://b2r7o8etk5g4x" path="res://characters/collectibles/collectible_big.tscn" id="3_82mh5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7rn1p"]
 resource_name = "Collisions"
@@ -100,6 +101,7 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ory6p"]
 resource_name = "Collectibles"
 scenes/1/scene = ExtResource("2_s86yp")
+scenes/2/scene = ExtResource("3_82mh5")
 
 [resource]
 tile_size = Vector2i(64, 64)

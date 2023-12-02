@@ -22,7 +22,10 @@ func _ready():
 	Globals.add_collectible(self)
 
 	if(set_textures().size() < 1): return
-	texturepath = set_textures()[randi() % set_textures().size()]
+	if(set_textures().size() < 2):
+		texturepath = set_textures()[0]
+	else:
+		texturepath = set_textures()[randi() % set_textures().size()]
 
 	sprite.set_sprite_frames(load(texturepath.path))
 	if(randi() % 2 == 0):

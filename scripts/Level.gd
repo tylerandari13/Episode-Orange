@@ -6,6 +6,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#print(Globals.collectibles)
+
 	if(Players.get_player("orange") == null):
 		Players.spawn_player("orange")
 	var player_holder = Players.get_player("orange")

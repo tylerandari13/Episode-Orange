@@ -1,0 +1,14 @@
+[gd_resource type="SpriteFrames" load_steps=2 format=3 uid="uid://cd47x0g5n8cf3"]
+
+[ext_resource type="Texture2D" uid="uid://dc0ypref4rlbx" path="res://images/objects/colllectibles/ticket_big/ticket_big.png" id="1_5ffbb"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5ffbb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
