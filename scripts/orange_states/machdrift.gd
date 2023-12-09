@@ -1,4 +1,4 @@
-extends "res://scripts/OrangeState.gd"
+extends OrangeState
 
 var slide_time : float = 0.7
 

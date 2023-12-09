@@ -1,4 +1,4 @@
-extends "res://scripts/OrangeState.gd"
+extends OrangeState
 
 var superjumping : bool = false
 var jumpcanceling : bool = false

@@ -1,4 +1,4 @@
-extends "res://scripts/OrangeState.gd"
+extends OrangeState
 
 
 # Called when the state machine enters this state.

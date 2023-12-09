@@ -1,4 +1,4 @@
-extends "res://scripts/OrangeState.gd"
+extends OrangeState
 
 # Call `change_state(state : String)` to change the state.
 # Call `is_current_state()` to check if this state is also the surrent state on the state machine.

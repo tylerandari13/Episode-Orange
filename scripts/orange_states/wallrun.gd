@@ -1,4 +1,4 @@
-extends "res://scripts/OrangeState.gd"
+extends OrangeState
 
 var cur_time : float = 0
 var roof_time : float = 0.2
