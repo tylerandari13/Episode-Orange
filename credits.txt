@@ -1,2 +1,0 @@
-finite state machine: https://github.com/HexagonNico/Godot-FiniteStateMachine
-hue shift shader: https://gist.github.com/McSpider/c8c693f1065fdb5ec44c64cb9fdac340

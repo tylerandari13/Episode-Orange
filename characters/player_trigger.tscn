@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bw0qfnofivdin"]
-
-[ext_resource type="Script" path="res://scripts/PlayerTrigger.gd" id="1_rdcdb"]
-
-[node name="RoomChanger" type="Area2D"]
-script = ExtResource("1_rdcdb")

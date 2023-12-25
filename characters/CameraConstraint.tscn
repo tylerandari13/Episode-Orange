@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://chd2b34p0e7bq"]
-
-[sub_resource type="GDScript" id="GDScript_ua5xf"]
-script/source = "@export var is_camera_constraint : bool = true
-@export var collision : Node
-"
-
-[node name="Area2D" type="Area2D"]
-script = SubResource("GDScript_ua5xf")
