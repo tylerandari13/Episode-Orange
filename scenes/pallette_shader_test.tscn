@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://soxrm7y7vcsd"]
+
+[ext_resource type="Texture2D" uid="uid://bfmsq6kjnta6r" path="res://images/creatures/orange/taunts_test.png" id="1_aqtd2"]
+[ext_resource type="Shader" path="res://shader/pallette_swap.gdshader" id="1_x174q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_woeaq"]
+shader = ExtResource("1_x174q")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TauntsTest" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_woeaq")
+texture = ExtResource("1_aqtd2")
+
+[node name="Camera2D" type="Camera2D" parent="."]

@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6ga0cx8gmu2d"]
+
+[ext_resource type="Texture2D" uid="uid://cy8wbdaah4b3v" path="res://images/engine/menu/logo.png" id="1_8xydh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xihgg"]
+font_size = 32
+
+[sub_resource type="GDScript" id="GDScript_7wxsk"]
+script/source = "extends Button
+
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://levels/test_level.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_f8iuo"]
+script/source = "extends Button
+
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://scenes/credits.tscn\")
+"
+
+[node name="main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Logo" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -174.0
+offset_top = -288.0
+offset_right = 182.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_8xydh")
+
+[node name="Early Tech Demo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -64.0
+offset_right = 131.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Early Tech Demo"
+label_settings = SubResource("LabelSettings_xihgg")
+horizontal_alignment = 1
+
+[node name="TestLevel" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.0
+offset_top = 36.0
+offset_right = 105.0
+offset_bottom = 106.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Play Test Level"
+script = SubResource("GDScript_7wxsk")
+
+[node name="Credits" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.0
+offset_top = 113.0
+offset_right = 105.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_top = NodePath("../TestLevel")
+focus_neighbor_bottom = NodePath("../TestLevel")
+text = "See Credits"
+script = SubResource("GDScript_f8iuo")
+
+[connection signal="pressed" from="TestLevel" to="TestLevel" method="_on_pressed"]
+[connection signal="pressed" from="Credits" to="Credits" method="_on_pressed"]

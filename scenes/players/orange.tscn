@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmqtlr0pqr58i"]
+
+[ext_resource type="Script" path="res://scripts/player_orange.gd" id="1_gjfid"]
+[ext_resource type="SpriteFrames" uid="uid://c44jmvm73tp3d" path="res://images/creatures/orange/orange.tres" id="2_cftru"]
+[ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="3_xen2r"]
+[ext_resource type="Script" path="res://scripts/orange_states/ground.gd" id="4_ui8r0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3t3hh"]
+size = Vector2(40, 127)
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "sprite")]
+floor_constant_speed = true
+floor_block_on_wall = false
+floor_max_angle = 1.55334
+floor_snap_length = 64.0
+script = ExtResource("1_gjfid")
+state_machine = NodePath("StateMachine")
+sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_cftru")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3t3hh")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("3_xen2r")
+current_state = NodePath("none/ground")
+
+[node name="none" type="Node" parent="StateMachine"]
+
+[node name="ground" type="Node" parent="StateMachine/none"]
+script = ExtResource("4_ui8r0")

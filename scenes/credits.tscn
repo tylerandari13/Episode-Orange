@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://dic1vqybrc235"]
+
+[sub_resource type="GDScript" id="GDScript_bhin4"]
+script/source = "extends Label
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	text = \"\"
+	text += \"Main Credits:\\n\" + FileAccess.open(\"res://CREDITS.txt\", FileAccess.READ).get_as_text() + \"\\n\"
+	text += \"Godot addons I stole from the Asset Library:\\n\\n\"
+	var dir = DirAccess.open(\"addons\")
+	for subdir in dir.get_directories():
+		print(subdir + \"/plugin.cfg\")
+		var addon_data = ConfigFile.new()
+		if(addon_data.load(\"res://addons/\" + subdir + \"/plugin.cfg\") == OK):
+			text += addon_data.get_value(\"plugin\", \"name\", \"<No Addon>\") + \" by \"
+			text += addon_data.get_value(\"plugin\", \"author\", \"<No Author>\") + \"\\n\"
+"
+
+[sub_resource type="GDScript" id="GDScript_g6hs1"]
+script/source = "extends Button
+
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://main.tscn\")
+"
+
+[node name="Credits" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "This is the credits.
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+script = SubResource("GDScript_bhin4")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 12.0
+offset_right = 214.0
+offset_bottom = 89.0
+text = "Back"
+script = SubResource("GDScript_g6hs1")
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]

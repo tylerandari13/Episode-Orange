@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://i5dr07iguy6x"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_kx5ec"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_kx5ec")
+s_rank_score = nan
+secrets = nan
