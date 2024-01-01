@@ -14,8 +14,8 @@ func on_process(delta):
 # Called every physics frame when this state is active.
 func on_physics_process(delta):
 	if(Input.get_axis("left", "right") != 0): owner.velocity.x = Input.get_axis("left", "right") * owner.walk_speed
-	if(Input.is_action_just_pressed("jump")): owner.jump()
-	if(!owner.is_on_floor()): change_state("none/air")
+	if(owner.is_on_floor()): change_state("none/ground")
+
 
 # Called when there is an input event while this state is active.
 func on_input(event: InputEvent):
@@ -25,3 +25,4 @@ func on_input(event: InputEvent):
 # Called when the state machine exits this state.
 func on_exit():
 	pass
+

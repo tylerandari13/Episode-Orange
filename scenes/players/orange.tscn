@@ -1,12 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmqtlr0pqr58i"]
+[gd_scene load_steps=11 format=3 uid="uid://bmqtlr0pqr58i"]
 
 [ext_resource type="Script" path="res://scripts/player_orange.gd" id="1_gjfid"]
 [ext_resource type="SpriteFrames" uid="uid://c44jmvm73tp3d" path="res://images/creatures/orange/orange.tres" id="2_cftru"]
 [ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="3_xen2r"]
 [ext_resource type="Script" path="res://scripts/orange_states/ground.gd" id="4_ui8r0"]
+[ext_resource type="Script" path="res://scripts/orange_states/air.gd" id="5_k4nc5"]
+[ext_resource type="Script" path="res://scripts/orange_states/grab.gd" id="6_nq1uf"]
+[ext_resource type="Script" path="res://scripts/orange_states/uppercut.gd" id="7_an0x7"]
+[ext_resource type="Script" path="res://scripts/orange_states/taunt.gd" id="8_o45hy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t3hh"]
 size = Vector2(40, 127)
+
+[sub_resource type="GDScript" id="GDScript_k6hh2"]
+script/source = "extends Label
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	text = \"State: \" + get_parent().get_node(\"StateMachine\").current_state.name
+	text += \"\\nAnimation: \" + get_parent().get_node(\"AnimatedSprite2D\").animation
+	
+	
+	#/e dance
+"
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "sprite")]
 floor_constant_speed = true
@@ -32,3 +48,29 @@ current_state = NodePath("none/ground")
 
 [node name="ground" type="Node" parent="StateMachine/none"]
 script = ExtResource("4_ui8r0")
+
+[node name="air" type="Node" parent="StateMachine/none"]
+script = ExtResource("5_k4nc5")
+
+[node name="grab" type="Node" parent="StateMachine/none"]
+script = ExtResource("6_nq1uf")
+use_friction = false
+
+[node name="uppercut" type="Node" parent="StateMachine/none"]
+script = ExtResource("7_an0x7")
+
+[node name="taunt" type="Node" parent="StateMachine/none"]
+script = ExtResource("8_o45hy")
+use_gravity = false
+use_friction = false
+can_taunt = false
+can_grab = false
+decide_direction_based_on_velocity = false
+
+[node name="DebugLabel" type="Label" parent="."]
+offset_left = -41.0
+offset_top = -124.0
+offset_right = -1.0
+offset_bottom = -72.0
+horizontal_alignment = 1
+script = SubResource("GDScript_k6hh2")
