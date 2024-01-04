@@ -23,6 +23,9 @@ func on_process(delta):
 				change_state("none/ground")
 		if(Input.is_action_pressed("jump")):
 			change_state("none/longjump")
+	if(owner.is_on_wall_only()):
+		owner.mach_speed = owner.walk_speed
+		change_state("none/wallrun")
 
 
 # Called every physics frame when this state is active.

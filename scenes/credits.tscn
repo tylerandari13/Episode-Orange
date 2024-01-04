@@ -10,7 +10,6 @@ func _ready():
 	text += \"Godot addons I stole from the Asset Library:\\n\\n\"
 	var dir = DirAccess.open(\"addons\")
 	for subdir in dir.get_directories():
-		print(subdir + \"/plugin.cfg\")
 		var addon_data = ConfigFile.new()
 		if(addon_data.load(\"res://addons/\" + subdir + \"/plugin.cfg\") == OK):
 			text += addon_data.get_value(\"plugin\", \"name\", \"<No Addon>\") + \" by \"

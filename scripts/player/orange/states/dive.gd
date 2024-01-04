@@ -1,22 +1,19 @@
 extends OrangeState
 
-var bonk_time = 0.4
-
-var cur_time
 
 # Called when the state machine enters this state.
 func on_enter():
-	cur_time = 0
-	owner.mach_speed = 0
-	owner.velocity = Vector2()
+	owner.velocity.y = owner.jump_velocity * -1
 
 
 # Called every frame when this state is active.
 func on_process(delta):
-	if(cur_time < bonk_time):
-		cur_time += delta
-	else:
-		change_state("none/ground")
+	if(owner.is_on_floor()):
+		if(Input.is_action_pressed("down")):
+			change_state("none/roll")
+		else:
+			change_state("none/machrun")
+	if(Input.is_action_pressed("jump")): change_state("none/bodyslam")
 
 
 # Called every physics frame when this state is active.

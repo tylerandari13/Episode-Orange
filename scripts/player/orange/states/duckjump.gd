@@ -1,22 +1,15 @@
 extends OrangeState
 
-var bonk_time = 0.4
-
-var cur_time
 
 # Called when the state machine enters this state.
 func on_enter():
-	cur_time = 0
-	owner.mach_speed = 0
-	owner.velocity = Vector2()
+	pass
 
 
 # Called every frame when this state is active.
 func on_process(delta):
-	if(cur_time < bonk_time):
-		cur_time += delta
-	else:
-		change_state("none/ground")
+	owner.velocity.x = (Input.get_axis("left", "right") * owner.walk_speed) * 0.5
+	if(owner.is_on_floor()): change_state("none/duck")
 
 
 # Called every physics frame when this state is active.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bmqtlr0pqr58i"]
+[gd_scene load_steps=25 format=3 uid="uid://bmqtlr0pqr58i"]
 
 [ext_resource type="Script" path="res://scripts/player/orange/player_orange.gd" id="1_iekmm"]
 [ext_resource type="SpriteFrames" uid="uid://c44jmvm73tp3d" path="res://images/creatures/orange/orange.tres" id="2_cftru"]
@@ -7,18 +7,26 @@
 [ext_resource type="Script" path="res://scripts/player/orange/states/air.gd" id="5_dd0xd"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/grab.gd" id="6_jhk3o"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/uppercut.gd" id="7_754ig"]
+[ext_resource type="Script" path="res://scripts/player/orange/states/duck.gd" id="7_akbin"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/taunt.gd" id="8_0r3fp"]
+[ext_resource type="Script" path="res://scripts/player/orange/states/duckjump.gd" id="8_fffcj"]
+[ext_resource type="Script" path="res://scripts/player/orange/states/roll.gd" id="9_01kyo"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/longjump.gd" id="9_ggolp"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/machrun.gd" id="9_vl4g6"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/machslide.gd" id="10_nvxw6"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/machdrift.gd" id="11_3gnmr"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/superjumpwindup.gd" id="12_llgqj"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/superjump.gd" id="13_mfbjh"]
+[ext_resource type="Script" path="res://scripts/player/orange/states/dive.gd" id="14_gqkpl"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/bonk.gd" id="15_uqa1s"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/wallrun.gd" id="16_3sgsv"]
+[ext_resource type="Script" path="res://scripts/player/orange/states/bodyslam.gd" id="20_c1biv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t3hh"]
 size = Vector2(40, 127)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m4net"]
+size = Vector2(40, 63.5)
 
 [sub_resource type="GDScript" id="GDScript_k6hh2"]
 script/source = "extends Label
@@ -36,12 +44,15 @@ func _process(delta):
 	#/e dance
 "
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("state_machine", "sprite")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("stand_collision", "duck_collision", "duck_area", "state_machine", "sprite")]
 floor_constant_speed = true
 floor_block_on_wall = false
 floor_max_angle = 1.55334
 floor_snap_length = 64.0
 script = ExtResource("1_iekmm")
+stand_collision = NodePath("StandShape2D")
+duck_collision = NodePath("DuckShape2D")
+duck_area = NodePath("DuckDetection")
 state_machine = NodePath("StateMachine")
 sprite = NodePath("AnimatedSprite2D")
 
@@ -49,8 +60,21 @@ sprite = NodePath("AnimatedSprite2D")
 sprite_frames = ExtResource("2_cftru")
 autoplay = "default"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="StandShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3t3hh")
+
+[node name="DuckShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 31.75)
+shape = SubResource("RectangleShape2D_m4net")
+
+[node name="DuckDetection" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DuckDetection"]
+position = Vector2(0, -31.75)
+shape = SubResource("RectangleShape2D_m4net")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("3_xen2r")
@@ -69,12 +93,38 @@ script = ExtResource("5_dd0xd")
 script = ExtResource("6_jhk3o")
 can_grab = false
 can_jump = true
+use_friction = false
+
+[node name="duck" type="Node" parent="StateMachine/none"]
+script = ExtResource("7_akbin")
+can_taunt = false
+can_grab = false
+can_jump = true
+ducking = true
+use_friction = false
+
+[node name="duckjump" type="Node" parent="StateMachine/none"]
+script = ExtResource("8_fffcj")
+ducking = true
+use_friction = false
+
+[node name="roll" type="Node" parent="StateMachine/none"]
+script = ExtResource("9_01kyo")
+can_taunt = false
+can_grab = false
+ducking = true
+use_friction = false
+
+[node name="dive" type="Node" parent="StateMachine/none"]
+script = ExtResource("14_gqkpl")
 can_wallrun = true
+ducking = true
 use_friction = false
 
 [node name="longjump" type="Node" parent="StateMachine/none"]
 script = ExtResource("9_ggolp")
 can_wallrun = true
+can_dive = true
 use_friction = false
 
 [node name="uppercut" type="Node" parent="StateMachine/none"]
@@ -86,6 +136,7 @@ decide_direction_based_on_velocity = false
 script = ExtResource("9_vl4g6")
 can_jump = true
 can_wallrun = true
+can_dive = true
 decide_direction_based_on_velocity = false
 
 [node name="machslide" type="Node" parent="StateMachine/none"]
@@ -113,14 +164,6 @@ use_gravity = false
 use_friction = false
 decide_direction_based_on_velocity = false
 
-[node name="taunt" type="Node" parent="StateMachine/none"]
-script = ExtResource("8_0r3fp")
-can_taunt = false
-can_grab = false
-use_gravity = false
-use_friction = false
-decide_direction_based_on_velocity = false
-
 [node name="bonk" type="Node" parent="StateMachine/none"]
 script = ExtResource("15_uqa1s")
 can_taunt = false
@@ -131,6 +174,20 @@ decide_direction_based_on_velocity = false
 
 [node name="wallrun" type="Node" parent="StateMachine/none"]
 script = ExtResource("16_3sgsv")
+can_taunt = false
+can_grab = false
+use_gravity = false
+use_friction = false
+decide_direction_based_on_velocity = false
+
+[node name="bodyslam" type="Node" parent="StateMachine/none"]
+script = ExtResource("20_c1biv")
+can_taunt = false
+can_grab = false
+ducking = true
+
+[node name="taunt" type="Node" parent="StateMachine/none"]
+script = ExtResource("8_0r3fp")
 can_taunt = false
 can_grab = false
 use_gravity = false
