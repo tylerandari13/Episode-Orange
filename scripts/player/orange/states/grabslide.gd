@@ -1,15 +1,17 @@
 extends OrangeState
 
+
 # Called when the state machine enters this state.
 func on_enter():
-	owner.mach_speed = 0
+	pass
 
-
+# Global.apply_delta_time()
 # Called every frame when this state is active.
 func on_process(delta):
-	owner.velocity.x += Global.apply_delta_time(20 if owner.velocity.x < 0 else -20, delta)
-	if(abs(owner.velocity.x) < 20): change_state("none/ground")
-	if(owner.is_on_wall()): change_state("none/bonk")
+	owner.velocity.x += Global.apply_delta_time(owner.acceleration, delta) * owner.direction
+	if(abs(owner.velocity.x) >= owner.mach3):
+		owner.mach_speed = owner.mach3
+		change_state("none/machrun")
 
 
 # Called every physics frame when this state is active.

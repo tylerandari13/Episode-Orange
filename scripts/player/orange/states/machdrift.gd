@@ -21,11 +21,11 @@ func on_process(delta):
 # This should be redone at some point.
 func on_physics_process(delta):
 	if(sliding):
-		owner.velocity.x += 20 if owner.velocity.x < 0 else -20
+		owner.velocity.x += Global.apply_delta_time(20 if owner.velocity.x < 0 else -20, delta)
 	else:
 		owner.velocity.x = 0
 	if(abs(owner.velocity.x) < 5): sliding = false
-	
+
 	if((!sliding || cur_time >= slide_time) && owner.is_on_floor()):
 		match(owner.get_mach_speed()):
 			1:
@@ -33,7 +33,7 @@ func on_physics_process(delta):
 			_:
 				owner.mach_speed = owner.mach3
 		change_state("none/machrun")
-	
+
 	if(cur_time < slide_time): cur_time += delta
 
 

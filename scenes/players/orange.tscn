@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bmqtlr0pqr58i"]
+[gd_scene load_steps=26 format=3 uid="uid://bmqtlr0pqr58i"]
 
 [ext_resource type="Script" path="res://scripts/player/orange/player_orange.gd" id="1_iekmm"]
 [ext_resource type="SpriteFrames" uid="uid://c44jmvm73tp3d" path="res://images/creatures/orange/orange.tres" id="2_cftru"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/player/orange/states/grab.gd" id="6_jhk3o"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/uppercut.gd" id="7_754ig"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/duck.gd" id="7_akbin"]
+[ext_resource type="Script" path="res://scripts/player/orange/states/grabslide.gd" id="7_p224i"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/taunt.gd" id="8_0r3fp"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/duckjump.gd" id="8_fffcj"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/roll.gd" id="9_01kyo"]
@@ -95,6 +96,13 @@ can_grab = false
 can_jump = true
 use_friction = false
 
+[node name="grabslide" type="Node" parent="StateMachine/none"]
+script = ExtResource("7_p224i")
+can_taunt = false
+can_grab = false
+ducking = true
+use_friction = false
+
 [node name="duck" type="Node" parent="StateMachine/none"]
 script = ExtResource("7_akbin")
 can_taunt = false
@@ -143,6 +151,7 @@ decide_direction_based_on_velocity = false
 script = ExtResource("10_nvxw6")
 can_taunt = false
 can_grab = false
+use_friction = false
 decide_direction_based_on_velocity = false
 
 [node name="machdrift" type="Node" parent="StateMachine/none"]
@@ -155,6 +164,7 @@ decide_direction_based_on_velocity = false
 script = ExtResource("12_llgqj")
 can_taunt = false
 can_grab = false
+ducking = true
 
 [node name="superjump" type="Node" parent="StateMachine/none"]
 script = ExtResource("13_mfbjh")

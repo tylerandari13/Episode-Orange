@@ -26,6 +26,10 @@ func on_process(delta):
 	if(owner.is_on_wall_only()):
 		owner.mach_speed = owner.walk_speed
 		change_state("none/wallrun")
+	if((owner.velocity.x > 0 && Input.is_action_pressed("left")) || (owner.velocity.x < 0 && Input.is_action_pressed("right"))):
+		owner.velocity.x = 0
+		change_state("none/air")
+	if(Input.is_action_pressed("down")): change_state("none/grabslide")
 
 
 # Called every physics frame when this state is active.
