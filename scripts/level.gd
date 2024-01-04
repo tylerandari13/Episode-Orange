@@ -10,8 +10,10 @@ var rooms = {}
 var collectibles = []
 
 var set_s_rank
+
 func _ready():
 	set_s_rank = is_nan(s_rank_score)
+	GlobalCamera.init_2d($Player)
 
 func add_room(room):
 	rooms[room.name] = room

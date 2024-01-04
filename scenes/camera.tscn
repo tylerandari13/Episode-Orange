@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci3k17qgo8uv7"]
+
+[ext_resource type="Script" path="res://scripts/camera.gd" id="1_0libo"]
+
+[node name="GlobalCamera" type="Camera2D"]
+position_smoothing_enabled = true
+script = ExtResource("1_0libo")

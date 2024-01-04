@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmgv3qnfkrqf0"]
+[gd_scene load_steps=7 format=3 uid="uid://dmgv3qnfkrqf0"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_yu40s"]
 [ext_resource type="Texture2D" uid="uid://b51m0ca85tqe" path="res://images/tiles/collisions.png" id="2_aqqls"]
 [ext_resource type="PackedScene" uid="uid://bmqtlr0pqr58i" path="res://scenes/players/orange.tscn" id="3_h404e"]
+[ext_resource type="PackedScene" uid="uid://d1sm131oodc8g" path="res://scenes/collectibles/small.tscn" id="5_njyhc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aqnyf"]
 texture = ExtResource("2_aqqls")
@@ -115,3 +116,6 @@ layer_0/tile_data = PackedInt32Array(458752, 2, 0, 458753, 2, 0, 458754, 2, 0, 4
 
 [node name="Player" parent="." instance=ExtResource("3_h404e")]
 position = Vector2(576, 324)
+
+[node name="CollectibleSmall" parent="." instance=ExtResource("5_njyhc")]
+position = Vector2(728, 244)

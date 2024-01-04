@@ -211,5 +211,3 @@ offset_right = -3.0
 offset_bottom = -67.0
 horizontal_alignment = 1
 script = SubResource("GDScript_k6hh2")
-
-[node name="Temp" type="Camera2D" parent="."]

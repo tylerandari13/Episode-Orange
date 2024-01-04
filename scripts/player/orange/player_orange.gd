@@ -32,6 +32,7 @@ func physics_process(delta):
 	
 	if(is_on_wall_only() && state_machine.current_state.can_wallrun): state_machine.change_state("none/wallrun")
 
+
 func _on_state_changed(new_state : StateMachineState):
 	set_ducking(new_state.ducking)
 

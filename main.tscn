@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6ga0cx8gmu2d"]
+[gd_scene load_steps=6 format=3 uid="uid://c6ga0cx8gmu2d"]
 
 [ext_resource type="Texture2D" uid="uid://cy8wbdaah4b3v" path="res://images/engine/menu/logo.png" id="1_8xydh"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_ubkoc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xihgg"]
 font_size = 32
@@ -26,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ubkoc")
 
 [node name="Logo" type="TextureRect" parent="."]
 layout_mode = 1

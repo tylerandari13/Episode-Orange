@@ -8,10 +8,12 @@ func on_enter():
 # Global.apply_delta_time()
 # Called every frame when this state is active.
 func on_process(delta):
-	owner.velocity.x += Global.apply_delta_time(owner.acceleration, delta) * owner.direction
 	if(abs(owner.velocity.x) >= owner.mach3):
-		owner.mach_speed = owner.mach3
-		change_state("none/machrun")
+		if(owner.can_unduck() && !Input.is_action_pressed("down")):
+			owner.mach_speed = owner.mach3
+			change_state("none/machrun")
+	else:
+		owner.velocity.x += Global.apply_delta_time(owner.acceleration, delta) * owner.direction
 
 
 # Called every physics frame when this state is active.
