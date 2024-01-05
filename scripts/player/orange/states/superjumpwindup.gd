@@ -6,6 +6,7 @@ var cur_time
 
 # Called when the state machine enters this state.
 func on_enter():
+	owner.sprite.play("superjumpwindup")
 	cur_time = 0
 
 

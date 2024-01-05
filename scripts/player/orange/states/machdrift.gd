@@ -10,6 +10,7 @@ func on_enter():
 	cur_time = 0
 	sliding = true
 	owner.direction = owner.direction * -1
+	owner.sprite.play("machdrift")
 
 
 # Called every frame when this state is active.

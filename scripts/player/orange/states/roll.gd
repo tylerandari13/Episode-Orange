@@ -3,13 +3,14 @@ extends OrangeState
 
 # Called when the state machine enters this state.
 func on_enter():
-	pass
+	owner.sprite.play("roll")
 
 
 # Called every frame when this state is active.
 func on_process(delta):
 	if(!Input.is_action_pressed("down") && owner.can_unduck()): change_state("none/machrun")
-	if(!owner.is_on_floor()): change_state("none/dive")
+	if(!owner.is_on_floor()):
+		change_state("none/dive")
 
 
 # Called every physics frame when this state is active.

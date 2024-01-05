@@ -9,6 +9,7 @@ func on_enter():
 	cur_time = 0
 	the_velocity = owner.grab_speed if abs(owner.velocity.x) < owner.grab_speed else owner.velocity.x * owner.direction
 	owner.velocity.x = the_velocity * owner.direction
+	owner.sprite.play("grab")
 
 
 # Called every frame when this state is active.
@@ -30,6 +31,10 @@ func on_process(delta):
 		owner.velocity.x = 0
 		change_state("none/air")
 	if(Input.is_action_pressed("down")): change_state("none/grabslide")
+
+	if(owner.is_on_wall() && owner.is_on_floor()):
+		owner.sprite.play("bonk")
+		change_state("none/bonk")
 
 
 # Called every physics frame when this state is active.

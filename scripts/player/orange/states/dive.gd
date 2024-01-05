@@ -3,6 +3,7 @@ extends OrangeState
 
 # Called when the state machine enters this state.
 func on_enter():
+	owner.sprite.play("dive")
 	owner.velocity.y = owner.jump_velocity * -1
 
 
@@ -13,7 +14,9 @@ func on_process(delta):
 			change_state("none/roll")
 		else:
 			change_state("none/machrun")
-	if(Input.is_action_pressed("jump")): change_state("none/bodyslam")
+	if(Input.is_action_pressed("jump")):
+		owner.sprite.play("divebomb")
+		change_state("none/bodyslam")
 
 
 # Called every physics frame when this state is active.

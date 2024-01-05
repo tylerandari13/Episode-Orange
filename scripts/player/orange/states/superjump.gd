@@ -10,6 +10,7 @@ func on_enter():
 	current_time = 0
 	canceling = false
 	owner.velocity = Vector2(0, owner.jump_velocity * 2)
+	owner.sprite.play("superjump")
 
 
 # Called every frame when this state is active.
@@ -17,12 +18,14 @@ func on_process(delta):
 	if(Input.get_axis("left", "right") != 0): owner.direction = Input.get_axis("left", "right")
 	if(Input.is_action_just_pressed("run") || Input.is_action_just_pressed("grab")):
 		canceling = true
+		owner.sprite.play("superjumpcancel1")
 	if(canceling):
 		owner.velocity = Vector2()
 		if(current_time < cancel_time):
 			current_time += delta
 		else:
 			owner.mach_speed = owner.mach3
+			owner.sprite.play("superjumpcancel2")
 			change_state("none/machrun")
 			owner.velocity.y = owner.jump_velocity * 0.5
 	if(owner.is_on_ceiling()): change_state("none/bonk")
