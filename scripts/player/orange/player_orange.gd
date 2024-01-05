@@ -20,6 +20,7 @@ func _ready(): state_machine.state_changed.connect(_on_state_changed)
 func physics_process(delta):
 	if(Input.is_action_just_pressed("grab") && state_machine.current_state.can_grab):
 		if(Input.is_action_pressed("superjump") || Input.is_action_pressed("up")):
+			sprite.play("uppercut")
 			state_machine.change_state("none/uppercut")
 		else:
 			state_machine.change_state("none/grab")

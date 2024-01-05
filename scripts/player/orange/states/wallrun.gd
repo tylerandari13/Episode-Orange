@@ -3,7 +3,7 @@ extends OrangeState
 
 # Called when the state machine enters this state.
 func on_enter():
-	pass
+	owner.sprite.play("wallrun")
 
 
 # Called every frame when this state is active.

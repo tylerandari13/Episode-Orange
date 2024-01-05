@@ -3,6 +3,7 @@ extends OrangeState
 # Called when the state machine enters this state.
 func on_enter():
 	owner.mach_speed = 0
+	owner.sprite.play("machslide")
 
 
 # Called every frame when this state is active.
