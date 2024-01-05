@@ -20,7 +20,6 @@ func _ready(): state_machine.state_changed.connect(_on_state_changed)
 func physics_process(delta):
 	if(Input.is_action_just_pressed("grab") && state_machine.current_state.can_grab):
 		if(Input.is_action_pressed("superjump") || Input.is_action_pressed("up")):
-			sprite.play("uppercut")
 			state_machine.change_state("none/uppercut")
 		else:
 			state_machine.change_state("none/grab")
@@ -37,12 +36,11 @@ func physics_process(delta):
 func _on_state_changed(new_state : StateMachineState):
 	set_ducking(new_state.ducking)
 
-func jump(): velocity.y = jump_velocity
 
 func get_mach_speed(speed = mach_speed):
 	if(speed < mach3 / 2): return 1
 	if(speed < mach3): return 2
-	if(speed < mach3 * 4): return 3
+	if(speed < mach3 * 2): return 3
 	return 4
 
 func set_ducking(ducking):
@@ -52,8 +50,12 @@ func set_ducking(ducking):
 	duck_collision.disabled = !ducking
 	duck_area.visible = ducking
 
-func can_unduck():
+
+func can_unduck() -> bool:
 	for body in duck_area.get_overlapping_bodies():
 		if(body != self):
 			return false
 	return true
+
+
+func jump(): velocity.y = jump_velocity

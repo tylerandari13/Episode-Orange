@@ -3,11 +3,31 @@ extends CharacterBody2D
 
 @export var state_machine : FiniteStateMachine
 @export var sprite : AnimatedSprite2D
+@export var afterimage_colors = [
+	Color(1, 0.5, 0.5, 0.5),
+	Color(0.5, 1, 0.5, 0.5)
+]
 
 var direction = 1
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
+var afterimage_times = {}
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var afterimage_index = 0
+var afterimage_process_index = 0
+
+func _process(delta):
+	if(state_machine.current_state.has_afterimage):
+		if(afterimage_process_index % 10 == 0):
+			add_afterimage()
+	#	if(int(position.x) % 10 == 0 || int(position.y) % 10 == 0):
+	#		add_afterimage()
+	afterimage_process_index += 1
+	for node in afterimage_times:
+		if(afterimage_times[node].time_left <= 0):
+			sprite.get_node(node).queue_free()
+			afterimage_times[node].time_left = INF
+		elif(is_finite(afterimage_times[node].time_left)):
+			afterimage_times[node].time_left -= delta
+			sprite.get_node(node).global_position = afterimage_times[node].origin_pos
 
 func _physics_process(delta):
 	if(!is_on_floor() && state_machine.current_state.use_gravity): velocity.y += gravity * delta
@@ -24,4 +44,25 @@ func _physics_process(delta):
 
 	physics_process(delta)
 
+func add_afterimage(color = Color(Color(), NAN)):
+	if(is_nan(color.a)):
+		color = afterimage_colors[afterimage_index % len(afterimage_colors)]
+		afterimage_index += 1
+
+	var afterimage = AnimatedSprite2D.new()
+	afterimage.sprite_frames = sprite.sprite_frames
+	afterimage.flip_h = sprite.flip_h
+	afterimage.flip_v = sprite.flip_v
+	afterimage.modulate = color
+
+	sprite.add_child(afterimage)
+	afterimage.play(sprite.animation, 0)
+	afterimage.set_frame_and_progress(sprite.frame, sprite.frame_progress)
+
+	afterimage_times[afterimage.name] = {
+		time_left = 0.7,
+		origin_pos = afterimage.global_position
+	}
+
 func physics_process(delta): pass
+func jump(): pass

@@ -5,6 +5,7 @@ var move_velocity = 30
 # Called when the state machine enters this state.
 func on_enter():
 	owner.velocity.y = owner.jump_velocity * 1.5 if owner.is_on_floor() else owner.jump_velocity
+	owner.sprite.play("uppercut")
 
 
 # Called every frame when this state is active.
