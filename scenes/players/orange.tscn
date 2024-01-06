@@ -40,6 +40,7 @@ func _process(delta):
 		text = \"State: \" + get_parent().get_node(\"StateMachine\").current_state.name
 	text += \"\\nAnimation: \" + get_parent().get_node(\"AnimatedSprite2D\").animation
 	text += \"\\nDirection: \" + str(get_parent().direction)
+	text += \"\\nSpeed: \" + str(owner.velocity.x)
 	
 	
 	#/e dance
@@ -211,9 +212,13 @@ use_friction = false
 decide_direction_based_on_velocity = false
 
 [node name="DebugLabel" type="Label" parent="."]
-offset_left = -43.0
-offset_top = -145.0
-offset_right = -3.0
-offset_bottom = -67.0
+offset_left = -24.0
+offset_top = -195.0
+offset_right = 16.0
+offset_bottom = -91.0
+text = "##
+##
+##
+##"
 horizontal_alignment = 1
 script = SubResource("GDScript_k6hh2")
