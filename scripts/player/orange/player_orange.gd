@@ -24,7 +24,7 @@ func physics_process(delta):
 		else:
 			state_machine.change_state("none/grab")
 	if(Input.is_action_just_pressed("taunt") && state_machine.current_state.can_taunt): state_machine.change_state("none/taunt")
-	if(Input.is_action_pressed("jump") && state_machine.current_state.can_jump && is_on_floor()): jump()
+	if(Input.is_action_just_pressed("jump") && state_machine.current_state.can_jump && is_on_floor()): jump()
 	if(Input.is_action_pressed("down") && state_machine.current_state.can_dive): if(is_on_floor()):
 		state_machine.change_state("none/roll")
 	else:
