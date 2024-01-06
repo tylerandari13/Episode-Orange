@@ -47,6 +47,7 @@ func _process(delta):
 "
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("stand_collision", "duck_collision", "duck_area", "state_machine", "sprite")]
+z_index = 1
 floor_constant_speed = true
 floor_block_on_wall = false
 floor_max_angle = 1.55334
