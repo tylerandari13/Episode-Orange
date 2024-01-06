@@ -21,6 +21,10 @@ Global="*res://scripts/globals.gd"
 Keybinds="res://scripts/keybinds.gd"
 GlobalCamera="*res://scenes/camera.tscn"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [editor]
 
 movie_writer/movie_file="/home/tylerandari12/godot_stuff/Episode-Orange/thing.avi"
