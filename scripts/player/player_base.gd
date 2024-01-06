@@ -18,8 +18,6 @@ func _process(delta):
 	if(state_machine.current_state.has_afterimage):
 		if(afterimage_process_index % 10 == 0):
 			add_afterimage()
-	#	if(int(position.x) % 10 == 0 || int(position.y) % 10 == 0):
-	#		add_afterimage()
 	afterimage_process_index += 1
 	for node in afterimage_times:
 		if(afterimage_times[node].time_left <= 0):

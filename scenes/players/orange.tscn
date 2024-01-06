@@ -138,6 +138,7 @@ use_friction = false
 
 [node name="uppercut" type="Node" parent="StateMachine/none"]
 script = ExtResource("7_754ig")
+can_grab = false
 use_friction = false
 decide_direction_based_on_velocity = false
 has_afterimage = true
