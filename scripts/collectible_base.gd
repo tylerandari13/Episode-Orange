@@ -19,7 +19,8 @@ func _process(delta):
 	if(amount_text != null): if(collected && position.y - amount_text.position.y < 256):
 		amount_text.position.y += 1
 	else:
-		amount_text.visible = false
+		pass
+		#amount_text.visible = false
 
 func try_collect(body):
 	if(body is Player && !collected):

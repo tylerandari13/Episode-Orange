@@ -60,6 +60,7 @@ sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_cftru")
+animation = &"grabslide"
 autoplay = "default"
 
 [node name="StandShape2D" type="CollisionShape2D" parent="."]
@@ -127,6 +128,7 @@ use_friction = false
 
 [node name="dive" type="Node" parent="StateMachine/none"]
 script = ExtResource("14_gqkpl")
+can_grab = false
 can_wallrun = true
 ducking = true
 use_friction = false
