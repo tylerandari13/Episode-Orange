@@ -8,7 +8,7 @@ func on_enter():
 
 # Called every frame when this state is active.
 func on_process(delta):
-	owner.velocity.x += Global.apply_delta_time(20 if owner.velocity.x < 0 else -20, delta)
+	owner.velocity.x = owner.velocity.x * Global.apply_delta_time(owner.friction, delta)
 	if(abs(owner.velocity.x) < 20): change_state("none/ground")
 	if(owner.is_on_wall()): change_state("none/bonk")
 

@@ -7,6 +7,7 @@ extends Player
 @export var grab_speed = 750
 @export var mach3 = 1500
 @export var acceleration = 15
+@export var friction = 0.95
 
 @export_group("Sprites and Collision")
 @export var stand_collision : CollisionShape2D

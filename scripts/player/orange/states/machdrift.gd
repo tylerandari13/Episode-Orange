@@ -22,7 +22,7 @@ func on_process(delta):
 # This should be redone at some point.
 func on_physics_process(delta):
 	if(sliding):
-		owner.velocity.x += Global.apply_delta_time(20 if owner.velocity.x < 0 else -20, delta)
+		owner.velocity.x = owner.velocity.x *  Global.apply_delta_time(owner.friction, delta)
 	else:
 		owner.velocity.x = 0
 	if(abs(owner.velocity.x) < 5): sliding = false
