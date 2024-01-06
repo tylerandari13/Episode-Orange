@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://bmqtlr0pqr58i"]
+[gd_scene load_steps=27 format=3 uid="uid://bmqtlr0pqr58i"]
 
 [ext_resource type="Script" path="res://scripts/player/orange/player_orange.gd" id="1_iekmm"]
+[ext_resource type="Texture2D" uid="uid://b0f81vevbiws8" path="res://images/creatures/shared/tauntbg.png" id="2_0wekc"]
 [ext_resource type="SpriteFrames" uid="uid://c44jmvm73tp3d" path="res://images/creatures/orange/orange.tres" id="2_cftru"]
 [ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="3_xen2r"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/ground.gd" id="4_nbiu2"]
@@ -40,24 +41,31 @@ func _process(delta):
 		text = \"State: \" + get_parent().get_node(\"StateMachine\").current_state.name
 	text += \"\\nAnimation: \" + get_parent().get_node(\"AnimatedSprite2D\").animation
 	text += \"\\nDirection: \" + str(get_parent().direction)
-	text += \"\\nSpeed: \" + str(owner.velocity.x)
+	text += \"\\nSpeed: (\" + str(owner.velocity.x) + \", \" + str(owner.velocity.y) + \")\"
 	
 	
 	#/e dance
 "
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("stand_collision", "duck_collision", "duck_area", "state_machine", "sprite")]
-z_index = 1
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("taunt_sprite", "stand_collision", "duck_collision", "duck_area", "state_machine", "sprite", "afterimage_container")]
 floor_constant_speed = true
 floor_block_on_wall = false
 floor_max_angle = 1.55334
 floor_snap_length = 64.0
 script = ExtResource("1_iekmm")
+taunt_sprite = NodePath("TauntSprite")
 stand_collision = NodePath("StandShape2D")
 duck_collision = NodePath("DuckShape2D")
 duck_area = NodePath("DuckDetection")
 state_machine = NodePath("StateMachine")
 sprite = NodePath("AnimatedSprite2D")
+afterimage_container = NodePath("AfterImageContainer")
+
+[node name="AfterImageContainer" type="Node2D" parent="."]
+
+[node name="TauntSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_0wekc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_cftru")

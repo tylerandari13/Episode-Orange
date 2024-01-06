@@ -10,6 +10,7 @@ extends Player
 @export var friction = 0.93
 
 @export_group("Sprites and Collision")
+@export var taunt_sprite : Sprite2D
 @export var stand_collision : CollisionShape2D
 @export var duck_collision : CollisionShape2D
 @export var duck_area : Area2D

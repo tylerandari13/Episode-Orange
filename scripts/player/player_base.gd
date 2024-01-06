@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 @export var state_machine : FiniteStateMachine
 @export var sprite : AnimatedSprite2D
+@export var afterimage_container : Node2D
 @export var afterimage_colors = [
 	Color(1, 0.5, 0.5, 0.5),
 	Color(0.5, 1, 0.5, 0.5)
@@ -21,11 +22,11 @@ func _process(delta):
 	afterimage_process_index += 1
 	for node in afterimage_times:
 		if(afterimage_times[node].time_left <= 0):
-			sprite.get_node(node).queue_free()
+			afterimage_container.get_node(node).queue_free()
 			afterimage_times[node].time_left = INF
 		elif(is_finite(afterimage_times[node].time_left)):
 			afterimage_times[node].time_left -= delta
-			sprite.get_node(node).global_position = afterimage_times[node].origin_pos
+			afterimage_container.get_node(node).global_position = afterimage_times[node].origin_pos
 
 func _physics_process(delta):
 	if(!is_on_floor() && state_machine.current_state.use_gravity): velocity.y += gravity * delta
@@ -54,7 +55,7 @@ func add_afterimage(color = Color(Color(), NAN)):
 	afterimage.modulate = color
 	afterimage.z_index = -1
 
-	sprite.add_child(afterimage)
+	afterimage_container.add_child(afterimage)
 	afterimage.play(sprite.animation, 0)
 	afterimage.set_frame_and_progress(sprite.frame, sprite.frame_progress)
 
