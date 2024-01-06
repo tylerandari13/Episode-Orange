@@ -7,7 +7,7 @@ extends Player
 @export var grab_speed = 750
 @export var mach3 = 1500
 @export var acceleration = 15
-@export var friction = 0.95
+@export var friction = 0.93
 
 @export_group("Sprites and Collision")
 @export var stand_collision : CollisionShape2D
@@ -19,6 +19,9 @@ var mach_speed = 0
 func _ready(): state_machine.state_changed.connect(_on_state_changed)
 
 func physics_process(delta):
+	
+
+	
 	if(Input.is_action_just_pressed("grab") && state_machine.current_state.can_grab):
 		if(Input.is_action_pressed("superjump") || Input.is_action_pressed("up")):
 			state_machine.change_state("none/uppercut")
