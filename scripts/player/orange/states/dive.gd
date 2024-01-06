@@ -14,7 +14,7 @@ func on_process(delta):
 			change_state("none/roll")
 		else:
 			change_state("none/machrun")
-	if(Input.is_action_pressed("jump")):
+	if(Input.is_action_just_pressed("jump")):
 		owner.sprite.play("divebomb")
 		change_state("none/bodyslam")
 
