@@ -53,7 +53,7 @@ func add_afterimage(color = Color(Color(), NAN)):
 	afterimage.flip_h = sprite.flip_h
 	afterimage.flip_v = sprite.flip_v
 	afterimage.modulate = color
-	afterimage.z_index = -1
+	#afterimage.z_index = -1
 
 	afterimage_container.add_child(afterimage)
 	afterimage.play(sprite.animation, 0)
