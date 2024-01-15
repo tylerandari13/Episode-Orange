@@ -5,8 +5,8 @@ extends CharacterBody2D
 @export var sprite : AnimatedSprite2D
 @export var afterimage_container : Node2D
 @export var afterimage_colors = [
-	Color(1, 0.5, 0.5, 0.5),
-	Color(0.5, 1, 0.5, 0.5)
+	Color(1, 0, 0, 0.5),
+	Color(0, 1, 0, 0.5)
 ]
 
 var direction = 1
@@ -14,6 +14,7 @@ var afterimage_times = {}
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var afterimage_index = 0
 var afterimage_process_index = 0
+var points = 0
 
 func _process(delta):
 	if(state_machine.current_state.has_afterimage):
@@ -42,6 +43,8 @@ func _physics_process(delta):
 	move_and_slide()
 
 	physics_process(delta)
+
+func add_points(_points): points += _points
 
 func add_afterimage(color = Color(Color(), NAN)):
 	if(is_nan(color.a)):
