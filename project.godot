@@ -19,11 +19,6 @@ config/icon="res://icon.svg"
 
 Global="*res://scripts/globals.gd"
 Keybinds="res://scripts/keybinds.gd"
-GlobalCamera="*res://scenes/camera.tscn"
-
-[display]
-
-window/stretch/mode="canvas_items"
 
 [editor]
 

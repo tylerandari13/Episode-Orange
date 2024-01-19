@@ -20,7 +20,7 @@ func on_physics_process(delta): if(Input.is_action_pressed("run")):
 	if(owner.is_on_floor()): if(owner.mach_speed < owner.mach3): # done like this for readability
 		owner.mach_speed += Global.apply_delta_time(owner.acceleration, delta)
 	elif((owner.velocity.x < 0 && Input.is_action_pressed("left")) || (owner.velocity.x > 0 && Input.is_action_pressed("right"))):
-		owner.mach_speed += Global.apply_delta_time(owner.acceleration, delta)
+		owner.mach_speed += Global.apply_delta_time(owner.acceleration / 2, delta)
 	#else:
 	#	owner.mach_speed -= Global.apply_delta_time(owner.acceleration, delta)
 	if((owner.velocity.x > 0 && Input.is_action_pressed("left")) || (owner.velocity.x < 0 && Input.is_action_pressed("right"))):

@@ -6,10 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fo2v"]
 size = Vector2(128, 128)
 
-[node name="CollectibleSmall" type="Area2D" node_paths=PackedStringArray("amount_text")]
+[node name="CollectibleSmall" type="Area2D" node_paths=PackedStringArray("sprite", "amount_text", "collision")]
 script = ExtResource("1_5h2tb")
 worth = 100
+sprite = NodePath("AnimatedSprite2D")
 amount_text = NodePath("Label")
+collision = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_l4v0v")
@@ -20,6 +22,7 @@ shape = SubResource("RectangleShape2D_7fo2v")
 debug_color = Color(0, 1, 0, 0)
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 23.0
 text = "huuhuhhhh"

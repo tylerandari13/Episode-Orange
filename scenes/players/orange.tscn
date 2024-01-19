@@ -1,11 +1,14 @@
-[gd_scene load_steps=27 format=3 uid="uid://bmqtlr0pqr58i"]
+[gd_scene load_steps=31 format=3 uid="uid://bmqtlr0pqr58i"]
 
 [ext_resource type="Script" path="res://scripts/player/orange/player_orange.gd" id="1_iekmm"]
 [ext_resource type="Texture2D" uid="uid://b0f81vevbiws8" path="res://images/creatures/shared/tauntbg.png" id="2_0wekc"]
+[ext_resource type="Texture2D" uid="uid://cekkcxocj6aov" path="res://images/tv/tv_bg.png" id="2_b5k01"]
 [ext_resource type="SpriteFrames" uid="uid://c44jmvm73tp3d" path="res://images/creatures/orange/orange.tres" id="2_cftru"]
+[ext_resource type="PackedScene" uid="uid://sn7svoyrlkwt" path="res://scenes/camera.tscn" id="3_uxrjx"]
 [ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="3_xen2r"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/ground.gd" id="4_nbiu2"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/air.gd" id="5_dd0xd"]
+[ext_resource type="Script" path="res://scripts/player/default_state.gd" id="5_tdl81"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/grab.gd" id="6_jhk3o"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/uppercut.gd" id="7_754ig"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/duck.gd" id="7_akbin"]
@@ -23,6 +26,9 @@
 [ext_resource type="Script" path="res://scripts/player/orange/states/bonk.gd" id="15_uqa1s"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/wallrun.gd" id="16_3sgsv"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/bodyslam.gd" id="20_c1biv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_v5fst"]
+font_size = 64
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t3hh"]
 size = Vector2(40, 127)
@@ -47,7 +53,7 @@ func _process(delta):
 	#/e dance
 "
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("taunt_sprite", "stand_collision", "duck_collision", "duck_area", "state_machine", "sprite", "afterimage_container")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("taunt_sprite", "stand_collision", "duck_collision", "duck_area", "camera", "point_text", "combo_bar", "state_machine", "sprite", "afterimage_container")]
 floor_constant_speed = true
 floor_block_on_wall = false
 floor_max_angle = 1.55334
@@ -57,9 +63,73 @@ taunt_sprite = NodePath("TauntSprite")
 stand_collision = NodePath("StandShape2D")
 duck_collision = NodePath("DuckShape2D")
 duck_area = NodePath("DuckDetection")
+camera = NodePath("Camera")
+point_text = NodePath("UI/Control/Points")
+combo_bar = NodePath("UI/Control/Combo")
 state_machine = NodePath("StateMachine")
 sprite = NodePath("AnimatedSprite2D")
 afterimage_container = NodePath("AfterImageContainer")
+
+[node name="UI" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Combo" type="ProgressBar" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -162.0
+offset_top = 50.0
+offset_right = -57.0
+offset_bottom = 147.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -198.0
+offset_top = 7.0
+offset_right = -6.0
+offset_bottom = 199.0
+grow_horizontal = 0
+texture = ExtResource("2_b5k01")
+
+[node name="Label" type="Label" parent="UI/Control/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 56.0
+offset_top = 136.0
+offset_right = -63.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Combo"
+
+[node name="Points" type="Label" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 24.0
+offset_top = 22.0
+offset_right = -36.0
+offset_bottom = 113.0
+grow_horizontal = 2
+text = "Points: 0"
+label_settings = SubResource("LabelSettings_v5fst")
+
+[node name="Camera" parent="." instance=ExtResource("3_uxrjx")]
 
 [node name="AfterImageContainer" type="Node2D" parent="."]
 
@@ -90,9 +160,11 @@ debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
 script = ExtResource("3_xen2r")
-current_state = NodePath("none/ground")
+current_state = NodePath("none")
 
-[node name="none" type="Node" parent="StateMachine"]
+[node name="none" type="Node" parent="StateMachine" node_paths=PackedStringArray("default_state")]
+script = ExtResource("5_tdl81")
+default_state = NodePath("air")
 
 [node name="ground" type="Node" parent="StateMachine/none"]
 script = ExtResource("4_nbiu2")
@@ -138,7 +210,6 @@ use_friction = false
 [node name="dive" type="Node" parent="StateMachine/none"]
 script = ExtResource("14_gqkpl")
 can_grab = false
-can_wallrun = true
 ducking = true
 use_friction = false
 
@@ -147,6 +218,7 @@ script = ExtResource("9_ggolp")
 can_wallrun = true
 can_dive = true
 use_friction = false
+has_afterimage = true
 
 [node name="uppercut" type="Node" parent="StateMachine/none"]
 script = ExtResource("7_754ig")
@@ -175,6 +247,7 @@ script = ExtResource("11_3gnmr")
 can_grab = false
 use_friction = false
 decide_direction_based_on_velocity = false
+has_afterimage = true
 
 [node name="superjumpwindup" type="Node" parent="StateMachine/none"]
 script = ExtResource("12_llgqj")
@@ -206,6 +279,7 @@ can_grab = false
 use_gravity = false
 use_friction = false
 decide_direction_based_on_velocity = false
+has_afterimage = true
 
 [node name="bodyslam" type="Node" parent="StateMachine/none"]
 script = ExtResource("20_c1biv")

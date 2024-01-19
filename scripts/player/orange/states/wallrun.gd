@@ -26,6 +26,7 @@ func on_process(delta):
 		change_state("none/longjump")
 		owner.jump()
 	if(owner.is_on_ceiling()):
+		owner.sprite.play("roofbonk")
 		change_state("none/bonk")
 
 # Called every physics frame when this state is active.

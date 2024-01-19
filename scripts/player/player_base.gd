@@ -44,7 +44,9 @@ func _physics_process(delta):
 
 	physics_process(delta)
 
-func add_points(_points): points += _points
+func add_points(_points):
+	points += _points
+	_update_points(points)
 
 func add_afterimage(color = Color(Color(), NAN)):
 	if(is_nan(color.a)):
@@ -69,3 +71,7 @@ func add_afterimage(color = Color(Color(), NAN)):
 
 func physics_process(delta): pass
 func jump(): pass
+
+func _on_transformation(transformation : String): pass
+func _update_points(new_points): pass
+func _update_combo(new_percentage): pass

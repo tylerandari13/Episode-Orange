@@ -30,11 +30,7 @@ func on_physics_process(delta):
 	if(abs(owner.velocity.x) < 5): sliding = false
 
 	if((!sliding || cur_time >= slide_time) && owner.is_on_floor()):
-		match(owner.get_mach_speed()):
-			1:
-				owner.mach_speed = owner.mach3 / 2
-			_:
-				owner.mach_speed = owner.mach3
+		owner.set_mach_speed(min(owner.get_mach_speed(), 3))
 		change_state("none/machrun")
 
 	if(cur_time < slide_time): cur_time += delta

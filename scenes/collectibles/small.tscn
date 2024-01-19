@@ -6,11 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fo2v"]
 size = Vector2(64, 64)
 
-[node name="CollectibleSmall" type="Area2D" node_paths=PackedStringArray("sprite", "amount_text")]
+[node name="CollectibleSmall" type="Area2D" node_paths=PackedStringArray("sprite", "amount_text", "collision")]
 script = ExtResource("1_q5ftq")
 worth = 10
 sprite = NodePath("AnimatedSprite2D")
 amount_text = NodePath("Label")
+collision = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_cw6sp")

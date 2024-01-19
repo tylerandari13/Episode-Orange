@@ -16,7 +16,6 @@ func on_process(delta):
 func on_physics_process(delta):
 	owner.velocity.y += owner.gravity * delta # this on top of the "use gravity" doubles it
 	if(owner.is_on_floor()):
-		owner.velocity = Vector2()
 		change_state("none/bonk")
 	if(Input.is_action_pressed("left") && owner.velocity.x > owner.walk_speed * -0.5): owner.velocity.x -= move_velocity
 	if(Input.is_action_pressed("right") && owner.velocity.x < owner.walk_speed * 0.5): owner.velocity.x += move_velocity

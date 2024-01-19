@@ -8,13 +8,13 @@ var cur_time
 func on_enter():
 	cur_time = 0
 	owner.mach_speed = 0
-	owner.velocity = Vector2()
 
 
 # Called every frame when this state is active.
 func on_process(delta):
 	if(cur_time < bonk_time):
 		cur_time += delta
+		owner.velocity = Vector2()
 	else:
 		change_state("none/ground")
 

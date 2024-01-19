@@ -14,6 +14,7 @@ func on_process(delta):
 			change_state("none/machrun")
 	else:
 		owner.velocity.x += Global.apply_delta_time(owner.acceleration, delta) * owner.direction
+	if(!owner.is_on_floor()): change_state("none/dive")
 
 
 # Called every physics frame when this state is active.

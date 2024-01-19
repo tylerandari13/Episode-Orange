@@ -6,6 +6,7 @@ extends Area2D
 @export var respawn_during_escape = false
 @export var sprite : Node2D
 @export var amount_text : Label
+@export var collision : Node2D
 
 var collected = false
 
@@ -26,9 +27,9 @@ func try_collect(body):
 		body.add_points(worth)
 		if(sprite != null): sprite.modulate.a = 0
 		collected = true
+		if(collision != null): collision.visible = false
 		if(amount_text != null):
-			print(position.y - amount_text.position.y)
-			#amount_text.position = Vector2()
+			amount_text.position = Vector2()
 			amount_text.visible = true
 			amount_text.text = str(worth)
 
@@ -37,6 +38,7 @@ func try_collect(body):
 func try_respawn():
 	if(sprite != null): sprite.modulate.a = 1
 	collected = false
+	if(collision != null): collision.visible = true
 	_on_respawn()
 
 func ready(): pass

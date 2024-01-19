@@ -17,6 +17,9 @@ func on_process(delta):
 	if(Input.is_action_just_pressed("jump")):
 		owner.sprite.play("divebomb")
 		change_state("none/bodyslam")
+	if(owner.is_on_wall()):
+		owner.sprite.play("bonk")
+		change_state("none/bonk")
 
 
 # Called every physics frame when this state is active.

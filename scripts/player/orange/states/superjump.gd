@@ -28,7 +28,9 @@ func on_process(delta):
 			owner.sprite.play("superjumpcancel2")
 			change_state("none/machrun")
 			owner.velocity.y = owner.jump_velocity * 0.5
-	if(owner.is_on_ceiling()): change_state("none/bonk")
+	if(owner.is_on_ceiling()):
+		owner.sprite.play("roofbonk")
+		change_state("none/bonk")
 
 
 # Called every physics frame when this state is active.
