@@ -6,3 +6,7 @@ extends StateMachineState
 @export var use_friction = true
 @export var decide_direction_based_on_velocity = true
 @export var has_afterimage = false
+@export var can_taunt = true
+@export_group("Enemy Interaction")
+@export_enum("Pass Through", "Bump", "Damage") var enemy_collision_mode : int
+@export var enemy_damage = 1.0

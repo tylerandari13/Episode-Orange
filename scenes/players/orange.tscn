@@ -53,7 +53,9 @@ func _process(delta):
 	#/e dance
 "
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("taunt_sprite", "stand_collision", "duck_collision", "duck_area", "camera", "point_text", "combo_bar", "state_machine", "sprite", "afterimage_container")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("taunt_sprite", "stand_collision", "duck_collision", "duck_area", "point_text", "combo_bar", "state_machine", "sprite", "afterimage_container", "camera")]
+collision_layer = 2
+collision_mask = 9
 floor_constant_speed = true
 floor_block_on_wall = false
 floor_max_angle = 1.55334
@@ -63,12 +65,12 @@ taunt_sprite = NodePath("TauntSprite")
 stand_collision = NodePath("StandShape2D")
 duck_collision = NodePath("DuckShape2D")
 duck_area = NodePath("DuckDetection")
-camera = NodePath("Camera")
 point_text = NodePath("UI/Control/Points")
 combo_bar = NodePath("UI/Control/Combo")
 state_machine = NodePath("StateMachine")
 sprite = NodePath("AnimatedSprite2D")
 afterimage_container = NodePath("AfterImageContainer")
+camera = NodePath("Camera")
 
 [node name="UI" type="CanvasLayer" parent="."]
 layer = 100
@@ -182,18 +184,19 @@ has_afterimage = true
 
 [node name="grabslide" type="Node" parent="StateMachine/none"]
 script = ExtResource("7_p224i")
-can_taunt = false
 can_grab = false
 ducking = true
 use_friction = false
+can_taunt = false
+enemy_collision_mode = 1
 
 [node name="duck" type="Node" parent="StateMachine/none"]
 script = ExtResource("7_akbin")
-can_taunt = false
 can_grab = false
 can_jump = true
 ducking = true
 use_friction = false
+can_taunt = false
 
 [node name="duckjump" type="Node" parent="StateMachine/none"]
 script = ExtResource("8_fffcj")
@@ -202,16 +205,18 @@ use_friction = false
 
 [node name="roll" type="Node" parent="StateMachine/none"]
 script = ExtResource("9_01kyo")
-can_taunt = false
 can_grab = false
 ducking = true
 use_friction = false
+can_taunt = false
+enemy_collision_mode = 1
 
 [node name="dive" type="Node" parent="StateMachine/none"]
 script = ExtResource("14_gqkpl")
 can_grab = false
 ducking = true
 use_friction = false
+enemy_collision_mode = 1
 
 [node name="longjump" type="Node" parent="StateMachine/none"]
 script = ExtResource("9_ggolp")
@@ -219,6 +224,7 @@ can_wallrun = true
 can_dive = true
 use_friction = false
 has_afterimage = true
+enemy_collision_mode = 1
 
 [node name="uppercut" type="Node" parent="StateMachine/none"]
 script = ExtResource("7_754ig")
@@ -226,6 +232,8 @@ can_grab = false
 use_friction = false
 decide_direction_based_on_velocity = false
 has_afterimage = true
+can_taunt = false
+enemy_collision_mode = 2
 
 [node name="machrun" type="Node" parent="StateMachine/none"]
 script = ExtResource("9_vl4g6")
@@ -234,13 +242,15 @@ can_wallrun = true
 can_dive = true
 decide_direction_based_on_velocity = false
 has_afterimage = true
+enemy_collision_mode = 2
 
 [node name="machslide" type="Node" parent="StateMachine/none"]
 script = ExtResource("10_nvxw6")
-can_taunt = false
 can_grab = false
 use_friction = false
 decide_direction_based_on_velocity = false
+can_taunt = false
+enemy_collision_mode = 1
 
 [node name="machdrift" type="Node" parent="StateMachine/none"]
 script = ExtResource("11_3gnmr")
@@ -248,53 +258,57 @@ can_grab = false
 use_friction = false
 decide_direction_based_on_velocity = false
 has_afterimage = true
+enemy_collision_mode = 2
 
 [node name="superjumpwindup" type="Node" parent="StateMachine/none"]
 script = ExtResource("12_llgqj")
-can_taunt = false
 can_grab = false
 ducking = true
+can_taunt = false
 
 [node name="superjump" type="Node" parent="StateMachine/none"]
 script = ExtResource("13_mfbjh")
-can_taunt = false
 can_grab = false
 use_gravity = false
 use_friction = false
 decide_direction_based_on_velocity = false
 has_afterimage = true
+can_taunt = false
+enemy_collision_mode = 2
 
 [node name="bonk" type="Node" parent="StateMachine/none"]
 script = ExtResource("15_uqa1s")
-can_taunt = false
 can_grab = false
 use_gravity = false
 use_friction = false
 decide_direction_based_on_velocity = false
+can_taunt = false
 
 [node name="wallrun" type="Node" parent="StateMachine/none"]
 script = ExtResource("16_3sgsv")
-can_taunt = false
 can_grab = false
 use_gravity = false
 use_friction = false
 decide_direction_based_on_velocity = false
 has_afterimage = true
+can_taunt = false
+enemy_collision_mode = 1
 
 [node name="bodyslam" type="Node" parent="StateMachine/none"]
 script = ExtResource("20_c1biv")
-can_taunt = false
 can_grab = false
 ducking = true
 has_afterimage = true
+can_taunt = false
+enemy_collision_mode = 2
 
 [node name="taunt" type="Node" parent="StateMachine/none"]
 script = ExtResource("8_0r3fp")
-can_taunt = false
 can_grab = false
 use_gravity = false
 use_friction = false
 decide_direction_based_on_velocity = false
+can_taunt = false
 
 [node name="DebugLabel" type="Label" parent="."]
 offset_left = -24.0

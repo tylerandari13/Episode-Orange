@@ -16,13 +16,10 @@ extends Player
 @export var duck_area : Area2D
 
 @export_group("UI")
-@export var camera : Camera2D
 @export var point_text : Label
 @export var combo_bar : ProgressBar
 
 var mach_speed = 0
-
-func _ready(): state_machine.state_changed.connect(_on_state_changed)
 
 func physics_process(delta):
 	if(Input.is_action_just_pressed("grab") && state_machine.current_state.can_grab):
@@ -30,7 +27,6 @@ func physics_process(delta):
 			state_machine.change_state("none/uppercut")
 		else:
 			state_machine.change_state("none/grab")
-	if(Input.is_action_just_pressed("taunt") && state_machine.current_state.can_taunt): state_machine.change_state("none/taunt")
 	if(Input.is_action_pressed("jump") && state_machine.current_state.can_jump && is_on_floor()): jump()
 	if(Input.is_action_pressed("down") && state_machine.current_state.can_dive): if(is_on_floor()):
 		state_machine.change_state("none/roll")
@@ -38,10 +34,6 @@ func physics_process(delta):
 		state_machine.change_state("none/dive")
 	
 	if(is_on_wall_only() && state_machine.current_state.can_wallrun): state_machine.change_state("none/wallrun")
-
-
-func _on_state_changed(new_state : StateMachineState):
-	set_ducking(new_state.ducking)
 
 func _update_points(new_points):
 	point_text.text = "Points: " + str(new_points)
@@ -82,3 +74,8 @@ func can_unduck() -> bool:
 
 
 func jump(): velocity.y = jump_velocity
+
+func taunt(): state_machine.change_state("none/taunt")
+
+func on_state_changed(new_state : StateMachineState):
+	set_ducking(new_state.ducking)

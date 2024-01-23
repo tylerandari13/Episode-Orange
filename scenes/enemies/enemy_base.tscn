@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2jif3vgnxj03"]
+
+[ext_resource type="Script" path="res://scripts/enemy/enemy_base.gd" id="1_uop1j"]
+[ext_resource type="Texture2D" uid="uid://by658g5iu5wdr" path="res://icon.svg" id="2_8v34e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fqary"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8v34e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nlmkh"]
+size = Vector2(128, 128)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "player_detection", "collision")]
+collision_layer = 4
+floor_constant_speed = true
+floor_max_angle = 1.55334
+floor_snap_length = 64.0
+script = ExtResource("1_uop1j")
+sprite = NodePath("AnimatedSprite2D")
+player_detection = NodePath("Area2D")
+collision = NodePath("CollisionShape2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fqary")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nlmkh")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_nlmkh")
+debug_color = Color(0.909804, 0, 0.733333, 0)

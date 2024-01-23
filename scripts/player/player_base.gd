@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var state_machine : FiniteStateMachine
 @export var sprite : AnimatedSprite2D
 @export var afterimage_container : Node2D
+@export var camera : Camera2D
 @export var afterimage_colors = [
 	Color(1, 0, 0, 0.5),
 	Color(0, 1, 0, 0.5)
@@ -16,8 +17,11 @@ var afterimage_index = 0
 var afterimage_process_index = 0
 var points = 0
 
+func _ready():
+	state_machine.state_changed.connect(_on_state_changed)
+
 func _process(delta):
-	if(state_machine.current_state.has_afterimage):
+	if(has_afterimage()):
 		if(afterimage_process_index % 10 == 0):
 			add_afterimage()
 	afterimage_process_index += 1
@@ -28,11 +32,12 @@ func _process(delta):
 		elif(is_finite(afterimage_times[node].time_left)):
 			afterimage_times[node].time_left -= delta
 			afterimage_container.get_node(node).global_position = afterimage_times[node].origin_pos
+	if(Input.is_action_just_pressed("taunt") && can_taunt()): taunt()
 
 func _physics_process(delta):
-	if(!is_on_floor() && state_machine.current_state.use_gravity): velocity.y += gravity * delta
-	if(state_machine.current_state.use_friction): velocity.x = velocity.x * 0.7
-	if(state_machine.current_state.decide_direction_based_on_velocity):
+	if(!is_on_floor() && use_gravity()): velocity.y += gravity * delta
+	if(use_friction()): velocity.x = velocity.x * 0.7
+	if(decide_direction_based_on_velocity()):
 		if(velocity.x > 0):
 			direction = 1
 		if(velocity.x < 0):
@@ -43,6 +48,9 @@ func _physics_process(delta):
 	move_and_slide()
 
 	physics_process(delta)
+
+func _on_state_changed(new_state : StateMachineState): # does nothing yet, probably will in the future tho
+	on_state_changed(new_state)
 
 func add_points(_points):
 	points += _points
@@ -69,8 +77,23 @@ func add_afterimage(color = Color(Color(), NAN)):
 		origin_pos = afterimage.global_position
 	}
 
-func physics_process(delta): pass
+# overwriteable in case someone wants to make a character with a different state machine or no state machine at all
+func has_afterimage(): return state_machine.current_state.has_afterimage
+func can_taunt(): return state_machine.current_state.can_taunt
+func use_gravity(): return state_machine.current_state.use_gravity
+func use_friction(): return state_machine.current_state.use_friction
+func decide_direction_based_on_velocity(): return state_machine.current_state.decide_direction_based_on_velocity
+
+func get_enemy_collision_mode(): return state_machine.current_state.enemy_collision_mode
+func get_collision_damage(): return state_machine.current_state.enemy_damage
+
+# some scripts might try to make the player move externally, in case your character cant jump or taunt theae are here so it just does nothing
 func jump(): pass
+func taunt(): pass
+
+# please use instead of the ones with an underscore
+func physics_process(delta): pass
+func on_state_changed(new_state : StateMachineState): pass
 
 func _on_transformation(transformation : String): pass
 func _update_points(new_points): pass

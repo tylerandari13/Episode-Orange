@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://dmgv3qnfkrqf0"]
+[gd_scene load_steps=7 format=3 uid="uid://dmgv3qnfkrqf0"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_yu40s"]
 [ext_resource type="TileSet" uid="uid://xj1lvlrwbnes" path="res://tiles/collision.tres" id="2_uoop1"]
 [ext_resource type="PackedScene" uid="uid://bmqtlr0pqr58i" path="res://scenes/players/orange.tscn" id="3_h404e"]
 [ext_resource type="TileSet" uid="uid://dot5jlx831nds" path="res://tiles/test_level.tres" id="3_thgdx"]
+[ext_resource type="PackedScene" uid="uid://b2jif3vgnxj03" path="res://scenes/enemies/enemy_base.tscn" id="5_iog6e"]
+[ext_resource type="PackedScene" uid="uid://gxy6qbn3l6pc" path="res://scenes/enemies/walking_enemy.tscn" id="6_qu7ke"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_yu40s")
@@ -23,3 +25,9 @@ layer_0/tile_data = PackedInt32Array(458767, 65536, 0, 458753, 65536, 0, 458754,
 
 [node name="Player" parent="." instance=ExtResource("3_h404e")]
 position = Vector2(576, 324)
+
+[node name="EnemyBase" parent="." instance=ExtResource("5_iog6e")]
+position = Vector2(1109, -90)
+
+[node name="WalkingEnemy" parent="." instance=ExtResource("6_qu7ke")]
+position = Vector2(3977, -3182)
