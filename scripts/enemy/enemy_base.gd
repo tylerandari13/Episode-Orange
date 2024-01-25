@@ -4,11 +4,12 @@ extends CharacterBody2D
 @export var health = 1.0
 @export var grabbable = true
 @export var gets_scared = true
+@export var counts_toward_combo = true
 @export var supertauntable = true
 @export var use_gravity = true
 @export var use_friction = true
+@export_group("Sprites and Player Collision")
 @export var sprite : AnimatedSprite2D
-@export_group("Player Collision")
 @export var player_detection : Area2D
 @export var collision : CollisionShape2D
 
@@ -29,12 +30,16 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_player_collision(player : Node2D):
-	if(player is Player):
+	if(player is Player && player._enemy_touched(self)):
 		if(player.get_enemy_collision_mode() == 1 && stun(player)):
 			velocity = Vector2(player.velocity.x * 2, -100)
 		elif(player.get_enemy_collision_mode() == 2 && damage(player, player.get_collision_damage())):
 			health -= player.get_collision_damage()
 			velocity = Vector2(player.velocity.x, player.velocity.abs().x * -0.5)
+			if(counts_toward_combo):
+				player.increment_combo()
+			else:
+				player.add_combo(100)
 			if(health <= 0):
 				collision.visible = false
 				collision_mask = 0

@@ -18,6 +18,7 @@ extends Player
 @export_group("UI")
 @export var point_text : Label
 @export var combo_bar : ProgressBar
+@export var combo_label : Label
 
 var mach_speed = 0
 
@@ -38,8 +39,9 @@ func physics_process(delta):
 func _update_points(new_points):
 	point_text.text = "Points: " + str(new_points)
 
-func _update_combo(new_percentage):
+func _update_combo(new_percentage, number):
 	combo_bar.value = new_percentage
+	combo_label.text = "Combo" if number == 0 else "Combo : " + str(number)
 
 func get_mach_speed(speed = mach_speed):
 	if(speed < mach3 / 2): return 1
@@ -55,8 +57,14 @@ func set_mach_speed(speed):
 			mach_speed = mach3 * 0.5
 		3:
 			mach_speed = mach3
-		_:
+		4:
 			mach_speed = mach3 * 2
+		_:
+			mach_speed = speed
+
+func set_mach_speed_to_velocity():
+	print(velocity.abs().x - walk_speed)
+	mach_speed = velocity.abs().x - walk_speed
 
 func set_ducking(ducking):
 	stand_collision.visible = !ducking

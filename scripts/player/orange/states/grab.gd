@@ -18,12 +18,13 @@ func on_process(delta):
 	if(owner.is_on_floor()):
 		if(cur_time >= grab_time):
 			if(Input.is_action_pressed("run")):
-				owner.mach_speed = owner.grab_speed
+				owner.set_mach_speed_to_velocity()
 				change_state("none/machrun")
 			else:
 				change_state("none/ground")
-		if(Input.is_action_pressed("jump")):
-			change_state("none/longjump")
+	if(Input.is_action_pressed("jump")):
+		change_state("none/longjump")
+		owner.mach_speed = owner.walk_speed
 	if(owner.is_on_wall_only()):
 		owner.mach_speed = owner.walk_speed
 		change_state("none/wallrun")

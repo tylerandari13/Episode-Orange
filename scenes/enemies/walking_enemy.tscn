@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://gxy6qbn3l6pc"]
 
 [ext_resource type="Script" path="res://scripts/enemy/walking_enemy.gd" id="1_4td0x"]
-[ext_resource type="Texture2D" uid="uid://dc0ypref4rlbx" path="res://images/objects/colllectibles/ticket_big/ticket_big.png" id="2_u7mcd"]
+[ext_resource type="Texture2D" uid="uid://by658g5iu5wdr" path="res://icon.svg" id="2_p2c2y"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_gnpd5"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_15plb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_u7mcd")
+"texture": ExtResource("2_p2c2y")
 }],
 "loop": true,
 "name": &"default",
@@ -28,7 +28,7 @@ player_detection = NodePath("Area2D")
 collision = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_gnpd5")
+sprite_frames = SubResource("SpriteFrames_15plb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nlmkh")

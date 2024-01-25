@@ -16,9 +16,11 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var afterimage_index = 0
 var afterimage_process_index = 0
 var points = 0
+var combo = 0
+var combo_number = 0
 
 func _ready():
-	state_machine.state_changed.connect(_on_state_changed)
+	state_machine.state_changed.connect(on_state_changed)
 
 func _process(delta):
 	if(has_afterimage()):
@@ -34,6 +36,12 @@ func _process(delta):
 			afterimage_container.get_node(node).global_position = afterimage_times[node].origin_pos
 	if(Input.is_action_just_pressed("taunt") && can_taunt()): taunt()
 
+	if(combo > 0):
+		combo -= Global.apply_delta_time(0.25, delta)
+		_update_combo(combo, combo_number)
+	else:
+		end_combo()
+
 func _physics_process(delta):
 	if(!is_on_floor() && use_gravity()): velocity.y += gravity * delta
 	if(use_friction()): velocity.x = velocity.x * 0.7
@@ -45,12 +53,25 @@ func _physics_process(delta):
 
 	sprite.flip_h = direction < 0
 
+	physics_process(delta)
 	move_and_slide()
 
-	physics_process(delta)
+#func _on_state_changed(new_state : StateMachineState): # does nothing yet, probably will in the future tho
+#	on_state_changed(new_state)
 
-func _on_state_changed(new_state : StateMachineState): # does nothing yet, probably will in the future tho
-	on_state_changed(new_state)
+# combo sillies
+func increment_combo(inc = 1):
+	combo_number += inc
+	add_combo(100, true)
+func add_combo(percent, forced = false):
+	print(combo)
+	if((!forced && combo > 0) || forced):
+		combo = min(combo + percent, 100)
+func end_combo(give_points = true):
+	if(give_points):
+		add_points(combo_number * 100)
+	combo_number = 0
+	_update_combo(combo, combo_number)
 
 func add_points(_points):
 	points += _points
@@ -78,16 +99,16 @@ func add_afterimage(color = Color(Color(), NAN)):
 	}
 
 # overwriteable in case someone wants to make a character with a different state machine or no state machine at all
-func has_afterimage(): return state_machine.current_state.has_afterimage
-func can_taunt(): return state_machine.current_state.can_taunt
-func use_gravity(): return state_machine.current_state.use_gravity
-func use_friction(): return state_machine.current_state.use_friction
-func decide_direction_based_on_velocity(): return state_machine.current_state.decide_direction_based_on_velocity
+func has_afterimage() -> bool: return state_machine.current_state.has_afterimage
+func can_taunt() -> bool: return state_machine.current_state.can_taunt
+func use_gravity() -> bool: return state_machine.current_state.use_gravity
+func use_friction() -> bool: return state_machine.current_state.use_friction
+func decide_direction_based_on_velocity() -> bool: return state_machine.current_state.decide_direction_based_on_velocity
 
-func get_enemy_collision_mode(): return state_machine.current_state.enemy_collision_mode
-func get_collision_damage(): return state_machine.current_state.enemy_damage
+func get_enemy_collision_mode() -> int: return state_machine.current_state.enemy_collision_mode
+func get_collision_damage() -> float: return state_machine.current_state.enemy_damage
 
-# some scripts might try to make the player move externally, in case your character cant jump or taunt theae are here so it just does nothing
+# some scripts might try to make the player move externally, in case your character cant jump or taunt these are here so it just does nothing
 func jump(): pass
 func taunt(): pass
 
@@ -95,6 +116,9 @@ func taunt(): pass
 func physics_process(delta): pass
 func on_state_changed(new_state : StateMachineState): pass
 
+# player specific overwriteable functions
 func _on_transformation(transformation : String): pass
+func _enemy_touched(enemy) -> bool: return true
+
 func _update_points(new_points): pass
-func _update_combo(new_percentage): pass
+func _update_combo(percentage, number): pass

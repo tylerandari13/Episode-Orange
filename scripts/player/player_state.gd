@@ -8,5 +8,5 @@ extends StateMachineState
 @export var has_afterimage = false
 @export var can_taunt = true
 @export_group("Enemy Interaction")
-@export_enum("Pass Through", "Bump", "Damage") var enemy_collision_mode : int
+@export_enum("Pass Through", "Bump", "Damage", "Grab") var enemy_collision_mode : int # Grab for convenience.
 @export var enemy_damage = 1.0

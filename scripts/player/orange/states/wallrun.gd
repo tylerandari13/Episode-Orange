@@ -1,6 +1,5 @@
 extends OrangeState
 
-
 # Called when the state machine enters this state.
 func on_enter():
 	owner.sprite.play("wallrun")
@@ -13,21 +12,25 @@ func on_process(delta):
 		if(owner.is_on_wall()):
 			owner.velocity.y = owner.mach_speed * -1
 			owner.mach_speed += Global.apply_delta_time(owner.acceleration, delta)
-		else:
+		elif(owner.direction != owner.get_wall_normal().x):
 			owner.velocity.y = -10
 			change_state("none/machrun")
 	else:
 		owner.velocity.y = -10
 		change_state("none/air")
-	if(Input.is_action_just_pressed("jump")):
-		owner.direction = owner.direction * -1
+
+	if(Input.is_action_pressed("jump")):
+		#owner.direction = owner.direction * -1
+		owner.direction = owner.get_wall_normal().x
 		owner.velocity.x = owner.walk_speed * owner.direction
-		owner.mach_speed = owner.mach3 / 2
 		change_state("none/longjump")
+		owner.set_mach_speed(2)
 		owner.jump()
+
 	if(owner.is_on_ceiling()):
 		owner.sprite.play("roofbonk")
 		change_state("none/bonk")
+
 
 # Called every physics frame when this state is active.
 func on_physics_process(delta):

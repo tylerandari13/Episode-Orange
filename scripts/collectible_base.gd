@@ -21,10 +21,11 @@ func _process(delta):
 	if(amount_text != null && collected): amount_text.position.y -= 5
 
 
-func try_collect(body):
-	if(body is Player && !collected):
+func try_collect(player):
+	if(player is Player && !collected):
 		# if(sprite != null): sprite.modulate.a = 0.5 if body.current_room.is_secret else 0
-		body.add_points(worth)
+		player.add_points(worth)
+		player.add_combo(worth)
 		if(sprite != null): sprite.modulate.a = 0
 		collected = true
 		if(collision != null): collision.visible = false
@@ -33,7 +34,7 @@ func try_collect(body):
 			amount_text.visible = true
 			amount_text.text = str(worth)
 
-		_on_collected(body)
+		_on_collected(player)
 
 func try_respawn():
 	if(sprite != null): sprite.modulate.a = 1

@@ -53,7 +53,7 @@ func _process(delta):
 	#/e dance
 "
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("taunt_sprite", "stand_collision", "duck_collision", "duck_area", "point_text", "combo_bar", "state_machine", "sprite", "afterimage_container", "camera")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("taunt_sprite", "stand_collision", "duck_collision", "duck_area", "point_text", "combo_bar", "combo_label", "state_machine", "sprite", "afterimage_container", "camera")]
 collision_layer = 2
 collision_mask = 9
 floor_constant_speed = true
@@ -67,6 +67,7 @@ duck_collision = NodePath("DuckShape2D")
 duck_area = NodePath("DuckDetection")
 point_text = NodePath("UI/Control/Points")
 combo_bar = NodePath("UI/Control/Combo")
+combo_label = NodePath("UI/Control/TextureRect/Label")
 state_machine = NodePath("StateMachine")
 sprite = NodePath("AnimatedSprite2D")
 afterimage_container = NodePath("AfterImageContainer")
@@ -181,6 +182,7 @@ can_grab = false
 can_jump = true
 use_friction = false
 has_afterimage = true
+enemy_collision_mode = 3
 
 [node name="grabslide" type="Node" parent="StateMachine/none"]
 script = ExtResource("7_p224i")
@@ -287,6 +289,7 @@ can_taunt = false
 [node name="wallrun" type="Node" parent="StateMachine/none"]
 script = ExtResource("16_3sgsv")
 can_grab = false
+can_jump = true
 use_gravity = false
 use_friction = false
 decide_direction_based_on_velocity = false
