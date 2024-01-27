@@ -2,6 +2,7 @@ class_name Enemy
 extends CharacterBody2D
 
 @export var health = 1.0
+@export var stun_time = 5
 @export var grabbable = true
 @export var gets_scared = true
 @export var counts_toward_combo = true
@@ -17,8 +18,12 @@ var direction = -1
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var stunned = false
+
 func _ready():
 	player_detection.body_entered.connect(_on_player_collision)
+
+func _process(delta): pass
 
 func _physics_process(delta):
 	if(!is_on_floor() && use_gravity):
