@@ -1,0 +1,86 @@
+[gd_scene load_steps=13 format=3 uid="uid://bl182kao0sxwp"]
+
+[ext_resource type="Script" path="res://scripts/player/potato/player_potato.gd" id="1_gk5qe"]
+[ext_resource type="Texture2D" uid="uid://by658g5iu5wdr" path="res://icon.svg" id="2_64wk0"]
+[ext_resource type="PackedScene" uid="uid://vlkkktl0o4c2" path="res://scenes/ui/shared_ui.tscn" id="2_el088"]
+[ext_resource type="PackedScene" uid="uid://sn7svoyrlkwt" path="res://scenes/camera.tscn" id="3_27o1x"]
+[ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="3_r24ct"]
+[ext_resource type="Script" path="res://scripts/player/default_state.gd" id="4_7motc"]
+[ext_resource type="Script" path="res://scripts/player/potato/states/air.gd" id="6_v3ehs"]
+[ext_resource type="Script" path="res://scripts/player/potato/states/ground.gd" id="7_w611a"]
+[ext_resource type="Script" path="res://scripts/player/potato/states/airspin.gd" id="9_703r7"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_72d0e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_64wk0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7o7mf"]
+size = Vector2(128, 128)
+
+[sub_resource type="GDScript" id="GDScript_h5xp1"]
+script/source = "extends Label
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	text = \"State: \" + owner.get_node(\"StateMachine\").current_state.name
+	text += \"\\nAnimation: \" + owner.get_node(\"AnimatedSprite2D\").animation
+	text += \"\\nSpinning: \" + str(owner.spinning)
+	text += \"\\nDirection: \" + str(owner.direction)
+	text += \"\\nSpeed: (\" + str(owner.velocity.x) + \", \" + str(owner.velocity.y) + \")\"
+	
+	
+	#/e dance
+"
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_gk5qe")
+
+[node name="UI" parent="." instance=ExtResource("2_el088")]
+
+[node name="Camera" parent="." instance=ExtResource("3_27o1x")]
+
+[node name="AfterImageContainer" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 0.866667, 1, 1)
+sprite_frames = SubResource("SpriteFrames_72d0e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7o7mf")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state")]
+script = ExtResource("3_r24ct")
+current_state = NodePath("none")
+
+[node name="none" type="Node" parent="StateMachine" node_paths=PackedStringArray("default_state")]
+script = ExtResource("4_7motc")
+default_state = NodePath("air")
+
+[node name="ground" type="Node" parent="StateMachine/none"]
+script = ExtResource("7_w611a")
+
+[node name="air" type="Node" parent="StateMachine/none"]
+script = ExtResource("6_v3ehs")
+
+[node name="airspin" type="Node" parent="StateMachine/none"]
+script = ExtResource("9_703r7")
+
+[node name="DebugLabel" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -220.0
+offset_right = 16.0
+offset_bottom = -90.0
+text = "##
+##
+##
+##
+##"
+horizontal_alignment = 1
+script = SubResource("GDScript_h5xp1")

@@ -6,18 +6,24 @@ extends Node2D
 @export_group("Secret Areas")
 @export var secrets = NAN
 
-var rooms = {}
+var room_cache = {}
 var collectibles = []
 
-var set_s_rank
+@onready var set_s_rank = is_nan(s_rank_score)
 
 func _ready():
-	set_s_rank = is_nan(s_rank_score)
+	pass
 
-func add_room(room):
-	rooms[room.name] = room
 func get_room(room):
-	return rooms[room]
+	if(room in room_cache):
+		return room_cache[room]
+	else:
+		for _room in get_tree().get_nodes_in_group("rooms"):
+			room_cache[_room.name] = _room
+			if(room in room_cache):
+				return room_cache[room]
+			else:
+				push_error("No room named \"" + str(room) + "\" in level.")
 
 func add_collectible(collectible):
 	add_s_rank_score(collectible.worth)

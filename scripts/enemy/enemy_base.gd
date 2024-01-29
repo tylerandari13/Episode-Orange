@@ -15,28 +15,34 @@ extends CharacterBody2D
 @export var collision : CollisionShape2D
 
 var direction = -1
-
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
 var stunned = false
+var current_time = 0
 
 func _ready():
 	player_detection.body_entered.connect(_on_player_collision)
 
-func _process(delta): pass
+func _process(delta):
+	if(stunned):
+		if(current_time < stun_time):
+			current_time += delta
+		else:
+			stunned = false
 
 func _physics_process(delta):
 	if(!is_on_floor() && use_gravity):
 		velocity.y += gravity * delta
 	elif(use_friction): velocity.x = velocity.x * 0.9
 	sprite.flip_h = true if direction > 0 else false
-	if(health > 0): walk_process(delta)
+	if(health > 0 && !stunned): walk_process(delta)
 	physics_process(delta)
 	move_and_slide()
 
 func _on_player_collision(player : Node2D):
 	if(player is Player && player._enemy_touched(self)):
 		if(player.get_enemy_collision_mode() == 1 && stun(player)):
+			current_time = 0
+			stunned = true
 			velocity = Vector2(player.velocity.x * 2, -100)
 		elif(player.get_enemy_collision_mode() == 2 && damage(player, player.get_collision_damage())):
 			health -= player.get_collision_damage()
@@ -52,5 +58,6 @@ func _on_player_collision(player : Node2D):
 
 func physics_process(delta): pass
 func walk_process(delta): pass # for walking enemies, dont touch
+
 func stun(player): return true
 func damage(player, amount): return true

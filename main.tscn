@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c6ga0cx8gmu2d"]
+[gd_scene load_steps=7 format=3 uid="uid://c6ga0cx8gmu2d"]
 
 [ext_resource type="Texture2D" uid="uid://cy8wbdaah4b3v" path="res://images/engine/menu/logo.png" id="1_8xydh"]
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_ubkoc"]
@@ -6,11 +6,18 @@
 [sub_resource type="LabelSettings" id="LabelSettings_xihgg"]
 font_size = 32
 
-[sub_resource type="GDScript" id="GDScript_7wxsk"]
+[sub_resource type="GDScript" id="GDScript_hhwx4"]
 script/source = "extends Button
 
 func _on_pressed():
 	get_tree().change_scene_to_file(\"res://levels/test_level.tscn\")
+"
+
+[sub_resource type="GDScript" id="GDScript_7wxsk"]
+script/source = "extends Button
+
+func _on_pressed():
+	get_tree().change_scene_to_file(\"res://levels/potato_test_level.tscn\")
 "
 
 [sub_resource type="GDScript" id="GDScript_f8iuo"]
@@ -61,7 +68,7 @@ text = "Early Tech Demo"
 label_settings = SubResource("LabelSettings_xihgg")
 horizontal_alignment = 1
 
-[node name="TestLevel" type="Button" parent="."]
+[node name="TestLevelO" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -74,7 +81,24 @@ offset_right = 105.0
 offset_bottom = 106.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Play Test Level"
+text = "Play Orange Test Level"
+script = SubResource("GDScript_hhwx4")
+
+[node name="TestLevelP" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_top = -33.0
+offset_right = -2.0
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "
+"
 script = SubResource("GDScript_7wxsk")
 
 [node name="Credits" type="Button" parent="."]
@@ -90,10 +114,11 @@ offset_right = 105.0
 offset_bottom = 183.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_neighbor_top = NodePath("../TestLevel")
-focus_neighbor_bottom = NodePath("../TestLevel")
+focus_neighbor_top = NodePath("../TestLevelO")
+focus_neighbor_bottom = NodePath("../TestLevelO")
 text = "See Credits"
 script = SubResource("GDScript_f8iuo")
 
-[connection signal="pressed" from="TestLevel" to="TestLevel" method="_on_pressed"]
+[connection signal="pressed" from="TestLevelO" to="TestLevelO" method="_on_pressed"]
+[connection signal="pressed" from="TestLevelP" to="TestLevelP" method="_on_pressed"]
 [connection signal="pressed" from="Credits" to="Credits" method="_on_pressed"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://csawwvm5js4qs"]
 
-[ext_resource type="Script" path="res://scripts/collectible_base.gd" id="1_5h2tb"]
+[ext_resource type="Script" path="res://scripts/collectibles/collectible_base.gd" id="1_5h2tb"]
 [ext_resource type="SpriteFrames" uid="uid://cd47x0g5n8cf3" path="res://images/objects/colllectibles/ticket_big/ticket_big.tres" id="2_l4v0v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fo2v"]

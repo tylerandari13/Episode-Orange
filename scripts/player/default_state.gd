@@ -1,3 +1,4 @@
+class_name DefaultState
 extends StateMachineState
 
 @export var default_state : StateMachineState

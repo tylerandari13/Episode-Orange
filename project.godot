@@ -92,6 +92,7 @@ run={
 2d_physics/layer_2="players"
 2d_physics/layer_3="enemies"
 2d_physics/layer_4="collectibles"
+2d_physics/layer_5="rooms"
 
 [physics]
 

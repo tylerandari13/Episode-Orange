@@ -12,6 +12,8 @@ var collected = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	add_to_group("collectibles")
+	if(respawn_during_escape): add_to_group("escape_spawn")
 	body_entered.connect(try_collect)
 	ready()
 

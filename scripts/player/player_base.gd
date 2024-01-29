@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var sprite : AnimatedSprite2D
 @export var afterimage_container : Node2D
 @export var camera : Camera2D
+@export var UI : CanvasLayer
 @export var afterimage_colors = [
 	Color(1, 0, 0, 0.5),
 	Color(0, 1, 0, 0.5)
@@ -18,6 +19,7 @@ var afterimage_process_index = 0
 var points = 0
 var combo = 0
 var combo_number = 0
+var current_room : Room
 
 func _ready():
 	state_machine.state_changed.connect(on_state_changed)
@@ -38,7 +40,7 @@ func _process(delta):
 
 	if(combo > 0):
 		combo -= Global.apply_delta_time(0.25, delta)
-		_update_combo(combo, combo_number)
+		UI.update_combo(combo, combo_number)
 	else:
 		end_combo()
 
@@ -63,19 +65,20 @@ func _physics_process(delta):
 func increment_combo(inc = 1):
 	combo_number += inc
 	add_combo(100, true)
+
 func add_combo(percent, forced = false):
-	print(combo)
 	if((!forced && combo > 0) || forced):
 		combo = min(combo + percent, 100)
+
 func end_combo(give_points = true):
 	if(give_points):
 		add_points(combo_number * 100)
 	combo_number = 0
-	_update_combo(combo, combo_number)
+	UI.update_combo(combo, combo_number)
 
 func add_points(_points):
 	points += _points
-	_update_points(points)
+	UI.update_points(points)
 
 func add_afterimage(color = Color(Color(), NAN)):
 	if(is_nan(color.a)):
@@ -98,6 +101,24 @@ func add_afterimage(color = Color(Color(), NAN)):
 		origin_pos = afterimage.global_position
 	}
 
+func update_room(room : Room):
+	current_room = room
+	update_camera_bounds(room.boundaries)
+
+func update_camera_bounds(bound_object : CollisionShape2D):
+	var pos = bound_object.global_position
+	var offset = bound_object.shape.get_rect().size / 2
+	camera.set_limit(SIDE_TOP, pos.y - offset.y)
+	camera.set_limit(SIDE_BOTTOM, pos.y + offset.y)
+	camera.set_limit(SIDE_LEFT, pos.x - offset.x)
+	camera.set_limit(SIDE_RIGHT, pos.x + offset.x)
+
+func reset_camera_bounds():
+	camera.set_limit(SIDE_TOP, -10000000)
+	camera.set_limit(SIDE_BOTTOM, 10000000)
+	camera.set_limit(SIDE_LEFT, -10000000)
+	camera.set_limit(SIDE_RIGHT, 10000000)
+
 # overwriteable in case someone wants to make a character with a different state machine or no state machine at all
 func has_afterimage() -> bool: return state_machine.current_state.has_afterimage
 func can_taunt() -> bool: return state_machine.current_state.can_taunt
@@ -119,6 +140,3 @@ func on_state_changed(new_state : StateMachineState): pass
 # player specific overwriteable functions
 func _on_transformation(transformation : String): pass
 func _enemy_touched(enemy) -> bool: return true
-
-func _update_points(new_points): pass
-func _update_combo(percentage, number): pass
