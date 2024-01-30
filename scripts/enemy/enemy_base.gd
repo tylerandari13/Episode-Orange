@@ -19,7 +19,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var stunned = false
 var current_time = 0
 
+@onready var origin_pos = position
+
 func _ready():
+	add_to_group("enemies")
 	player_detection.body_entered.connect(_on_player_collision)
 
 func _process(delta):
@@ -55,6 +58,15 @@ func _on_player_collision(player : Node2D):
 				collision.visible = false
 				collision_mask = 0
 #		else: print(player.get_enemy_collision_mode())
+
+func disable():
+	visible = false
+	position = origin_pos
+	set_process_mode(Node.PROCESS_MODE_DISABLED)
+
+func enable():
+	visible = true
+	set_process_mode(Node.PROCESS_MODE_INHERIT)
 
 func physics_process(delta): pass
 func walk_process(delta): pass # for walking enemies, dont touch

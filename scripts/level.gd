@@ -8,6 +8,7 @@ extends Node2D
 
 var room_cache = {}
 var collectibles = []
+var player : Player
 
 @onready var set_s_rank = is_nan(s_rank_score)
 
@@ -30,3 +31,6 @@ func add_collectible(collectible):
 	collectibles.append(collectible)
 
 func add_s_rank_score(score): if(set_s_rank): s_rank_score += score
+
+func set_player(_player : Player):
+	player = _player

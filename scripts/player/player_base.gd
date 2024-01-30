@@ -23,6 +23,7 @@ var current_room : Room
 
 func _ready():
 	state_machine.state_changed.connect(on_state_changed)
+	if(owner is Level): owner.set_player(self)
 
 func _process(delta):
 	if(has_afterimage()):
