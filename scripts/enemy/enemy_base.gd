@@ -18,6 +18,7 @@ var direction = -1
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var stunned = false
 var current_time = 0
+var room = null
 
 @onready var origin_pos = position
 
@@ -63,10 +64,10 @@ func disable():
 	visible = false
 	position = origin_pos
 	set_process_mode(Node.PROCESS_MODE_DISABLED)
-
 func enable():
 	visible = true
 	set_process_mode(Node.PROCESS_MODE_INHERIT)
+func set_room(_room): room = _room
 
 func physics_process(delta): pass
 func walk_process(delta): pass # for walking enemies, dont touch

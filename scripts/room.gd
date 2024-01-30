@@ -12,19 +12,19 @@ func _ready():
 	boundaries.modulate.a = 0
 
 func update_enemy(enemy : Enemy):
-	if(owner.player.current_room == self):
+	if(enemy.room == self):
 		enemy.enable()
 	else:
 		enemy.disable()
 
 func update_enemies():
-	for enemy in enemies:
+	for enemy in get_tree().get_nodes_in_group("enemies"):
 		update_enemy(enemy)
 
 func _body_entered(body : Node2D):
-	if(body is Enemy):
+	if(body is Enemy && body.room == null):
 		enemies.append(body)
-		update_enemy(body)
+		body.set_room(self)
 	if(body is Player):
 		body.update_room(self)
 		update_enemies()
