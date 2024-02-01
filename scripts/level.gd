@@ -69,4 +69,3 @@ func toggle_background(room):
 #		print(_room, _room == room.name)
 #		for _room_ in backgrounds[_room]:
 #			_room_.visible = _room == room.name
-
