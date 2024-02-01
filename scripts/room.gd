@@ -18,15 +18,12 @@ func _ready():
 func _process(delta):
 	pass
 
-func update_enemy(enemy : Enemy):
-	if(enemy.room == self):
-		enemy.enable()
-	else:
-		enemy.disable()
-
 func update_enemies():
 	for enemy in get_tree().get_nodes_in_group("enemies"):
-		update_enemy(enemy)
+		if(enemy.room == self):
+			enemy.enable()
+		else:
+			enemy.disable()
 
 func _body_entered(body : Node2D):
 	if(body is Enemy && body.room == null):
