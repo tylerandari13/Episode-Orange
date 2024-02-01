@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dmgv3qnfkrqf0"]
+[gd_scene load_steps=18 format=3 uid="uid://dmgv3qnfkrqf0"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_yu40s"]
 [ext_resource type="TileSet" uid="uid://xj1lvlrwbnes" path="res://tiles/collision.tres" id="2_uoop1"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://d0wrstg7am48y" path="res://scenes/room.tscn" id="5_7ac15"]
 [ext_resource type="PackedScene" uid="uid://brel6o0icl6nn" path="res://scenes/secret.tscn" id="6_h8yq5"]
 [ext_resource type="Script" path="res://scripts/room_based_background.gd" id="6_iuq66"]
+[ext_resource type="Texture2D" uid="uid://dtlyr30bxh73m" path="res://images/backgrounds/secretarea.png" id="8_y7smr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m4xlv"]
 size = Vector2(3690, 2778)
@@ -118,14 +119,23 @@ script = SubResource("GDScript_b36j7")
 [node name="Background" type="ParallaxBackground" parent="."]
 script = SubResource("GDScript_uugty")
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+[node name="Mountains" type="ParallaxLayer" parent="Background"]
 motion_scale = Vector2(0.5, 0.5)
 script = ExtResource("6_iuq66")
 room_name = ["main", "lower"]
 
-[node name="OrngMountains" type="Sprite2D" parent="Background/ParallaxLayer"]
+[node name="OrngMountains" type="Sprite2D" parent="Background/Mountains"]
 position = Vector2(0, 448)
 texture = ExtResource("3_2lirr")
+
+[node name="Secret" type="ParallaxLayer" parent="Background"]
+motion_mirroring = Vector2(640, 640)
+script = ExtResource("6_iuq66")
+room_name = ["secret1"]
+
+[node name="Secretarea" type="Sprite2D" parent="Background/Secret"]
+scale = Vector2(2, 2)
+texture = ExtResource("8_y7smr")
 
 [node name="Player" parent="." instance=ExtResource("3_h404e")]
 position = Vector2(576, 324)
