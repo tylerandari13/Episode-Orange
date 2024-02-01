@@ -7,13 +7,16 @@ extends Node2D
 @export var secrets = NAN
 
 var room_cache = {}
-var collectibles = []
+#var collectibles = []
 var player : Player
+var backgrounds = {}
 
 @onready var set_s_rank = is_nan(s_rank_score)
+@onready var set_secrets = is_nan(secrets)
 
 func _ready():
-	pass
+	if(set_s_rank): s_rank_score = 0
+	if(set_secrets): secrets = 0
 
 func get_room(room):
 	if(room in room_cache):
@@ -28,9 +31,42 @@ func get_room(room):
 
 func add_collectible(collectible):
 	add_s_rank_score(collectible.worth)
-	collectibles.append(collectible)
+	#collectibles.append(collectible)
 
 func add_s_rank_score(score): if(set_s_rank): s_rank_score += score
+func add_secret(inc = 1): if(set_secrets):
+	secrets += inc
+	print(secrets)
 
 func set_player(_player : Player):
 	player = _player
+
+func add_background(room_name, background):
+	if(typeof(room_name) == TYPE_ARRAY):
+		for room in room_name:
+			add_background(room, background)
+	elif(typeof(room_name) == TYPE_STRING):
+		if(!room_name in background): backgrounds[room_name] = []
+		backgrounds[room_name].append(background)
+
+#	The thought process here was basically there are 2 variables,
+#	one for which to turn on, and one for which to turn off,
+#	and have turning on take priority over turning off.
+#	This means backgrounds will only turn off if they abseloutely have to.
+func toggle_background(room):
+	var on_rooms = []
+	var off_rooms = []
+	for room_name in backgrounds:
+		if(room_name == room.name):
+			on_rooms.append_array(backgrounds[room_name])
+		else:
+			off_rooms.append_array(backgrounds[room_name])
+	for _room in off_rooms:
+		_room.visible = false
+	for _room in on_rooms:
+		_room.visible = true
+#	for _room in backgrounds:
+#		print(_room, _room == room.name)
+#		for _room_ in backgrounds[_room]:
+#			_room_.visible = _room == room.name
+

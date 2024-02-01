@@ -20,6 +20,7 @@ var points = 0
 var combo = 0
 var combo_number = 0
 var current_room : Room
+var secrets = {}
 
 func _ready():
 	state_machine.state_changed.connect(on_state_changed)
@@ -119,6 +120,14 @@ func reset_camera_bounds():
 	camera.set_limit(SIDE_BOTTOM, 10000000)
 	camera.set_limit(SIDE_LEFT, -10000000)
 	camera.set_limit(SIDE_RIGHT, 10000000)
+
+func enter_secret(spawn : Secret):
+	global_position = spawn.global_position
+
+func add_secret(secret : Room):
+	secrets[secret.get_path()] = secret
+	UI.secret_entered(len(secrets), owner.secrets)
+
 
 # overwriteable in case someone wants to make a character with a different state machine or no state machine at all
 func has_afterimage() -> bool: return state_machine.current_state.has_afterimage

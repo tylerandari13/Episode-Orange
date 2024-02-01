@@ -2,6 +2,8 @@ class_name Room
 extends Area2D
 
 @export var boundaries : CollisionShape2D
+@export_group("Secret Area")
+@export var is_secret = false
 
 var enemies = []
 
@@ -9,7 +11,12 @@ var enemies = []
 func _ready():
 	add_to_group("rooms")
 	body_entered.connect(_body_entered)
+	body_exited.connect(_body_exited)
 	boundaries.modulate.a = 0
+	if(is_secret): owner.add_secret()
+
+func _process(delta):
+	pass
 
 func update_enemy(enemy : Enemy):
 	if(enemy.room == self):
@@ -27,4 +34,10 @@ func _body_entered(body : Node2D):
 		body.set_room(self)
 	if(body is Player):
 		body.update_room(self)
+		owner.toggle_background(self)
+		if(is_secret): body.add_secret(self)
 		update_enemies()
+
+func _body_exited(body : Node2D):
+	if(body is Player): pass
+	#	print("death")

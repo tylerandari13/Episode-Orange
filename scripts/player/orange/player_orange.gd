@@ -57,7 +57,6 @@ func set_ducking(ducking):
 	stand_collision.visible = !ducking
 	duck_collision.visible = ducking
 	stand_collision.disabled = ducking
-	duck_collision.disabled = !ducking
 	duck_area.visible = ducking
 
 
