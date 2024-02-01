@@ -129,12 +129,44 @@ position = Vector2(0, 448)
 texture = ExtResource("3_2lirr")
 
 [node name="Secret" type="ParallaxLayer" parent="Background"]
-motion_mirroring = Vector2(640, 640)
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1920, 1920)
 script = ExtResource("6_iuq66")
 room_name = ["secret1"]
 
 [node name="Secretarea" type="Sprite2D" parent="Background/Secret"]
-scale = Vector2(2, 2)
+texture = ExtResource("8_y7smr")
+
+[node name="Secretarea2" type="Sprite2D" parent="Background/Secret"]
+position = Vector2(640, 0)
+texture = ExtResource("8_y7smr")
+
+[node name="Secretarea3" type="Sprite2D" parent="Background/Secret"]
+position = Vector2(0, 640)
+texture = ExtResource("8_y7smr")
+
+[node name="Secretarea4" type="Sprite2D" parent="Background/Secret"]
+position = Vector2(640, 640)
+texture = ExtResource("8_y7smr")
+
+[node name="Secretarea5" type="Sprite2D" parent="Background/Secret"]
+position = Vector2(1280, 0)
+texture = ExtResource("8_y7smr")
+
+[node name="Secretarea6" type="Sprite2D" parent="Background/Secret"]
+position = Vector2(1280, 640)
+texture = ExtResource("8_y7smr")
+
+[node name="Secretarea7" type="Sprite2D" parent="Background/Secret"]
+position = Vector2(0, 1280)
+texture = ExtResource("8_y7smr")
+
+[node name="Secretarea8" type="Sprite2D" parent="Background/Secret"]
+position = Vector2(640, 1280)
+texture = ExtResource("8_y7smr")
+
+[node name="Secretarea9" type="Sprite2D" parent="Background/Secret"]
+position = Vector2(1280, 1280)
 texture = ExtResource("8_y7smr")
 
 [node name="Player" parent="." instance=ExtResource("3_h404e")]
