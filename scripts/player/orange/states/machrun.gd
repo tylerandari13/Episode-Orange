@@ -2,6 +2,9 @@ extends OrangeState
 
 var prevmach
 
+func add_mach(amount, delta):
+	owner.mach_speed += Global.apply_delta_time(amount + (owner.get_floor_angle() * 10), delta)
+
 # Called when the state machine enters this state.
 func on_enter():
 	prevmach = 0
@@ -18,9 +21,9 @@ func on_process(delta):
 func on_physics_process(delta): if(Input.is_action_pressed("run")):
 	owner.velocity.x = (owner.mach_speed + owner.walk_speed) * owner.direction
 	if(owner.is_on_floor()): if(owner.mach_speed < owner.mach3): # done like this for readability
-		owner.mach_speed += Global.apply_delta_time(owner.acceleration, delta)
+		add_mach(owner.acceleration, delta)
 	elif((owner.velocity.x < 0 && Input.is_action_pressed("left")) || (owner.velocity.x > 0 && Input.is_action_pressed("right"))):
-		owner.mach_speed += Global.apply_delta_time(owner.acceleration / 2, delta)
+		add_mach(owner.acceleration / 2, delta)
 	#else:
 	#	owner.mach_speed -= Global.apply_delta_time(owner.acceleration, delta)
 	if((owner.velocity.x > 0 && Input.is_action_pressed("left")) || (owner.velocity.x < 0 && Input.is_action_pressed("right"))):
