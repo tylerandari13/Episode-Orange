@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://d1sm131oodc8g"]
+[gd_scene load_steps=7 format=3 uid="uid://d1sm131oodc8g"]
 
 [ext_resource type="Shader" path="res://shader/hue_shift.gdshader" id="1_6y4rr"]
 [ext_resource type="Script" path="res://scripts/collectibles/collectible_randomhue.gd" id="1_ccqa3"]
 [ext_resource type="SpriteFrames" uid="uid://cryj71um7cvxx" path="res://images/objects/colllectibles/ticket_small/ticket_small.tres" id="2_cw6sp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tn4ry"]
+shader = ExtResource("1_6y4rr")
+shader_parameter/Shift_Hue = null
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1uywm"]
 shader = ExtResource("1_6y4rr")
@@ -12,6 +16,7 @@ shader_parameter/Shift_Hue = null
 radius = 32.0
 
 [node name="CollectibleSmall" type="Area2D" node_paths=PackedStringArray("sprite", "amount_text", "collision")]
+material = SubResource("ShaderMaterial_tn4ry")
 collision_layer = 8
 collision_mask = 2
 script = ExtResource("1_ccqa3")

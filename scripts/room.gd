@@ -14,7 +14,9 @@ func _ready():
 	body_entered.connect(_body_entered)
 	body_exited.connect(_body_exited)
 	boundaries.modulate.a = 0
-	if(is_secret): owner.add_secret()
+	if(is_secret):
+		owner.add_secret()
+		add_to_group("secrets")
 
 func _process(delta):
 	pass

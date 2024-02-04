@@ -33,7 +33,8 @@ void fragment() {
 	}
 
 // Output:0
-	texture_color = vec4(color_rgb.rgb,texture_color.a);
-	COLOR.rgba = texture_color;
+	//texture_color = vec4(color_rgb.rgb,COLOR.a);
+	//COLOR.rgba = texture_color;
+	COLOR.rgb = color_rgb.rgb;
 
 }

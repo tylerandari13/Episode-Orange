@@ -75,7 +75,7 @@ func add_combo(percent, forced = false):
 
 func end_combo(give_points = true):
 	if(give_points):
-		add_points(combo_number * 100)
+		add_points(combo_number ** 2 * 10)
 	combo_number = 0
 	UI.update_combo(combo, combo_number)
 
@@ -132,7 +132,7 @@ func enter_secret(spawn : Secret):
 
 func add_secret(secret : Room):
 	secrets[secret.get_path()] = secret
-	UI.secret_entered(len(secrets), owner.secrets)
+	UI.secret_entered(len(secrets), len(get_tree().get_nodes_in_group("secrets")))
 
 
 # overwriteable in case someone wants to make a character with a different state machine or no state machine at all

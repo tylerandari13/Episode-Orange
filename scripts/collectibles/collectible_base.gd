@@ -25,10 +25,9 @@ func _process(delta):
 
 func try_collect(player):
 	if(player is Player && !collected):
-		# if(sprite != null): sprite.modulate.a = 0.5 if body.current_room.is_secret else 0
+		if(sprite != null): sprite.modulate.a = 0.5 if player.current_room.is_secret else 0
 		player.add_points(worth)
 		player.add_combo(worth)
-		if(sprite != null): sprite.modulate.a = 0
 		collected = true
 		if(collision != null): collision.visible = false
 		if(amount_text != null):
