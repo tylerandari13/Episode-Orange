@@ -21,6 +21,7 @@ var combo = 0
 var combo_number = 0
 var current_room : Room
 var secrets = {}
+var respawn_pos : Vector2
 
 func _ready():
 	state_machine.state_changed.connect(on_state_changed)
@@ -104,8 +105,12 @@ func add_afterimage(color = Color(Color(), NAN)):
 	}
 
 func update_room(room : Room):
+	respawn_pos = position
 	current_room = room
 	update_camera_bounds(room.boundaries)
+
+func room_respawn():
+	position = respawn_pos
 
 func update_camera_bounds(bound_object : CollisionShape2D):
 	var pos = bound_object.global_position
@@ -123,6 +128,7 @@ func reset_camera_bounds():
 
 func enter_secret(spawn : Secret):
 	global_position = spawn.global_position
+	velocity.y = -1000
 
 func add_secret(secret : Room):
 	secrets[secret.get_path()] = secret

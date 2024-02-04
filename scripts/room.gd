@@ -2,6 +2,7 @@ class_name Room
 extends Area2D
 
 @export var boundaries : CollisionShape2D
+@export var respawn_if_fall = false
 @export_group("Secret Area")
 @export var is_secret = false
 
@@ -36,5 +37,5 @@ func _body_entered(body : Node2D):
 		update_enemies()
 
 func _body_exited(body : Node2D):
-	if(body is Player): pass
-	#	print("death")
+	if(body is Player && respawn_if_fall):
+		body.room_respawn()
