@@ -19,6 +19,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var stunned = false
 var current_time = 0
 var room = null
+var combo_amount = 100
 
 @onready var origin_pos = position
 
@@ -48,6 +49,8 @@ func _on_player_collision(player : Node2D):
 			current_time = 0
 			stunned = true
 			velocity = Vector2(player.velocity.x * 2, -100)
+			player.add_combo(combo_amount)
+			combo_amount = combo_amount * 0.5
 		elif(player.get_enemy_collision_mode() == 2 && damage(player, player.get_collision_damage())):
 			health -= player.get_collision_damage()
 			velocity = Vector2(player.velocity.x, player.velocity.abs().x * -0.5)

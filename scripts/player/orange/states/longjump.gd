@@ -4,7 +4,7 @@ extends OrangeState
 # Called when the state machine enters this state.
 func on_enter():
 	owner.sprite.play("longjump")
-	owner.set_mach_speed_to_velocity()
+	#owner.set_mach_speed_to_velocity()
 
 
 # Called every frame when this state is active.
