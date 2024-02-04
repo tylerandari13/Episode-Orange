@@ -18,6 +18,7 @@ func _body_entered(body : Node2D):
 
 func exit():
 	monitoring = false
-	$CollisionShape2D.visible = false
 	collision.collision_layer = 0
 	sprite.play("disappear")
+	await get_tree().create_timer(1).timeout
+	visible = false
