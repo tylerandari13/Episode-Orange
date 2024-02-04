@@ -49,23 +49,12 @@ func add_background(room_name, background):
 		if(!room_name in background): backgrounds[room_name] = []
 		backgrounds[room_name].append(background)
 
-#	The thought process here was basically there are 2 variables,
-#	one for which to turn on, and one for which to turn off,
-#	and have turning on take priority over turning off.
-#	This means backgrounds will only turn off if they abseloutely have to.
 func toggle_background(room):
 	var on_rooms = []
-	var off_rooms = []
 	for room_name in backgrounds:
 		if(room_name == room.name):
 			on_rooms.append_array(backgrounds[room_name])
 		else:
-			off_rooms.append_array(backgrounds[room_name])
-	for _room in off_rooms:
-		_room.visible = false
+			for _room in backgrounds[room_name]: _room.visible = false
 	for _room in on_rooms:
 		_room.visible = true
-#	for _room in backgrounds:
-#		print(_room, _room == room.name)
-#		for _room_ in backgrounds[_room]:
-#			_room_.visible = _room == room.name

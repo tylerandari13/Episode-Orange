@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/collectibles/collectible_base.gd" id="1_5h2tb"]
 [ext_resource type="SpriteFrames" uid="uid://cd47x0g5n8cf3" path="res://images/objects/colllectibles/ticket_big/ticket_big.tres" id="2_l4v0v"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7fo2v"]
-size = Vector2(128, 128)
+[sub_resource type="CircleShape2D" id="CircleShape2D_k300t"]
+radius = 64.0
 
 [node name="CollectibleSmall" type="Area2D" node_paths=PackedStringArray("sprite", "amount_text", "collision")]
 collision_layer = 8
@@ -20,7 +20,7 @@ sprite_frames = ExtResource("2_l4v0v")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_7fo2v")
+shape = SubResource("CircleShape2D_k300t")
 debug_color = Color(0, 1, 0, 0)
 
 [node name="Label" type="Label" parent="."]
