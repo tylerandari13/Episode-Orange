@@ -4,3 +4,5 @@ Main Programmer: tylerandari12
 Main artist: tylerandari12
 Main playesters: tylerandari12
 (sorry if it sounds like im tooting my own horn atm)
+
+Hue Shift Shader by McSpider on Github (https://gist.github.com/McSpider/c8c693f1065fdb5ec44c64cb9fdac340)
