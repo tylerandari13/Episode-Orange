@@ -1,0 +1,143 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccy2gq3322l8x"]
+
+[ext_resource type="Texture2D" uid="uid://d01loplsx2qny" path="res://images/mobile/arrow.png" id="1_2a5x2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uu5yh"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_coung"]
+size = Vector2(128, 64)
+
+[sub_resource type="LabelSettings" id="LabelSettings_smoij"]
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+
+[node name="MobileUI" type="CanvasLayer"]
+layer = 128
+
+[node name="Arrows" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Left" type="TouchScreenButton" parent="Arrows"]
+position = Vector2(-233, -116)
+texture_normal = ExtResource("1_2a5x2")
+shape = SubResource("RectangleShape2D_uu5yh")
+passby_press = true
+action = "left"
+visibility_mode = 1
+
+[node name="Right" type="TouchScreenButton" parent="Arrows"]
+position = Vector2(-41, -52)
+rotation = -3.14159
+texture_normal = ExtResource("1_2a5x2")
+shape = SubResource("RectangleShape2D_uu5yh")
+passby_press = true
+action = "right"
+visibility_mode = 1
+
+[node name="Up" type="TouchScreenButton" parent="Arrows"]
+position = Vector2(-105, -180)
+rotation = 1.5708
+texture_normal = ExtResource("1_2a5x2")
+shape = SubResource("RectangleShape2D_uu5yh")
+passby_press = true
+action = "up"
+visibility_mode = 1
+
+[node name="Down" type="TouchScreenButton" parent="Arrows"]
+position = Vector2(-169, -52)
+rotation = -1.5708
+texture_normal = ExtResource("1_2a5x2")
+shape = SubResource("RectangleShape2D_uu5yh")
+passby_press = true
+action = "down"
+visibility_mode = 1
+
+[node name="BottomLeft" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_vertical = 0
+
+[node name="RUN" type="TouchScreenButton" parent="BottomLeft"]
+position = Vector2(65, -120)
+texture_normal = ExtResource("1_2a5x2")
+shape = SubResource("RectangleShape2D_coung")
+action = "run"
+visibility_mode = 1
+
+[node name="Label" type="Label" parent="BottomLeft/RUN"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "RUN
+"
+label_settings = SubResource("LabelSettings_smoij")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Z" type="TouchScreenButton" parent="BottomLeft"]
+position = Vector2(161, -120)
+texture_normal = ExtResource("1_2a5x2")
+shape = SubResource("RectangleShape2D_uu5yh")
+action = "jump"
+visibility_mode = 1
+
+[node name="Label" type="Label" parent="BottomLeft/Z"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Z"
+label_settings = SubResource("LabelSettings_smoij")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="X" type="TouchScreenButton" parent="BottomLeft"]
+position = Vector2(225, -120)
+texture_normal = ExtResource("1_2a5x2")
+shape = SubResource("RectangleShape2D_uu5yh")
+action = "grab"
+visibility_mode = 1
+
+[node name="Label" type="Label" parent="BottomLeft/X"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "X"
+label_settings = SubResource("LabelSettings_smoij")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="C" type="TouchScreenButton" parent="BottomLeft"]
+position = Vector2(289, -120)
+texture_normal = ExtResource("1_2a5x2")
+shape = SubResource("RectangleShape2D_uu5yh")
+action = "taunt"
+visibility_mode = 1
+
+[node name="Label" type="Label" parent="BottomLeft/C"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "C"
+label_settings = SubResource("LabelSettings_smoij")
+horizontal_alignment = 1
+vertical_alignment = 1

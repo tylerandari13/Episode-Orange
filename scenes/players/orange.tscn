@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bmqtlr0pqr58i"]
+[gd_scene load_steps=30 format=3 uid="uid://bmqtlr0pqr58i"]
 
 [ext_resource type="Script" path="res://scripts/player/orange/player_orange.gd" id="1_iekmm"]
 [ext_resource type="Texture2D" uid="uid://b0f81vevbiws8" path="res://images/creatures/shared/tauntbg.png" id="2_0wekc"]
@@ -26,7 +26,6 @@
 [ext_resource type="Script" path="res://scripts/player/orange/states/bonk.gd" id="15_uqa1s"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/wallrun.gd" id="16_3sgsv"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/bodyslam.gd" id="20_c1biv"]
-[ext_resource type="Texture2D" uid="uid://d01loplsx2qny" path="res://images/mobile/arrow.png" id="27_omsle"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t3hh"]
 size = Vector2(40, 127)
@@ -50,9 +49,6 @@ func _process(delta):
 	
 	#/e dance
 "
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2vfeu"]
-size = Vector2(64, 64)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("taunt_sprite", "stand_collision", "duck_collision", "duck_area", "state_machine", "sprite", "afterimage_container", "camera", "UI")]
 collision_layer = 2
@@ -266,8 +262,3 @@ text = "##
 ##"
 horizontal_alignment = 1
 script = SubResource("GDScript_k6hh2")
-
-[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
-texture_normal = ExtResource("27_omsle")
-shape = SubResource("RectangleShape2D_2vfeu")
-action = "left"
