@@ -29,7 +29,7 @@ func on_physics_process(delta): if(Input.is_action_pressed("run")):
 	if((owner.velocity.x > 0 && Input.is_action_pressed("left")) || (owner.velocity.x < 0 && Input.is_action_pressed("right"))):
 		change_state("none/machdrift")
 	
-	if(owner.get_mach_speed() > 2 && Input.is_action_pressed("superjump")): change_state("none/superjumpwindup")
+	if(owner.get_mach_speed() > 2 && (Input.is_action_pressed("superjump") || Input.is_action_pressed("up"))): change_state("none/superjumpwindup")
 
 	if(owner.is_on_wall() && owner.is_on_floor() && owner.get_wall_normal().y != owner.direction):
 		owner.sprite.play("machbonk" if owner.get_mach_speed() > 2 else "bonk")
