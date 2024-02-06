@@ -31,7 +31,7 @@ func on_physics_process(delta): if(Input.is_action_pressed("run")):
 	
 	if(owner.get_mach_speed() > 2 && Input.is_action_pressed("superjump")): change_state("none/superjumpwindup")
 
-	if(owner.is_on_wall() && owner.is_on_floor()):
+	if(owner.is_on_wall() && owner.is_on_floor() && owner.get_wall_normal().y != owner.direction):
 		owner.sprite.play("machbonk" if owner.get_mach_speed() > 2 else "bonk")
 		change_state("none/bonk")
 else:
