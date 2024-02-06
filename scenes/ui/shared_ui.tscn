@@ -13,16 +13,7 @@ font_size = 32
 layer = 100
 script = ExtResource("1_votwe")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Combo" type="ProgressBar" parent="Control"]
-layout_mode = 1
+[node name="Combo" type="ProgressBar" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -32,8 +23,7 @@ offset_right = -57.0
 offset_bottom = 147.0
 grow_horizontal = 0
 
-[node name="TextureRect" type="TextureRect" parent="Control"]
-layout_mode = 1
+[node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -44,7 +34,7 @@ offset_bottom = 199.0
 grow_horizontal = 0
 texture = ExtResource("1_8asas")
 
-[node name="Label" type="Label" parent="Control/TextureRect"]
+[node name="Label" type="Label" parent="TextureRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -57,8 +47,7 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Combo"
 
-[node name="Points" type="Label" parent="Control"]
-layout_mode = 1
+[node name="Points" type="Label" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 24.0
@@ -69,9 +58,8 @@ grow_horizontal = 2
 text = "Points: 0"
 label_settings = SubResource("LabelSettings_v5fst")
 
-[node name="Secrets" type="Label" parent="Control"]
+[node name="Secrets" type="Label" parent="."]
 visible = false
-layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0

@@ -1,9 +1,9 @@
 extends CanvasLayer
 
-@onready var point_text = $Control/Points
-@onready var combo_bar = $Control/Combo
-@onready var combo_label = $Control/TextureRect/Label
-@onready var secret_label = $Control/Secrets
+@onready var point_text = $Points
+@onready var combo_bar = $Combo
+@onready var combo_label = $TextureRect/Label
+@onready var secret_label = $Secrets
 
 func update_points(new_points):
 	point_text.text = "Points: " + str(new_points)
