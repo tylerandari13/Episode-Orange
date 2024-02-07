@@ -5,6 +5,7 @@ var prevmach
 func add_mach(amount, delta):
 	owner.mach_speed += Global.apply_delta_time(amount + (owner.get_floor_angle() * 10), delta)
 
+
 # Called when the state machine enters this state.
 func on_enter():
 	prevmach = 0
@@ -15,6 +16,8 @@ func on_process(delta):
 	if(prevmach != owner.get_mach_speed() && owner.is_on_floor()):
 		owner.sprite.play("mach" + str(owner.get_mach_speed()))
 	prevmach = owner.get_mach_speed() if owner.is_on_floor() else 0
+	enemy_collision_mode = 1 if owner.get_mach_speed() < 3 else 2
+	block_damage = owner.get_mach_speed()
 
 
 # Called every physics frame when this state is active.

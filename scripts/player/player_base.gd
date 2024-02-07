@@ -141,6 +141,7 @@ func can_taunt() -> bool: return state_machine.current_state.can_taunt
 func use_gravity() -> bool: return state_machine.current_state.use_gravity
 func use_friction() -> bool: return state_machine.current_state.use_friction
 func decide_direction_based_on_velocity() -> bool: return state_machine.current_state.decide_direction_based_on_velocity
+func get_block_damage() -> int: return state_machine.current_state.block_damage
 
 func get_enemy_collision_mode() -> int: return state_machine.current_state.enemy_collision_mode
 func get_collision_damage() -> float: return state_machine.current_state.enemy_damage

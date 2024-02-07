@@ -182,7 +182,6 @@ can_wallrun = true
 can_dive = true
 decide_direction_based_on_velocity = false
 has_afterimage = true
-enemy_collision_mode = 2
 
 [node name="machslide" type="Node" parent="StateMachine/none"]
 script = ExtResource("10_nvxw6")
@@ -198,7 +197,7 @@ can_grab = false
 use_friction = false
 decide_direction_based_on_velocity = false
 has_afterimage = true
-enemy_collision_mode = 2
+enemy_collision_mode = 1
 
 [node name="superjumpwindup" type="Node" parent="StateMachine/none"]
 script = ExtResource("12_llgqj")

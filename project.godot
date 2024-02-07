@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 Global="*res://scripts/globals.gd"
 Keybinds="res://scripts/keybinds.gd"
-MobileUI="*res://scenes/mobile_ui.tscn"
+MobileUI="*res://scenes/mobile_controls.tscn"
 
 [editor]
 

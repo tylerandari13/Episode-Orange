@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ccy2gq3322l8x"]
 
-[ext_resource type="Texture2D" uid="uid://d01loplsx2qny" path="res://images/mobile/arrow.png" id="1_2a5x2"]
+[ext_resource type="Texture2D" uid="uid://d01loplsx2qny" path="res://images/mobile/arrow.png" id="1_il3a1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uu5yh"]
 size = Vector2(64, 64)
@@ -27,7 +27,7 @@ grow_vertical = 0
 
 [node name="Left" type="TouchScreenButton" parent="Arrows"]
 position = Vector2(-233, -116)
-texture_normal = ExtResource("1_2a5x2")
+texture_normal = ExtResource("1_il3a1")
 shape = SubResource("RectangleShape2D_uu5yh")
 passby_press = true
 action = "left"
@@ -36,7 +36,7 @@ visibility_mode = 1
 [node name="Right" type="TouchScreenButton" parent="Arrows"]
 position = Vector2(-41, -52)
 rotation = -3.14159
-texture_normal = ExtResource("1_2a5x2")
+texture_normal = ExtResource("1_il3a1")
 shape = SubResource("RectangleShape2D_uu5yh")
 passby_press = true
 action = "right"
@@ -45,7 +45,7 @@ visibility_mode = 1
 [node name="Up" type="TouchScreenButton" parent="Arrows"]
 position = Vector2(-105, -180)
 rotation = 1.5708
-texture_normal = ExtResource("1_2a5x2")
+texture_normal = ExtResource("1_il3a1")
 shape = SubResource("RectangleShape2D_uu5yh")
 passby_press = true
 action = "up"
@@ -54,7 +54,7 @@ visibility_mode = 1
 [node name="Down" type="TouchScreenButton" parent="Arrows"]
 position = Vector2(-169, -52)
 rotation = -1.5708
-texture_normal = ExtResource("1_2a5x2")
+texture_normal = ExtResource("1_il3a1")
 shape = SubResource("RectangleShape2D_uu5yh")
 passby_press = true
 action = "down"
@@ -71,7 +71,7 @@ grow_vertical = 0
 
 [node name="RUN" type="TouchScreenButton" parent="BottomLeft"]
 position = Vector2(65, -120)
-texture_normal = ExtResource("1_2a5x2")
+texture_normal = ExtResource("1_il3a1")
 shape = SubResource("RectangleShape2D_coung")
 action = "run"
 visibility_mode = 1
@@ -90,7 +90,7 @@ vertical_alignment = 1
 
 [node name="Z" type="TouchScreenButton" parent="BottomLeft"]
 position = Vector2(161, -120)
-texture_normal = ExtResource("1_2a5x2")
+texture_normal = ExtResource("1_il3a1")
 shape = SubResource("RectangleShape2D_uu5yh")
 action = "jump"
 visibility_mode = 1
@@ -108,7 +108,7 @@ vertical_alignment = 1
 
 [node name="X" type="TouchScreenButton" parent="BottomLeft"]
 position = Vector2(225, -120)
-texture_normal = ExtResource("1_2a5x2")
+texture_normal = ExtResource("1_il3a1")
 shape = SubResource("RectangleShape2D_uu5yh")
 action = "grab"
 visibility_mode = 1
@@ -126,7 +126,7 @@ vertical_alignment = 1
 
 [node name="C" type="TouchScreenButton" parent="BottomLeft"]
 position = Vector2(289, -120)
-texture_normal = ExtResource("1_2a5x2")
+texture_normal = ExtResource("1_il3a1")
 shape = SubResource("RectangleShape2D_uu5yh")
 action = "taunt"
 visibility_mode = 1
