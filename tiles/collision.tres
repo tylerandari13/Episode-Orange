@@ -1,10 +1,13 @@
-[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://xj1lvlrwbnes"]
+[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://xj1lvlrwbnes"]
 
 [ext_resource type="PackedScene" uid="uid://d1sm131oodc8g" path="res://scenes/collectibles/small.tscn" id="1_mqu0v"]
 [ext_resource type="Texture2D" uid="uid://b51m0ca85tqe" path="res://images/tiles/collisions.png" id="1_y7ybx"]
 [ext_resource type="PackedScene" uid="uid://csawwvm5js4qs" path="res://scenes/collectibles/big.tscn" id="2_3lbpg"]
 [ext_resource type="PackedScene" uid="uid://b2jif3vgnxj03" path="res://scenes/enemies/enemy_base.tscn" id="3_3qufi"]
 [ext_resource type="PackedScene" uid="uid://gxy6qbn3l6pc" path="res://scenes/enemies/walking_enemy.tscn" id="4_miwii"]
+[ext_resource type="PackedScene" uid="uid://c17ltimqpvjjr" path="res://scenes/blocks/block.tscn" id="6_5mr6p"]
+[ext_resource type="PackedScene" uid="uid://cbq3w32aaxfht" path="res://scenes/blocks/small_block.tscn" id="7_l6bti"]
+[ext_resource type="PackedScene" uid="uid://0oeuxagj5ysl" path="res://scenes/blocks/hard_block.tscn" id="8_u5l4h"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_i375s"]
 resource_name = "Collectibles"
@@ -111,9 +114,16 @@ texture_region_size = Vector2i(64, 64)
 3:3/0/physics_layer_0/angular_velocity = 0.0
 3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32)
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_de6r3"]
+resource_name = "Blocks"
+scenes/1/scene = ExtResource("6_5mr6p")
+scenes/2/scene = ExtResource("7_l6bti")
+scenes/3/scene = ExtResource("8_u5l4h")
+
 [resource]
 tile_size = Vector2i(64, 64)
 physics_layer_0/collision_layer = 1
 sources/2 = SubResource("TileSetAtlasSource_aqnyf")
 sources/0 = SubResource("TileSetScenesCollectionSource_i375s")
 sources/1 = SubResource("TileSetScenesCollectionSource_7c1qn")
+sources/4 = SubResource("TileSetScenesCollectionSource_de6r3")

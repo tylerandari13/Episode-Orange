@@ -20,7 +20,8 @@ font_size = 32
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74o70"]
 size = Vector2(128, 128)
 
-[node name="HardBlock" type="StaticBody2D"]
+[node name="Block" type="StaticBody2D"]
+position = Vector2(32, 32)
 script = ExtResource("1_cokiu")
 block_damage = 3
 
@@ -46,7 +47,7 @@ vertical_alignment = 1
 shape = SubResource("RectangleShape2D_74o70")
 
 [node name="Area2D" type="Area2D" parent="."]
-scale = Vector2(1.01, 1.01)
+scale = Vector2(2, 2)
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

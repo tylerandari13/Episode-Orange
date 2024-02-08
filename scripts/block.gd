@@ -17,5 +17,15 @@ func _process(delta):
 func _touched(body : Node2D):
 	if(body is Player):
 		if(body.get_block_damage() >= block_damage):
-			pass
-		print(body.get_block_damage(), " : ", body.get_mach_speed())
+			collision_layer = 0
+			visible = false
+	#	print(body.get_block_damage(), " : ", body.get_mach_speed())
+	
+
+
+
+
+
+
+
+
