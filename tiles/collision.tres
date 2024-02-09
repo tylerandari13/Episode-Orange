@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://csawwvm5js4qs" path="res://scenes/collectibles/big.tscn" id="2_3lbpg"]
 [ext_resource type="PackedScene" uid="uid://b2jif3vgnxj03" path="res://scenes/enemies/enemy_base.tscn" id="3_3qufi"]
 [ext_resource type="PackedScene" uid="uid://gxy6qbn3l6pc" path="res://scenes/enemies/walking_enemy.tscn" id="4_miwii"]
-[ext_resource type="PackedScene" uid="uid://c17ltimqpvjjr" path="res://scenes/blocks/block.tscn" id="6_5mr6p"]
-[ext_resource type="PackedScene" uid="uid://cbq3w32aaxfht" path="res://scenes/blocks/small_block.tscn" id="7_l6bti"]
+[ext_resource type="PackedScene" uid="uid://b2vrl2xjgiqhl" path="res://scenes/blocks/big_block.tscn" id="6_5mr6p"]
+[ext_resource type="PackedScene" uid="uid://doelnfhe4uolh" path="res://scenes/blocks/block.tscn" id="7_l6bti"]
 [ext_resource type="PackedScene" uid="uid://0oeuxagj5ysl" path="res://scenes/blocks/hard_block.tscn" id="8_u5l4h"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_i375s"]

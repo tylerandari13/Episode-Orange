@@ -1,13 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://0oeuxagj5ysl"]
+[gd_scene load_steps=6 format=3 uid="uid://b2vrl2xjgiqhl"]
 
-[ext_resource type="Script" path="res://scripts/block.gd" id="1_cokiu"]
-[ext_resource type="Texture2D" uid="uid://by658g5iu5wdr" path="res://icon.svg" id="2_5mktq"]
+[ext_resource type="Script" path="res://scripts/block.gd" id="1_pe5ef"]
+[ext_resource type="Texture2D" uid="uid://by658g5iu5wdr" path="res://icon.svg" id="2_jfxse"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hfnij"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_5mktq")
+"texture": ExtResource("2_jfxse")
 }],
 "loop": true,
 "name": &"default",
@@ -20,13 +20,13 @@ font_size = 32
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74o70"]
 size = Vector2(128, 128)
 
-[node name="HardBlock" type="StaticBody2D"]
+[node name="BigBlock" type="StaticBody2D"]
 position = Vector2(32, 32)
-script = ExtResource("1_cokiu")
-block_damage = 3
+script = ExtResource("1_pe5ef")
+block_damage = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-self_modulate = Color(100, 0, 0, 1)
+self_modulate = Color(100, 0, 100, 1)
 sprite_frames = SubResource("SpriteFrames_hfnij")
 
 [node name="Label" type="Label" parent="AnimatedSprite2D"]
@@ -38,7 +38,8 @@ offset_right = -90.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = -0.785398
-text = "Mach 3"
+text = "Big
+Block"
 label_settings = SubResource("LabelSettings_bxqf4")
 horizontal_alignment = 1
 vertical_alignment = 1
