@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://xj1lvlrwbnes"]
+[gd_resource type="TileSet" load_steps=15 format=3 uid="uid://xj1lvlrwbnes"]
 
 [ext_resource type="PackedScene" uid="uid://d1sm131oodc8g" path="res://scenes/collectibles/small.tscn" id="1_mqu0v"]
 [ext_resource type="Texture2D" uid="uid://b51m0ca85tqe" path="res://images/tiles/collisions.png" id="1_y7ybx"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://b2vrl2xjgiqhl" path="res://scenes/blocks/big_block.tscn" id="6_5mr6p"]
 [ext_resource type="PackedScene" uid="uid://doelnfhe4uolh" path="res://scenes/blocks/block.tscn" id="7_l6bti"]
 [ext_resource type="PackedScene" uid="uid://0oeuxagj5ysl" path="res://scenes/blocks/hard_block.tscn" id="8_u5l4h"]
+[ext_resource type="PackedScene" uid="uid://bftmiblv68d65" path="res://scenes/blocks/big_point_block.tscn" id="9_c8c0s"]
+[ext_resource type="PackedScene" uid="uid://bui556vpwvdrw" path="res://scenes/blocks/point_block.tscn" id="10_gcda2"]
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_i375s"]
 resource_name = "Collectibles"
@@ -119,6 +121,8 @@ resource_name = "Blocks"
 scenes/1/scene = ExtResource("6_5mr6p")
 scenes/2/scene = ExtResource("7_l6bti")
 scenes/3/scene = ExtResource("8_u5l4h")
+scenes/4/scene = ExtResource("9_c8c0s")
+scenes/5/scene = ExtResource("10_gcda2")
 
 [resource]
 tile_size = Vector2i(64, 64)
