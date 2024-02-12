@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bae7he260q4fo"]
 
-[ext_resource type="Script" path="res://scripts/mobile_controls.gd" id="1_3fydm"]
+[ext_resource type="Script" path="res://scripts/ui/mobile_controls.gd" id="1_3fydm"]
 [ext_resource type="Texture2D" uid="uid://d01loplsx2qny" path="res://images/mobile/arrow.png" id="1_il3a1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uu5yh"]
