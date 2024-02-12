@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://gxy6qbn3l6pc"]
+[gd_scene load_steps=6 format=3 uid="uid://gxy6qbn3l6pc"]
 
 [ext_resource type="Script" path="res://scripts/enemy/walking_enemy.gd" id="1_4td0x"]
+[ext_resource type="Script" path="res://scripts/health.gd" id="2_je4mk"]
 [ext_resource type="Texture2D" uid="uid://by658g5iu5wdr" path="res://icon.svg" id="2_p2c2y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_15plb"]
@@ -17,15 +18,19 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nlmkh"]
 size = Vector2(128, 128)
 
-[node name="WalkingEnemy" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "player_detection", "collision")]
+[node name="WalkingEnemy" type="CharacterBody2D" node_paths=PackedStringArray("health", "sprite", "player_detection", "collision")]
 collision_layer = 4
 floor_constant_speed = true
 floor_max_angle = 1.55334
 floor_snap_length = 64.0
 script = ExtResource("1_4td0x")
+health = NodePath("Health")
 sprite = NodePath("AnimatedSprite2D")
 player_detection = NodePath("Area2D")
 collision = NodePath("CollisionShape2D")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_je4mk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_15plb")

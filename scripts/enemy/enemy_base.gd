@@ -1,7 +1,7 @@
 class_name Enemy
 extends CharacterBody2D
 
-@export var health = 1.0
+@export var health : Health
 @export var stun_time = 5
 @export var grabbable = true
 @export var gets_scared = true
@@ -39,7 +39,7 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	elif(use_friction): velocity.x = velocity.x * 0.9
 	sprite.flip_h = true if direction > 0 else false
-	if(health > 0 && !stunned): walk_process(delta)
+	if(health.get_health() > 0 && !stunned): walk_process(delta)
 	physics_process(delta)
 	move_and_slide()
 
@@ -52,13 +52,13 @@ func _on_player_collision(player : Node2D):
 			player.add_combo(combo_amount)
 			combo_amount = combo_amount * 0.5
 		elif(player.get_enemy_collision_mode() == 2 && damage(player, player.get_collision_damage())):
-			health -= player.get_collision_damage()
+			health.damage(player.get_collision_damage())
 			velocity = Vector2(player.velocity.x, player.velocity.abs().x * -0.5)
 			if(counts_toward_combo):
 				player.increment_combo()
 			else:
 				player.add_combo(100)
-			if(health <= 0):
+			if(health.get_health() <= 0):
 				collision.visible = false
 				collision_mask = 0
 #		else: print(player.get_enemy_collision_mode())
