@@ -1,9 +1,10 @@
-[gd_scene load_steps=30 format=3 uid="uid://bmqtlr0pqr58i"]
+[gd_scene load_steps=31 format=3 uid="uid://bmqtlr0pqr58i"]
 
 [ext_resource type="Script" path="res://scripts/player/orange/player_orange.gd" id="1_iekmm"]
 [ext_resource type="Texture2D" uid="uid://b0f81vevbiws8" path="res://images/creatures/shared/tauntbg.png" id="2_0wekc"]
 [ext_resource type="PackedScene" uid="uid://vlkkktl0o4c2" path="res://scenes/ui/shared_ui.tscn" id="2_c3rmk"]
 [ext_resource type="SpriteFrames" uid="uid://c44jmvm73tp3d" path="res://images/creatures/orange/orange.tres" id="2_cftru"]
+[ext_resource type="Script" path="res://scripts/node_orange/hue_shift.gd" id="2_qeobx"]
 [ext_resource type="PackedScene" uid="uid://sn7svoyrlkwt" path="res://scenes/camera.tscn" id="3_uxrjx"]
 [ext_resource type="Script" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="3_xen2r"]
 [ext_resource type="Script" path="res://scripts/player/orange/states/ground.gd" id="4_nbiu2"]
@@ -67,6 +68,10 @@ sprite = NodePath("AnimatedSprite2D")
 afterimage_container = NodePath("AfterImageContainer")
 camera = NodePath("Camera")
 UI = NodePath("UI")
+
+[node name="HueShift" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("2_qeobx")
+target = NodePath("../AnimatedSprite2D")
 
 [node name="UI" parent="." instance=ExtResource("2_c3rmk")]
 

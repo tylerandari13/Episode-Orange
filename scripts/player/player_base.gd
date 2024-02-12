@@ -61,6 +61,12 @@ func _physics_process(delta):
 	physics_process(delta)
 	move_and_slide()
 
+var debughue = 0
+func _input(event):
+	if(event.is_pressed() && event.as_text() == "F11" && has_node("HueShift")):
+		debughue += 0.1
+		$HueShift.set_hue(debughue)
+
 #func _on_state_changed(new_state : StateMachineState): # does nothing yet, probably will in the future tho
 #	on_state_changed(new_state)
 
