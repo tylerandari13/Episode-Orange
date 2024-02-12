@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1sm131oodc8g"]
+[gd_scene load_steps=8 format=3 uid="uid://d1sm131oodc8g"]
 
 [ext_resource type="Shader" path="res://shader/hue_shift.gdshader" id="1_6y4rr"]
-[ext_resource type="Script" path="res://scripts/collectibles/collectible_randomhue.gd" id="1_ccqa3"]
 [ext_resource type="SpriteFrames" uid="uid://cryj71um7cvxx" path="res://images/objects/colllectibles/ticket_small/ticket_small.tres" id="2_cw6sp"]
+[ext_resource type="Script" path="res://scripts/collectibles/collectible_base.gd" id="2_snfql"]
+[ext_resource type="Script" path="res://scripts/node_orange/hue_shift.gd" id="3_ntt2t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tn4ry"]
 shader = ExtResource("1_6y4rr")
@@ -19,11 +20,16 @@ radius = 32.0
 material = SubResource("ShaderMaterial_tn4ry")
 collision_layer = 8
 collision_mask = 2
-script = ExtResource("1_ccqa3")
+script = ExtResource("2_snfql")
 worth = 10
 sprite = NodePath("AnimatedSprite2D")
 amount_text = NodePath("Label")
 collision = NodePath("CollisionShape2D")
+
+[node name="HueShift" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_ntt2t")
+target = NodePath("../AnimatedSprite2D")
+random = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_1uywm")
