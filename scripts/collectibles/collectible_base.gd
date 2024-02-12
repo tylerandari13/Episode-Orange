@@ -15,7 +15,6 @@ func _ready():
 	add_to_group("collectibles")
 	if(respawn_during_escape): add_to_group("escape_spawn")
 	body_entered.connect(try_collect)
-	ready()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -43,6 +42,5 @@ func try_respawn():
 	if(collision != null): collision.visible = true
 	_on_respawn()
 
-func ready(): pass
 func _on_collected(player): pass
 func _on_respawn(): pass
