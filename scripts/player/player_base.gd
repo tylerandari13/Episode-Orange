@@ -63,12 +63,12 @@ func _physics_process(delta):
 
 	if(raycast.is_colliding()): for i in range(raycast.get_collision_count()):
 		var collider = raycast.get_collider(i)
-		if(collider is Block):
-			collider.touch(self)
-		if(collider is Enemy):
-			collider._on_player_collision(self)
 		if(collider is Collectible):
 			collider.try_collect(self)
+		elif(collider is Block):
+			collider.touch(self)
+		elif(collider is Enemy):
+			collider._on_player_collision(self)
 
 	move_and_slide()
 
