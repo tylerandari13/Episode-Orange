@@ -22,7 +22,7 @@ func on_process(delta):
 				change_state("none/machrun")
 			else:
 				change_state("none/ground")
-	if(Input.is_action_pressed("jump")):
+	if(Input.is_action_just_pressed("jump")):
 		change_state("none/longjump")
 		#owner.mach_speed = owner.walk_speed
 	if(owner.is_on_wall_only()):
