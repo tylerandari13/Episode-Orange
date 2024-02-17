@@ -9,14 +9,16 @@ func on_enter():
 
 # Called every frame when this state is active.
 func on_process(delta):
-	pass
+	block_damage = owner.get_mach_speed(owner.velocity.y)
 
 
 # Called every physics frame when this state is active.
 func on_physics_process(delta):
 	owner.velocity.y += owner.gravity * delta # this on top of the "use gravity" doubles it
+
 	if(owner.is_on_floor()):
 		change_state("none/bonk")
+
 	if(Input.is_action_pressed("left") && owner.velocity.x > owner.walk_speed * -0.5): owner.velocity.x -= move_velocity
 	if(Input.is_action_pressed("right") && owner.velocity.x < owner.walk_speed * 0.5): owner.velocity.x += move_velocity
 

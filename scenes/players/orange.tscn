@@ -161,6 +161,7 @@ can_grab = false
 ducking = true
 use_friction = false
 can_taunt = false
+block_damage = 1
 enemy_collision_mode = 1
 
 [node name="dive" type="Node" parent="StateMachine/none"]
@@ -168,6 +169,7 @@ script = ExtResource("14_gqkpl")
 can_grab = false
 ducking = true
 use_friction = false
+block_damage = 1
 enemy_collision_mode = 1
 
 [node name="longjump" type="Node" parent="StateMachine/none"]
@@ -176,6 +178,7 @@ can_wallrun = true
 can_dive = true
 use_friction = false
 has_afterimage = true
+block_damage = 1
 enemy_collision_mode = 1
 
 [node name="uppercut" type="Node" parent="StateMachine/none"]
@@ -185,6 +188,7 @@ use_friction = false
 decide_direction_based_on_velocity = false
 has_afterimage = true
 can_taunt = false
+block_damage = 2
 enemy_collision_mode = 2
 
 [node name="machrun" type="Node" parent="StateMachine/none"]
@@ -225,6 +229,7 @@ use_friction = false
 decide_direction_based_on_velocity = false
 has_afterimage = true
 can_taunt = false
+block_damage = 2
 enemy_collision_mode = 2
 
 [node name="bonk" type="Node" parent="StateMachine/none"]
@@ -244,6 +249,7 @@ use_friction = false
 decide_direction_based_on_velocity = false
 has_afterimage = true
 can_taunt = false
+block_damage = 1
 enemy_collision_mode = 1
 
 [node name="bodyslam" type="Node" parent="StateMachine/none"]

@@ -42,7 +42,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _on_player_collision(player : Node2D):
-	if(player is Player && player._enemy_touched(self)):
+	if(player is Player && player._enemy_touched(self) && health.get_health() > 0):
 		if(player.get_enemy_collision_mode() == 1 && stun(player)):
 			current_time = 0
 			stunned = true
@@ -56,10 +56,9 @@ func _on_player_collision(player : Node2D):
 				player.increment_combo()
 			else:
 				player.add_combo(100)
-			if(health.get_health() <= 0):
-				collision.visible = false
-				collision_mask = 0
-#		else: print(player.get_enemy_collision_mode())
+	elif(health.get_health() <= 0):
+		collision.visible = false
+		collision_mask = 0
 
 func disable():
 	visible = false
