@@ -29,7 +29,8 @@ func physics_process(delta):
 	else:
 		state_machine.change_state("none/dive")
 	
-	if(is_on_wall_only() && state_machine.current_state.can_wallrun): state_machine.change_state("none/wallrun")
+	if(state_machine.current_state.can_wallrun && is_on_wall_only() && get_wall_normal().x != direction):
+		state_machine.change_state("none/wallrun")
 
 func get_mach_speed(speed = mach_speed):
 	if(speed < mach3 / 2): return 1

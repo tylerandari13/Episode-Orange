@@ -8,28 +8,21 @@ func on_enter():
 # Called every frame when this state is active.
 func on_process(delta):
 	if(Input.is_action_pressed("run")):
-		owner.velocity.x = owner.direction
 		if(owner.is_on_wall()):
-			owner.velocity.y = owner.mach_speed * -1
-			owner.mach_speed += Global.apply_delta_time(owner.acceleration, delta)
-		elif(owner.direction != owner.get_wall_normal().x):
-			owner.velocity.y = -10
+			owner.mach_speed += owner.acceleration
+			owner.velocity = Vector2(owner.direction, owner.mach_speed * -1)
+		else:
+			owner.velocity = Vector2(owner.mach_speed * owner.direction, 0)
 			change_state("none/machrun")
+
+		if(Input.is_action_just_pressed("jump")):
+			owner.direction = owner.get_wall_normal().x
+			change_state("none/longjump")
+			owner.velocity = Vector2(owner.walk_speed * owner.direction, owner.jump_velocity)
+			owner.mach_speed = owner.mach3 * 0.5
 	else:
-		owner.velocity.y = -10
+		owner.velocity = Vector2()
 		change_state("none/air")
-
-	if(Input.is_action_pressed("jump")):
-		#owner.direction = owner.direction * -1
-		owner.direction = owner.get_wall_normal().x
-		owner.velocity.x = owner.walk_speed * owner.direction
-		change_state("none/longjump")
-		owner.set_mach_speed(2)
-		owner.jump()
-
-	if(owner.is_on_ceiling()):
-		owner.sprite.play("roofbonk")
-		change_state("none/bonk")
 
 
 # Called every physics frame when this state is active.
