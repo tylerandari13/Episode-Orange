@@ -16,10 +16,10 @@ shader_parameter/Shift_Hue = null
 [sub_resource type="CircleShape2D" id="CircleShape2D_i1w1g"]
 radius = 32.0
 
-[node name="CollectibleSmall" type="Area2D" node_paths=PackedStringArray("sprite", "amount_text", "collision")]
+[node name="CollectibleSmall" type="StaticBody2D" node_paths=PackedStringArray("sprite", "amount_text", "collision")]
 material = SubResource("ShaderMaterial_tn4ry")
 collision_layer = 8
-collision_mask = 2
+collision_mask = 0
 script = ExtResource("2_snfql")
 worth = 10
 sprite = NodePath("AnimatedSprite2D")

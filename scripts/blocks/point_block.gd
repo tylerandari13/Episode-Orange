@@ -14,5 +14,6 @@ func _process(delta): if(broken): point_text.position.y -= 5
 
 func _on_touched(player : Player) -> bool:
 	player.add_points(worth)
+	player.add_combo(worth)
 	point_text.visible = true
 	return true

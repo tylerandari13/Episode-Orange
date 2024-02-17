@@ -1,5 +1,5 @@
 class_name Collectible
-extends Area2D
+extends StaticBody2D
 
 @export_category("Collectible")
 @export var worth = 0
@@ -14,7 +14,7 @@ var collected = false
 func _ready():
 	add_to_group("collectibles")
 	if(respawn_during_escape): add_to_group("escape_spawn")
-	body_entered.connect(try_collect)
+	#body_entered.connect(try_collect)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,6 +33,8 @@ func try_collect(player):
 			amount_text.position = Vector2()
 			amount_text.visible = true
 			amount_text.text = str(worth)
+		if(!respawn_during_escape):
+			queue_free()
 
 		_on_collected(player)
 
