@@ -243,6 +243,7 @@ enemy_collision_mode = 1
 script = ExtResource("20_c1biv")
 can_grab = false
 ducking = true
+use_friction = false
 has_afterimage = true
 can_taunt = false
 enemy_collision_mode = 2
