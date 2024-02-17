@@ -16,6 +16,7 @@ func touch(body : Node2D):
 			broken = true
 			collision_layer = 0
 			sprite.modulate.a = 0
+			await get_tree().create_timer(5).timeout
 			queue_free()
 
 func _on_touched(player : Player) -> bool: return true

@@ -14,6 +14,8 @@ extends Player
 @export var stand_collision : CollisionShape2D
 @export var duck_collision : CollisionShape2D
 @export var duck_area : Area2D
+@export var stand_cast : ShapeCast2D
+@export var duck_cast : ShapeCast2D
 
 var mach_speed = 0
 
@@ -60,6 +62,10 @@ func set_ducking(ducking):
 	duck_collision.visible = ducking
 	stand_collision.disabled = ducking
 	duck_area.visible = ducking
+
+	stand_cast.visible = !ducking
+	duck_cast.visible = ducking
+	raycast = duck_cast if ducking else stand_cast
 
 
 func can_unduck() -> bool:

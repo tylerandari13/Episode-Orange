@@ -51,7 +51,7 @@ func _process(delta):
 	#/e dance
 "
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("taunt_sprite", "stand_collision", "duck_collision", "duck_area", "state_machine", "sprite", "afterimage_container", "camera", "UI", "raycast")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("taunt_sprite", "stand_collision", "duck_collision", "duck_area", "stand_cast", "duck_cast", "state_machine", "sprite", "afterimage_container", "camera", "UI", "raycast")]
 collision_layer = 2
 floor_constant_speed = true
 floor_block_on_wall = false
@@ -62,18 +62,14 @@ taunt_sprite = NodePath("TauntSprite")
 stand_collision = NodePath("StandShape2D")
 duck_collision = NodePath("DuckShape2D")
 duck_area = NodePath("DuckDetection")
+stand_cast = NodePath("StandCast2D")
+duck_cast = NodePath("DuckCast2D")
 state_machine = NodePath("StateMachine")
 sprite = NodePath("AnimatedSprite2D")
 afterimage_container = NodePath("AfterImageContainer")
 camera = NodePath("Camera")
 UI = NodePath("UI")
-raycast = NodePath("ShapeCast")
-
-[node name="ShapeCast" type="ShapeCast2D" parent="."]
-scale = Vector2(0.9, 0.9)
-shape = SubResource("RectangleShape2D_3t3hh")
-target_position = Vector2(0, 0)
-collision_mask = 13
+raycast = NodePath("StandCast2D")
 
 [node name="HueShift" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("2_qeobx")
@@ -93,6 +89,22 @@ texture = ExtResource("2_0wekc")
 sprite_frames = ExtResource("2_cftru")
 animation = &"grabslide"
 autoplay = "default"
+
+[node name="StandCast2D" type="ShapeCast2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(0.9, 0.9)
+shape = SubResource("RectangleShape2D_3t3hh")
+target_position = Vector2(0, 0)
+collision_mask = 13
+
+[node name="DuckCast2D" type="ShapeCast2D" parent="."]
+visible = false
+modulate = Color(0, 1, 0, 1)
+position = Vector2(0, 31.75)
+scale = Vector2(0.9, 0.9)
+shape = SubResource("RectangleShape2D_m4net")
+target_position = Vector2(0, 0)
+collision_mask = 13
 
 [node name="StandShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3t3hh")

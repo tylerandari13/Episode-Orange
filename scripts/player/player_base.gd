@@ -61,7 +61,7 @@ func _physics_process(delta):
 
 	sprite.flip_h = direction < 0
 
-	for i in range(raycast.get_collision_count()):
+	if(raycast.is_colliding()): for i in range(raycast.get_collision_count()):
 		var collider = raycast.get_collider(i)
 		if(collider is Block):
 			collider.touch(self)
