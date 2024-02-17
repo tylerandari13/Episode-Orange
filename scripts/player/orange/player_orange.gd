@@ -73,5 +73,5 @@ func jump(): velocity.y = jump_velocity
 
 func taunt(): state_machine.change_state("none/taunt")
 
-func on_state_changed(new_state : StateMachineState):
+func _on_state_changed(new_state : StateMachineState):
 	set_ducking(new_state.ducking)
