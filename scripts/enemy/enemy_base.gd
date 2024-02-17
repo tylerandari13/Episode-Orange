@@ -11,7 +11,6 @@ extends CharacterBody2D
 @export var use_friction = true
 @export_group("Sprites and Player Collision")
 @export var sprite : AnimatedSprite2D
-@export var player_detection : Area2D
 @export var collision : CollisionShape2D
 
 var direction = -1
@@ -25,7 +24,6 @@ var combo_amount = 100
 
 func _ready():
 	add_to_group("enemies")
-	player_detection.body_entered.connect(_on_player_collision)
 
 func _process(delta):
 	if(stunned):

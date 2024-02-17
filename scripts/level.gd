@@ -10,6 +10,7 @@ var room_cache = {}
 #var collectibles = []
 var player : Player
 var backgrounds = {}
+var spawn
 
 @onready var set_s_rank = is_nan(s_rank_score)
 @onready var set_secrets = is_nan(secrets)
@@ -34,12 +35,13 @@ func add_collectible(collectible):
 	#collectibles.append(collectible)
 
 func add_s_rank_score(score): if(set_s_rank): s_rank_score += score
-func add_secret(inc = 1): if(set_secrets):
-	secrets += inc
-	print(secrets)
+func add_secret(inc = 1): if(set_secrets): secrets += inc
 
 func set_player(_player : Player):
 	player = _player
+
+func set_spawn(spawnpoint):
+	spawn = spawnpoint
 
 func add_background(room_name, background):
 	if(typeof(room_name) == TYPE_ARRAY):

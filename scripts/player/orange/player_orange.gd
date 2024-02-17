@@ -17,7 +17,8 @@ extends Player
 
 var mach_speed = 0
 
-func physics_process(delta):
+func _physics_process(delta):
+	super(delta)
 	if(Input.is_action_just_pressed("grab") && state_machine.current_state.can_grab):
 		if(Input.is_action_pressed("superjump") || Input.is_action_pressed("up")):
 			state_machine.change_state("none/uppercut")

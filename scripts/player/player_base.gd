@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var afterimage_container : Node2D
 @export var camera : Camera2D
 @export var UI : CanvasLayer
+@export var raycast : ShapeCast2D
 @export var afterimage_colors = [
 	Color(1, 0, 0, 0.5),
 	Color(0, 1, 0, 0.5)
@@ -24,7 +25,7 @@ var secrets = {}
 var respawn_pos : Vector2
 
 func _ready():
-	state_machine.state_changed.connect(on_state_changed)
+	state_machine.state_changed.connect(_on_state_changed)
 	if(owner is Level): owner.set_player(self)
 
 func _process(delta):
@@ -47,6 +48,8 @@ func _process(delta):
 	else:
 		end_combo()
 
+	raycast.target_position = velocity * 0.02
+
 func _physics_process(delta):
 	if(!is_on_floor() && use_gravity()): velocity.y += gravity * delta
 	if(use_friction()): velocity.x = velocity.x * 0.7
@@ -58,7 +61,13 @@ func _physics_process(delta):
 
 	sprite.flip_h = direction < 0
 
-	physics_process(delta)
+	for i in range(raycast.get_collision_count()):
+		var collider = raycast.get_collider(i)
+		if(collider is Block):
+			collider.touch(self)
+		if(collider is Enemy):
+			collider._on_player_collision(self)
+
 	move_and_slide()
 
 var debughue = 0
@@ -66,9 +75,6 @@ func _input(event):
 	if(event.is_pressed() && event.as_text() == "F11" && has_node("HueShift")):
 		debughue += 0.1
 		$HueShift.set_hue(debughue)
-
-#func _on_state_changed(new_state : StateMachineState): # does nothing yet, probably will in the future tho
-#	on_state_changed(new_state)
 
 # combo sillies
 func increment_combo(inc = 1):
@@ -157,10 +163,7 @@ func get_collision_damage() -> float: return state_machine.current_state.enemy_d
 func jump(): pass
 func taunt(): pass
 
-# please use instead of the ones with an underscore
-func physics_process(delta): pass
-func on_state_changed(new_state : StateMachineState): pass
-
 # player specific overwriteable functions
 func _on_transformation(transformation : String): pass
 func _enemy_touched(enemy) -> bool: return true
+func _on_state_changed(new_state : StateMachineState): pass

@@ -18,7 +18,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nlmkh"]
 size = Vector2(128, 128)
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("health", "sprite", "player_detection", "collision")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("health", "sprite", "collision")]
 collision_layer = 4
 floor_constant_speed = true
 floor_max_angle = 1.55334
@@ -26,7 +26,6 @@ floor_snap_length = 64.0
 script = ExtResource("1_uop1j")
 health = NodePath("Health")
 sprite = NodePath("AnimatedSprite2D")
-player_detection = NodePath("Area2D")
 collision = NodePath("CollisionShape2D")
 
 [node name="Health" type="Node" parent="."]
@@ -37,11 +36,3 @@ sprite_frames = SubResource("SpriteFrames_fqary")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_nlmkh")
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_nlmkh")
-debug_color = Color(0.909804, 0, 0.733333, 0)

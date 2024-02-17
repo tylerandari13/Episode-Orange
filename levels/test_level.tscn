@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dmgv3qnfkrqf0"]
+[gd_scene load_steps=16 format=3 uid="uid://dmgv3qnfkrqf0"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_yu40s"]
+[ext_resource type="Script" path="res://scripts/playerspawn.gd" id="2_rg4vq"]
 [ext_resource type="TileSet" uid="uid://xj1lvlrwbnes" path="res://tiles/collision.tres" id="2_uoop1"]
 [ext_resource type="Texture2D" uid="uid://xm3urjpc6qho" path="res://images/backgrounds/OrngMountains.png" id="3_2lirr"]
 [ext_resource type="PackedScene" uid="uid://bmqtlr0pqr58i" path="res://scenes/players/orange.tscn" id="3_h404e"]
@@ -35,6 +36,10 @@ func _ready():
 script = ExtResource("1_yu40s")
 s_rank_score = nan
 secrets = nan
+
+[node name="Spawn" type="Marker2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("2_rg4vq")
 
 [node name="Rooms" type="Node2D" parent="."]
 
