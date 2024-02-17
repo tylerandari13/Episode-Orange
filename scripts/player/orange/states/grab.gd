@@ -2,13 +2,13 @@ extends OrangeState
 
 var grab_time = 0.7
 var cur_time
-var the_velocity
 
 # Called when the state machine enters this state.
 func on_enter():
 	cur_time = 0
-	the_velocity = owner.grab_speed if abs(owner.velocity.x) < owner.grab_speed else owner.velocity.x * owner.direction
+	var the_velocity = owner.grab_speed if abs(owner.velocity.x) < owner.grab_speed else owner.velocity.x * owner.direction
 	owner.velocity.x = the_velocity * owner.direction
+	owner.mach_speed = the_velocity
 	owner.sprite.play("grab")
 
 
@@ -18,7 +18,6 @@ func on_process(delta):
 	if(owner.is_on_floor()):
 		if(cur_time >= grab_time):
 			if(Input.is_action_pressed("run")):
-				owner.mach_speed = the_velocity
 				change_state("none/machrun")
 			else:
 				change_state("none/ground")
