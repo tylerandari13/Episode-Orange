@@ -1,16 +1,19 @@
 class_name Room
 extends Area2D
 
-@export var boundaries : CollisionShape2D
 @export var respawn_if_fall = false
 @export_group("Secret Area")
 @export var is_secret = false
 
 var enemies = []
+var boundaries : CollisionShape2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	add_to_group("rooms")
+	for child in get_children():
+		if(child is CollisionShape2D):
+			boundaries = child
 	body_entered.connect(_body_entered)
 	body_exited.connect(_body_exited)
 	boundaries.modulate.a = 0
