@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://csawwvm5js4qs"]
 
-[ext_resource type="Shader" path="res://shader/hue_shift.gdshader" id="2_5dncf"]
+[ext_resource type="Shader" path="res://shaders/hue_shift.gdshader" id="2_5dncf"]
 [ext_resource type="Script" path="res://scripts/collectibles/collectible_base.gd" id="2_8cchw"]
 [ext_resource type="SpriteFrames" uid="uid://cd47x0g5n8cf3" path="res://images/objects/colllectibles/ticket_big/ticket_big.tres" id="2_l4v0v"]
 [ext_resource type="Script" path="res://scripts/node_orange/hue_shift.gd" id="4_ss5dp"]
