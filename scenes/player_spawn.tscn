@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgcu6i317p8r3"]
+
+[ext_resource type="Texture2D" uid="uid://4owiu2xmfh2p" path="res://images/creatures/orange/stand/frame0000.png" id="1_5ib7r"]
+[ext_resource type="Script" path="res://scripts/player_spawn.gd" id="1_ldagx"]
+
+[node name="PlayerSpawn" type="Marker2D"]
+script = ExtResource("1_ldagx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.254902)
+texture = ExtResource("1_5ib7r")
