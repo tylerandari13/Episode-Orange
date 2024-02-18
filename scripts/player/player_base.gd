@@ -74,7 +74,7 @@ func _physics_process(delta):
 
 var debughue = 0
 func _input(event):
-	if(event.is_pressed() && event.as_text() == "F11" && has_node("HueShift")):
+	if(event.is_action_pressed("special") && has_node("HueShift")):
 		debughue += 0.1
 		$HueShift.set_hue(debughue)
 
