@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://xj1lvlrwbnes" path="res://tiles/collision.tres" id="2_uoop1"]
 [ext_resource type="Texture2D" uid="uid://xm3urjpc6qho" path="res://images/backgrounds/OrngMountains.png" id="3_2lirr"]
 [ext_resource type="TileSet" uid="uid://dot5jlx831nds" path="res://tiles/test_level.tres" id="3_thgdx"]
-[ext_resource type="PackedScene" uid="uid://d0wrstg7am48y" path="res://scenes/room.tscn" id="5_7ac15"]
+[ext_resource type="Script" path="res://scripts/room.gd" id="3_wvo4p"]
 [ext_resource type="PackedScene" uid="uid://brel6o0icl6nn" path="res://scenes/secret.tscn" id="6_h8yq5"]
 [ext_resource type="Script" path="res://scripts/room_based_background.gd" id="6_iuq66"]
 [ext_resource type="Texture2D" uid="uid://dtlyr30bxh73m" path="res://images/backgrounds/secretarea.png" id="8_y7smr"]
@@ -44,35 +44,50 @@ position = Vector2(576, 324)
 
 [node name="Rooms" type="Node2D" parent="."]
 
-[node name="main" parent="Rooms" instance=ExtResource("5_7ac15")]
+[node name="main" type="Area2D" parent="Rooms"]
+collision_layer = 16
+collision_mask = 14
+script = ExtResource("3_wvo4p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/main"]
 position = Vector2(-12678.5, -579)
 shape = SubResource("RectangleShape2D_m4xlv")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="upper" parent="Rooms" instance=ExtResource("5_7ac15")]
+[node name="upper" type="Area2D" parent="Rooms"]
+collision_layer = 16
+collision_mask = 14
+script = ExtResource("3_wvo4p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/upper"]
 position = Vector2(4481.5, -2264.5)
 shape = SubResource("RectangleShape2D_qaww0")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="lower" parent="Rooms" instance=ExtResource("5_7ac15")]
+[node name="lower" type="Area2D" parent="Rooms"]
+collision_layer = 16
+collision_mask = 14
+script = ExtResource("3_wvo4p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/lower"]
 position = Vector2(4475.5, 208.5)
 shape = SubResource("RectangleShape2D_xj2h6")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="smallroom" parent="Rooms" instance=ExtResource("5_7ac15")]
+[node name="smallroom" type="Area2D" parent="Rooms"]
+collision_layer = 16
+collision_mask = 14
+script = ExtResource("3_wvo4p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/smallroom"]
 position = Vector2(2431.5, -766)
 shape = SubResource("RectangleShape2D_p87sq")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
-[node name="secret1" parent="Rooms" instance=ExtResource("5_7ac15")]
+[node name="secret1" type="Area2D" parent="Rooms"]
+collision_layer = 16
+collision_mask = 14
+script = ExtResource("3_wvo4p")
 respawn_if_fall = true
 is_secret = true
 
