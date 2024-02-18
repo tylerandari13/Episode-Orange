@@ -20,6 +20,10 @@ func on_process(delta):
 			change_state("none/longjump")
 			owner.velocity = Vector2(owner.walk_speed * owner.direction, owner.jump_velocity)
 			owner.mach_speed = owner.mach3 * 0.5
+
+		if(owner.is_on_ceiling()):
+			owner.sprite.play("roofbonk")
+			change_state("none/bonk")
 	else:
 		owner.velocity = Vector2()
 		change_state("none/air")
