@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://xj1lvlrwbnes" path="res://tiles/collision.tres" id="2_uoop1"]
 [ext_resource type="Texture2D" uid="uid://xm3urjpc6qho" path="res://images/backgrounds/OrngMountains.png" id="3_2lirr"]
 [ext_resource type="TileSet" uid="uid://dot5jlx831nds" path="res://tiles/test_level.tres" id="3_thgdx"]
-[ext_resource type="PackedScene" path="res://scenes/room.tscn" id="5_7ac15"]
+[ext_resource type="PackedScene" uid="uid://d0wrstg7am48y" path="res://scenes/room.tscn" id="5_7ac15"]
 [ext_resource type="PackedScene" uid="uid://brel6o0icl6nn" path="res://scenes/secret.tscn" id="6_h8yq5"]
 [ext_resource type="Script" path="res://scripts/room_based_background.gd" id="6_iuq66"]
 [ext_resource type="Texture2D" uid="uid://dtlyr30bxh73m" path="res://images/backgrounds/secretarea.png" id="8_y7smr"]
