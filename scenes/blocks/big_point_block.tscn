@@ -1,21 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bftmiblv68d65"]
+[gd_scene load_steps=5 format=3 uid="uid://bftmiblv68d65"]
 
 [ext_resource type="Script" path="res://scripts/blocks/point_block.gd" id="1_4jupo"]
-[ext_resource type="Texture2D" uid="uid://by658g5iu5wdr" path="res://icon.svg" id="2_xl6aa"]
+[ext_resource type="Texture2D" uid="uid://bd2xtttrgc2v" path="res://images/objects/blocks/block_big.png" id="2_2qocp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hfnij"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_xl6aa")
+"texture": ExtResource("2_2qocp")
 }],
 "loop": true,
 "name": &"default",
 "speed": 5.0
 }]
-
-[sub_resource type="LabelSettings" id="LabelSettings_bxqf4"]
-font_size = 64
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74o70"]
 size = Vector2(128, 128)
@@ -29,23 +26,7 @@ block_damage = 1
 sprite = NodePath("AnimatedSprite2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-self_modulate = Color(100, 100, 0, 1)
 sprite_frames = SubResource("SpriteFrames_hfnij")
-
-[node name="Label" type="Label" parent="AnimatedSprite2D"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -64.0
-offset_top = -64.0
-offset_right = -64.0
-offset_bottom = -64.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "100"
-label_settings = SubResource("LabelSettings_bxqf4")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_74o70")
