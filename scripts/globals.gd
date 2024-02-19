@@ -4,7 +4,7 @@ var hue_shaders = {}
 var hue_shader_placeholder = preload("res://shaders/hue_shift.gdshader")
 
 # do not change the 60 lmao
-func apply_delta_time(start, delta): return (start * delta) * 60
+func apply_delta_time(start, delta): return (start * 60) * delta
 
 func hue_shader(hue):
 	hue = (int(hue * 10) % 10) * 0.1
