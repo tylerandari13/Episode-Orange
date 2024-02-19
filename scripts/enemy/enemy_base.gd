@@ -38,11 +38,10 @@ func _physics_process(delta):
 	elif(use_friction): velocity.x = velocity.x * 0.9
 	sprite.flip_h = true if direction > 0 else false
 	if(health.get_health() > 0 && !stunned): walk_process(delta)
-	physics_process(delta)
 	move_and_slide()
 
 func _on_player_collision(player : Node2D):
-	if(player is Player && player._enemy_touched(self) && health.get_health() > 0):
+	if(player is Player && health.get_health() > 0 && player._enemy_touched(self)):
 		if(player.get_enemy_collision_mode() == 1 && stun(player)):
 			current_time = 0
 			stunned = true
@@ -69,7 +68,6 @@ func enable():
 	set_process_mode(Node.PROCESS_MODE_INHERIT)
 func set_room(_room): room = _room
 
-func physics_process(delta): pass
 func walk_process(delta): pass # for walking enemies, dont touch
 
 func stun(player): return true

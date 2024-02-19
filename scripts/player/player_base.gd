@@ -78,6 +78,10 @@ func _input(event):
 		debughue += 0.1
 		$HueShift.set_hue(debughue)
 
+func _enemy_touched(enemy) -> bool:
+	camera.bump()
+	return true
+
 # combo sillies
 func increment_combo(inc = 1):
 	combo_number += inc
@@ -167,5 +171,4 @@ func taunt(): pass
 
 # player specific overwriteable functions
 func _on_transformation(transformation : String): pass
-func _enemy_touched(enemy) -> bool: return true
 func _on_state_changed(new_state : StateMachineState): pass

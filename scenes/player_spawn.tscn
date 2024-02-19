@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scripts/player_spawn.gd" id="1_ldagx"]
 
 [node name="PlayerSpawn" type="Marker2D"]
+gizmo_extents = 64.0
 script = ExtResource("1_ldagx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
