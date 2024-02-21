@@ -1,4 +1,4 @@
-[gd_scene load_steps=266 format=3 uid="uid://dmgv3qnfkrqf0"]
+[gd_scene load_steps=270 format=3 uid="uid://dmgv3qnfkrqf0"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_yu40s"]
 [ext_resource type="PackedScene" uid="uid://bgcu6i317p8r3" path="res://scenes/player_spawn.tscn" id="2_ia8ci"]
@@ -611,6 +611,32 @@ point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_lq4im")
 
+[sub_resource type="Resource" id="Resource_vs347"]
+script = ExtResource("9_rndgn")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_y6cn4"]
+script = ExtResource("10_njtks")
+position = Vector2(3904, -1152)
+point_in = Vector2(0, 0)
+point_out = Vector2(64, -64)
+properties = SubResource("Resource_vs347")
+
+[sub_resource type="Resource" id="Resource_ihdmr"]
+script = ExtResource("9_rndgn")
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id="Resource_ym1xt"]
+script = ExtResource("10_njtks")
+position = Vector2(4160, -1152)
+point_in = Vector2(-64, -64)
+point_out = Vector2(0, 0)
+properties = SubResource("Resource_ihdmr")
+
 [sub_resource type="Resource" id="Resource_u87c5"]
 script = ExtResource("11_r5nu3")
 _points = {
@@ -657,13 +683,15 @@ _points = {
 41: SubResource("Resource_gw3fe"),
 42: SubResource("Resource_iry4j"),
 43: SubResource("Resource_oeaa8"),
-46: SubResource("Resource_8j0ir")
+46: SubResource("Resource_8j0ir"),
+48: SubResource("Resource_y6cn4"),
+49: SubResource("Resource_ym1xt")
 }
-_point_order = Array[int]([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 46, 43, 36, 37, 38, 39, 40, 41, 42])
+_point_order = Array[int]([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 48, 49, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 46, 43, 36, 37, 38, 39, 40, 41, 42])
 _constraints = {
 Array[int]([0, 42]): 15
 }
-_next_key = 48
+_next_key = 50
 _material_overrides = {}
 
 [sub_resource type="Resource" id="Resource_6or1h"]
@@ -1876,7 +1904,7 @@ region_rect = Rect2(0, 0, 5000, 5000)
 
 [node name="Ground" type="CollisionPolygon2D" parent="Collision"]
 visible = false
-polygon = PackedVector2Array(-27456.1, 447.896, 5951.9, 447.896, 5951.9, -319.896, 2239.9, -319.896, 2239.9, -640.104, 2751.9, -640.104, 2751.9, -831.896, 2176.1, -831.896, 2176.1, -63.8965, 1919.9, -63.8965, 1919.9, -1152.1, 6591.9, -1152.1, 6591.9, -2431.9, 4671.9, -2431.9, 4671.9, -2560.1, 5695.9, -2560.1, 5695.9, -3136.1, 6719.9, -3136.1, 6719.9, -3391.9, 6400.1, -3391.9, 6400.1, -3327.9, 5504.1, -3327.9, 5504.1, -2623.9, 4799.9, -2623.9, 4799.9, -3391.9, 3264.1, -3391.9, 3264.1, -2752.1, 3840.1, -2752.1, 3840.1, -2623.9, 3264.1, -2623.9, 3264.1, -2048.1, 3968.1, -2048.1, 3968.1, -1919.9, -27327.9, -1919.9, -27327.9, 384.104, -27456.1, 384.104, -27456, 320, -27456.1, -1984.1, 2047.9, -1984.1, 2047.9, -3712.1, 6976.1, -3712.1, 6976.1, 2368.1, -27456.1, 2368.1)
+polygon = PackedVector2Array(-27456.1, 447.896, 5951.9, 447.896, 5951.9, -319.896, 2239.9, -319.896, 2239.9, -640.104, 2751.9, -640.104, 2751.9, -831.896, 2176.1, -831.896, 2176.1, -63.8965, 1919.9, -63.8965, 1919.9, -1152.1, 3903.99, -1152.03, 3916.72, -1163.25, 3930.75, -1173, 3945.91, -1181.25, 3962, -1188, 3978.84, -1193.25, 3996.25, -1197, 4014.03, -1199.25, 4032, -1200, 4049.97, -1199.25, 4067.75, -1197, 4085.16, -1193.25, 4102, -1188, 4118.09, -1181.25, 4133.25, -1173, 4147.28, -1163.25, 4160.01, -1152.03, 6591.9, -1152.1, 6591.9, -2431.9, 4671.9, -2431.9, 4671.9, -2560.1, 5695.9, -2560.1, 5695.9, -3136.1, 6719.9, -3136.1, 6719.9, -3391.9, 6400.1, -3391.9, 6400.1, -3327.9, 5504.1, -3327.9, 5504.1, -2623.9, 4799.9, -2623.9, 4799.9, -3391.9, 3264.1, -3391.9, 3264.1, -2752.1, 3840.1, -2752.1, 3840.1, -2623.9, 3264.1, -2623.9, 3264.1, -2048.1, 3968.1, -2048.1, 3968.1, -1919.9, -27327.9, -1919.9, -27327.9, 384.104, -27456.1, 384.104, -27456, 320, -27456.1, -1984.1, 2047.9, -1984.1, 2047.9, -3712.1, 6976.1, -3712.1, 6976.1, 2368.1, -27456.1, 2368.1)
 
 [node name="Ground2" type="CollisionPolygon2D" parent="Collision"]
 visible = false
