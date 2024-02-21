@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="SS2D_Material_Shape" load_steps=18 format=3 uid="uid://pilq3pstbn8w"]
+[gd_resource type="Resource" script_class="SS2D_Material_Shape" load_steps=19 format=3 uid="uid://pilq3pstbn8w"]
 
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="1_boj3q"]
 [ext_resource type="Texture2D" uid="uid://deq4itm1wgs68" path="res://images/SmartShape2D/orang/top.png" id="2_v5osq"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="8_a3ypm"]
 [ext_resource type="Texture2D" uid="uid://duqx22gr1487y" path="res://images/SmartShape2D/orang/bottomotherside.png" id="8_m6vb0"]
 [ext_resource type="Texture2D" uid="uid://cwd6jp8mrcxn4" path="res://images/SmartShape2D/orang/bottomside.png" id="9_4ub0n"]
+[ext_resource type="Texture2D" uid="uid://dbkkfjinpwwbe" path="res://images/SmartShape2D/orang/othertopside.png" id="10_q6i5j"]
 
 [sub_resource type="Resource" id="Resource_bfdqo"]
 script = ExtResource("1_boj3q")
@@ -26,8 +27,8 @@ fit_mode = 0
 
 [sub_resource type="Resource" id="Resource_utxyq"]
 script = ExtResource("5_r8tly")
-begin = 134.0
-distance = 270.0
+begin = 0.0
+distance = 360.0
 edgeRendering = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_4ts03"]
@@ -45,8 +46,8 @@ script = ExtResource("1_boj3q")
 textures = Array[Texture2D]([ExtResource("2_v5osq")])
 textures_corner_outer = Array[Texture2D]([ExtResource("4_xk0xs")])
 textures_corner_inner = Array[Texture2D]([ExtResource("3_siqnp")])
-textures_taper_left = Array[Texture2D]([])
-textures_taper_right = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([ExtResource("10_q6i5j")])
+textures_taper_right = Array[Texture2D]([ExtResource("4_xk0xs")])
 randomize_texture = false
 use_corner_texture = true
 use_taper_texture = true
