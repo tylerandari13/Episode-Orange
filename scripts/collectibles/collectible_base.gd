@@ -33,7 +33,7 @@ func try_collect(player):
 			amount_text.position = Vector2()
 			amount_text.visible = true
 			amount_text.text = str(worth)
-		if(!respawn_during_escape):
+		if(!respawn_during_escape && !player.current_room.is_secret):
 			collision_layer = 0
 			await get_tree().create_timer(5).timeout
 			queue_free()
