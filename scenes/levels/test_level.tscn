@@ -1,4 +1,4 @@
-[gd_scene load_steps=269 format=3 uid="uid://dmgv3qnfkrqf0"]
+[gd_scene load_steps=272 format=3 uid="uid://dmgv3qnfkrqf0"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_yu40s"]
 [ext_resource type="PackedScene" uid="uid://bgcu6i317p8r3" path="res://scenes/player_spawn.tscn" id="2_ia8ci"]
@@ -8,9 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://brel6o0icl6nn" path="res://scenes/secret.tscn" id="6_h8yq5"]
 [ext_resource type="Script" path="res://scripts/room_based_background.gd" id="6_iuq66"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape.gd" id="8_b1s2f"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/shapes/shape_anchor.gd" id="8_m1808"]
 [ext_resource type="Texture2D" uid="uid://dtlyr30bxh73m" path="res://images/backgrounds/secretarea.png" id="8_y7smr"]
+[ext_resource type="PackedScene" uid="uid://bui556vpwvdrw" path="res://scenes/blocks/point_block.tscn" id="9_1xfxy"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/vertex_properties.gd" id="9_rndgn"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point.gd" id="10_njtks"]
+[ext_resource type="PackedScene" uid="uid://bftmiblv68d65" path="res://scenes/blocks/big_point_block.tscn" id="10_oxdxr"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/shapes/point_array.gd" id="11_r5nu3"]
 [ext_resource type="Resource" uid="uid://pilq3pstbn8w" path="res://images/SmartShape2D/orang.tres" id="12_p5ppi"]
 [ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="13_la11x"]
@@ -82,18 +85,18 @@ point_in = Vector2(0, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_1ec1c")
 
-[sub_resource type="Resource" id="Resource_r7p8u"]
+[sub_resource type="Resource" id="Resource_ba2g1"]
 script = ExtResource("9_rndgn")
-texture_idx = 0
+texture_idx = -4
 flip = false
 width = 1.0
 
 [sub_resource type="Resource" id="Resource_kd77k"]
 script = ExtResource("10_njtks")
-position = Vector2(2240, -640)
+position = Vector2(2240, -448)
 point_in = Vector2(0, 0)
-point_out = Vector2(0, 0)
-properties = SubResource("Resource_r7p8u")
+point_out = Vector2(0, -192)
+properties = SubResource("Resource_ba2g1")
 
 [sub_resource type="Resource" id="Resource_bvk3u"]
 script = ExtResource("9_rndgn")
@@ -104,7 +107,7 @@ width = 1.0
 [sub_resource type="Resource" id="Resource_0en4d"]
 script = ExtResource("10_njtks")
 position = Vector2(2752, -640)
-point_in = Vector2(0, 0)
+point_in = Vector2(-512, 0)
 point_out = Vector2(0, 0)
 properties = SubResource("Resource_bvk3u")
 
@@ -1862,7 +1865,7 @@ to_spawn = NodePath("../Secret11")
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_uoop1")
 format = 2
-layer_0/tile_data = PackedInt32Array(-1310621, 0, 65536, -1376155, 0, 65536, -1572762, 0, 65536, -1769370, 0, 65536, -1900446, 0, 65536, -2097054, 0, 65536, -2228130, 0, 65536, -2228137, 0, 65536, -2228143, 0, 65536, -2228154, 0, 65536, -2293690, 0, 65536, -2359226, 0, 65536, -2424762, 0, 65536, -3342266, 0, 65536, -3342267, 0, 65536, -3342268, 0, 65536, -3145677, 0, 65536, -2949065, 0, 65536, -2949064, 0, 65536, -2752449, 0, 65536, -2621381, 0, 65536, -2621382, 0, 65536, -2359245, 0, 65536, -2228169, 0, 65536, -2228168, 0, 65536, -2228167, 0, 65536, -2162625, 0, 65536, -1703873, 0, 131072, 327771, 0, 131072, 327769, 0, 131072, 327767, 0, 131072, -3342275, 1, 131072, -1376160, 1, 131072, -1376163, 1, 131072, -1376166, 1, 131072, 131163, 1, 131072, 131161, 1, 131072, 131159, 1, 131072, -983045, 0, 131072, -3342218, 0, 65536, -3342217, 0, 65536, -3342216, 0, 65536, -3276678, 0, 65536, -3211140, 0, 65536, -3145602, 0, 65536, -3014528, 0, 65536, -2883454, 0, 65536, -2817916, 0, 65536, -2948984, 0, 65536, -3014520, 0, 65536, -3080056, 0, 65536, -3276658, 0, 65536, -3276657, 0, 65536, -3276656, 0, 65536, -3538789, 0, 131072, -3080043, 0, 65536, -3080044, 0, 65536, -3080045, 0, 65536, -2752365, 0, 65536, -2686827, 0, 65536, -2686825, 0, 65536, 327731, 4, 65536, 327733, 4, 196608, 327730, 4, 131072, 393263, 4, 131072, 393264, 4, 131072, 393265, 4, 131072, 393266, 4, 131072, 327729, 4, 131072, 327728, 4, 131072, 327727, 4, 131072, -786391, 4, 262144, -786393, 4, 262144, -720858, 4, 327680, -720859, 4, 327680, -786395, 4, 327680, -786394, 4, 327680)
+layer_0/tile_data = PackedInt32Array(-1310621, 0, 65536, -1376155, 0, 65536, -1572762, 0, 65536, -1769370, 0, 65536, -1900446, 0, 65536, -2097054, 0, 65536, -2228130, 0, 65536, -2228137, 0, 65536, -2228143, 0, 65536, -2228154, 0, 65536, -2293690, 0, 65536, -2359226, 0, 65536, -2424762, 0, 65536, -3342266, 0, 65536, -3342267, 0, 65536, -3342268, 0, 65536, -3145677, 0, 65536, -2949065, 0, 65536, -2949064, 0, 65536, -2752449, 0, 65536, -2621381, 0, 65536, -2621382, 0, 65536, -2359245, 0, 65536, -2228169, 0, 65536, -2228168, 0, 65536, -2228167, 0, 65536, -2162625, 0, 65536, -1703873, 0, 131072, 327771, 0, 131072, 327769, 0, 131072, 327767, 0, 131072, -3342275, 1, 131072, -1376160, 1, 131072, -1376163, 1, 131072, -1376166, 1, 131072, 131163, 1, 131072, 131161, 1, 131072, 131159, 1, 131072, -983045, 0, 131072, -3342218, 0, 65536, -3342217, 0, 65536, -3342216, 0, 65536, -3276678, 0, 65536, -3211140, 0, 65536, -3145602, 0, 65536, -3014528, 0, 65536, -2883454, 0, 65536, -2817916, 0, 65536, -2948984, 0, 65536, -3014520, 0, 65536, -3080056, 0, 65536, -3276658, 0, 65536, -3276657, 0, 65536, -3276656, 0, 65536, -3538789, 0, 131072, -3080043, 0, 65536, -3080044, 0, 65536, -3080045, 0, 65536, -2752365, 0, 65536, -2686827, 0, 65536, -2686825, 0, 65536, 327731, 4, 65536, 327733, 4, 196608, 327730, 4, 131072, 393263, 4, 131072, 393264, 4, 131072, 393265, 4, 131072, 393266, 4, 131072, 327729, 4, 131072, 327728, 4, 131072, 327727, 4, 131072)
 
 [node name="Background" type="ParallaxBackground" parent="."]
 
@@ -1890,11 +1893,71 @@ texture = ExtResource("8_y7smr")
 region_enabled = true
 region_rect = Rect2(0, 0, 5000, 5000)
 
+[node name="Collectibles" type="Node2D" parent="."]
+
+[node name="SS2D_Shape_Anchor" type="Node2D" parent="Collectibles"]
+position = Vector2(2407.47, -634.225)
+rotation = -0.0799177
+script = ExtResource("8_m1808")
+shape_path = NodePath("../../Ground/Ground")
+shape_point_index = 4
+shape_point_offset = 0.689
+
+[node name="PointBlock" parent="Collectibles/SS2D_Shape_Anchor" instance=ExtResource("9_1xfxy")]
+position = Vector2(0.736083, -32.0072)
+
+[node name="PointBlock2" parent="Collectibles/SS2D_Shape_Anchor" node_paths=PackedStringArray("point_text", "sprite") instance=ExtResource("9_1xfxy")]
+position = Vector2(1.20828, -96.0132)
+point_text = NodePath("../PointBlock/Label")
+sprite = NodePath("../PointBlock/AnimatedSprite2D")
+
+[node name="SS2D_Shape_Anchor2" type="Node2D" parent="Collectibles"]
+position = Vector2(2471.93, -637.602)
+rotation = -0.0377124
+script = ExtResource("8_m1808")
+shape_path = NodePath("../../Ground/Ground")
+shape_point_index = 4
+shape_point_offset = 0.768
+
+[node name="PointBlock" parent="Collectibles/SS2D_Shape_Anchor2" node_paths=PackedStringArray("point_text", "sprite") instance=ExtResource("9_1xfxy")]
+position = Vector2(0.736083, -32.0072)
+point_text = NodePath("../../SS2D_Shape_Anchor/PointBlock/Label")
+sprite = NodePath("../../SS2D_Shape_Anchor/PointBlock/AnimatedSprite2D")
+
+[node name="PointBlock2" parent="Collectibles/SS2D_Shape_Anchor2" node_paths=PackedStringArray("point_text", "sprite") instance=ExtResource("9_1xfxy")]
+position = Vector2(1.20828, -96.0132)
+point_text = NodePath("../../SS2D_Shape_Anchor/PointBlock/Label")
+sprite = NodePath("../../SS2D_Shape_Anchor/PointBlock/AnimatedSprite2D")
+
+[node name="SS2D_Shape_Anchor3" type="Node2D" parent="Collectibles"]
+position = Vector2(2533.81, -639.073)
+rotation = -0.0188277
+script = ExtResource("8_m1808")
+shape_path = NodePath("../../Ground/Ground")
+shape_point_index = 4
+shape_point_offset = 0.831
+
+[node name="BigPointBlock" parent="Collectibles/SS2D_Shape_Anchor3" instance=ExtResource("10_oxdxr")]
+position = Vector2(32.516, -64.2172)
+
+[node name="SS2D_Shape_Anchor4" type="Node2D" parent="Collectibles"]
+position = Vector2(2659.85, -639.95)
+rotation = -0.00557167
+script = ExtResource("8_m1808")
+shape_path = NodePath("../../Ground/Ground")
+shape_point_index = 4
+shape_point_offset = 0.936
+
+[node name="BigPointBlock" parent="Collectibles/SS2D_Shape_Anchor4" node_paths=PackedStringArray("point_text", "sprite") instance=ExtResource("10_oxdxr")]
+position = Vector2(32.516, -64.2172)
+point_text = NodePath("../../SS2D_Shape_Anchor3/BigPointBlock/Label")
+sprite = NodePath("../../SS2D_Shape_Anchor3/BigPointBlock/AnimatedSprite2D")
+
 [node name="Collision" type="StaticBody2D" parent="."]
 
 [node name="Ground" type="CollisionPolygon2D" parent="Collision"]
 visible = false
-polygon = PackedVector2Array(-27456.1, 447.896, 5951.9, 447.896, 5951.9, -319.896, 2239.9, -319.896, 2239.9, -640.104, 2751.9, -640.104, 2751.9, -831.896, 2176.1, -831.896, 2176.1, -63.8965, 1919.9, -63.8965, 1919.9, -1152.1, 3903.99, -1152.03, 3916.72, -1163.25, 3930.75, -1173, 3945.91, -1181.25, 3962, -1188, 3978.84, -1193.25, 3996.25, -1197, 4014.03, -1199.25, 4032, -1200, 4049.97, -1199.25, 4067.75, -1197, 4085.16, -1193.25, 4102, -1188, 4118.09, -1181.25, 4133.25, -1173, 4147.28, -1163.25, 4160.01, -1152.03, 6591.9, -1152.1, 6591.9, -2431.9, 4671.9, -2431.9, 4671.9, -2560.1, 5695.9, -2560.1, 5695.9, -3136.1, 6719.9, -3136.1, 6719.9, -3391.9, 6400.1, -3391.9, 6400.1, -3327.9, 5504.1, -3327.9, 5504.1, -2623.9, 4799.9, -2623.9, 4799.9, -3391.9, 3264.1, -3391.9, 3264.1, -2752.1, 3840.1, -2752.1, 3840.1, -2623.9, 3264.1, -2623.9, 3264.1, -2048.1, 3968.1, -2048.1, 3968.1, -1919.9, -27327.9, -1919.9, -27327.9, 384.104, -27456.1, 384.104, -27456, 320, -27456.1, -1984.1, 2047.9, -1984.1, 2047.9, -3712.1, 6976.1, -3712.1, 6976.1, 2368.1, -27456.1, 2368.1)
+polygon = PackedVector2Array(-27456.1, 447.896, 5951.9, 447.896, 5951.9, -319.896, 2239.9, -319.896, 2240, -448, 2241, -511.375, 2243.37, -537.016, 2245.36, -548.447, 2248, -559, 2251.39, -568.709, 2255.62, -577.61, 2260.8, -585.737, 2267, -593.126, 2274.33, -599.811, 2282.87, -605.829, 2292.73, -611.214, 2304, -616.001, 2331.12, -623.923, 2365, -629.876, 2456, -637, 2751.9, -640.102, 2751.9, -831.896, 2176.1, -831.896, 2176.1, -63.8965, 1919.9, -63.8965, 1919.9, -1152.1, 3903.99, -1152.03, 3916.72, -1163.25, 3930.75, -1173, 3945.91, -1181.25, 3962, -1188, 3978.84, -1193.25, 3996.25, -1197, 4014.03, -1199.25, 4032, -1200, 4049.97, -1199.25, 4067.75, -1197, 4085.16, -1193.25, 4102, -1188, 4118.09, -1181.25, 4133.25, -1173, 4147.28, -1163.25, 4160.01, -1152.03, 6591.9, -1152.1, 6591.9, -2431.9, 4671.9, -2431.9, 4671.9, -2560.1, 5695.9, -2560.1, 5695.9, -3136.1, 6719.9, -3136.1, 6719.9, -3391.9, 6400.1, -3391.9, 6400.1, -3327.9, 5504.1, -3327.9, 5504.1, -2623.9, 4799.9, -2623.9, 4799.9, -3391.9, 3264.1, -3391.9, 3264.1, -2752.1, 3840.1, -2752.1, 3840.1, -2623.9, 3264.1, -2623.9, 3264.1, -2048.1, 3968.1, -2048.1, 3968.1, -1919.9, -27327.9, -1919.9, -27327.9, 384.104, -27456.1, 384.104, -27456, 320, -27456.1, -1984.1, 2047.9, -1984.1, 2047.9, -3712.1, 6976.1, -3712.1, 6976.1, 2368.1, -27456.1, 2368.1)
 
 [node name="Ground2" type="CollisionPolygon2D" parent="Collision"]
 visible = false
