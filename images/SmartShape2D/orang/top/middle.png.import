@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://doalrhcqvxiu"
-path="res://.godot/imported/bottomotherend.png-ae53815a0cd20c664ff1f73824b9bc29.ctex"
+uid="uid://deq4itm1wgs68"
+path="res://.godot/imported/middle.png-e06ed709478473e71ed6d67fd8370b3d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/SmartShape2D/orang/bottomotherend.png"
-dest_files=["res://.godot/imported/bottomotherend.png-ae53815a0cd20c664ff1f73824b9bc29.ctex"]
+source_file="res://images/SmartShape2D/orang/top/middle.png"
+dest_files=["res://.godot/imported/middle.png-e06ed709478473e71ed6d67fd8370b3d.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://242jaost8a6l"
-path="res://.godot/imported/bottomend.png-e2b292f1fa47778d561e95eef9a30e18.ctex"
+uid="uid://cwd6jp8mrcxn4"
+path="res://.godot/imported/corner.png-4d2c662a0041b16065a0ca57ed4ce948.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/SmartShape2D/orang/bottomend.png"
-dest_files=["res://.godot/imported/bottomend.png-e2b292f1fa47778d561e95eef9a30e18.ctex"]
+source_file="res://images/SmartShape2D/orang/walls/corner.png"
+dest_files=["res://.godot/imported/corner.png-4d2c662a0041b16065a0ca57ed4ce948.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bb8oqnq7py5hu"
-path="res://.godot/imported/bottom.png-2991823f8459c997182244098becd9c2.ctex"
+uid="uid://dbkkfjinpwwbe"
+path="res://.godot/imported/taper_left.png-6e2ef4b6e08a0fe9b9502e549b5763fe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://images/SmartShape2D/orang/bottom.png"
-dest_files=["res://.godot/imported/bottom.png-2991823f8459c997182244098becd9c2.ctex"]
+source_file="res://images/SmartShape2D/orang/top/taper_left.png"
+dest_files=["res://.godot/imported/taper_left.png-6e2ef4b6e08a0fe9b9502e549b5763fe.ctex"]
 
 [params]
 
