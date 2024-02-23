@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="SS2D_Material_Edge_Metadata" load_steps=11 format=3 uid="uid://c13ydrjwg6omf"]
+
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="1_50xx2"]
+[ext_resource type="Texture2D" uid="uid://bb8oqnq7py5hu" path="res://images/SmartShape2D/orang/walls/middle.png" id="2_ve4td"]
+[ext_resource type="Texture2D" uid="uid://duqx22gr1487y" path="res://images/SmartShape2D/orang/walls/corner_inwards.png" id="3_yfeas"]
+[ext_resource type="Texture2D" uid="uid://cwd6jp8mrcxn4" path="res://images/SmartShape2D/orang/walls/corner.png" id="4_lajc3"]
+[ext_resource type="Texture2D" uid="uid://242jaost8a6l" path="res://images/SmartShape2D/orang/walls/taper_left.png" id="5_q50di"]
+[ext_resource type="Texture2D" uid="uid://doalrhcqvxiu" path="res://images/SmartShape2D/orang/walls/taper_right.png" id="6_ue4gw"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="7_h3m35"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="8_13add"]
+
+[sub_resource type="Resource" id="Resource_bfdqo"]
+script = ExtResource("1_50xx2")
+textures = Array[Texture2D]([ExtResource("2_ve4td")])
+textures_corner_outer = Array[Texture2D]([ExtResource("4_lajc3")])
+textures_corner_inner = Array[Texture2D]([ExtResource("3_yfeas")])
+textures_taper_left = Array[Texture2D]([ExtResource("5_q50di")])
+textures_taper_right = Array[Texture2D]([ExtResource("6_ue4gw")])
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+
+[sub_resource type="Resource" id="Resource_utxyq"]
+script = ExtResource("7_h3m35")
+begin = 0.0
+distance = 0.0
+edgeRendering = Vector2(0, 0)
+
+[resource]
+script = ExtResource("8_13add")
+edge_material = SubResource("Resource_bfdqo")
+normal_range = SubResource("Resource_utxyq")
+weld = true
+render = true
+z_index = -1
+z_as_relative = true
+offset = 0.0

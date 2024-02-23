@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="SS2D_Material_Edge_Metadata" load_steps=9 format=3 uid="uid://dka0vsbnqoxor"]
+
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material.gd" id="1_rutdo"]
+[ext_resource type="Texture2D" uid="uid://deq4itm1wgs68" path="res://images/SmartShape2D/orang/top/middle.png" id="2_2cnk2"]
+[ext_resource type="Texture2D" uid="uid://dbkkfjinpwwbe" path="res://images/SmartShape2D/orang/top/taper_left.png" id="3_j8obf"]
+[ext_resource type="Texture2D" uid="uid://fu4sjsbutreo" path="res://images/SmartShape2D/orang/top/taper_right.png" id="4_c7r51"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="5_8sra1"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="6_us7j7"]
+
+[sub_resource type="Resource" id="Resource_4mjb6"]
+script = ExtResource("1_rutdo")
+textures = Array[Texture2D]([ExtResource("2_2cnk2")])
+textures_corner_outer = Array[Texture2D]([])
+textures_corner_inner = Array[Texture2D]([])
+textures_taper_left = Array[Texture2D]([ExtResource("3_j8obf")])
+textures_taper_right = Array[Texture2D]([ExtResource("4_c7r51")])
+randomize_texture = false
+use_corner_texture = false
+use_taper_texture = true
+fit_mode = 0
+
+[sub_resource type="Resource" id="Resource_5h128"]
+script = ExtResource("5_8sra1")
+begin = 45.0
+distance = 90.0
+edgeRendering = Vector2(0, 0)
+
+[resource]
+script = ExtResource("6_us7j7")
+edge_material = SubResource("Resource_4mjb6")
+normal_range = SubResource("Resource_5h128")
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.2

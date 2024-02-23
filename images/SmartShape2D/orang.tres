@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="SS2D_Material_Shape" load_steps=5 format=3 uid="uid://pilq3pstbn8w"]
+
+[ext_resource type="Resource" uid="uid://dka0vsbnqoxor" path="res://images/SmartShape2D/orang/top/top.tres" id="1_q6k4p"]
+[ext_resource type="Resource" uid="uid://c13ydrjwg6omf" path="res://images/SmartShape2D/orang/walls/walls.tres" id="2_grbje"]
+[ext_resource type="Texture2D" uid="uid://04p4uvfjy7bm" path="res://images/SmartShape2D/orang/middle.png" id="7_vk0xy"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/shape_material.gd" id="8_a3ypm"]
+
+[resource]
+script = ExtResource("8_a3ypm")
+_edge_meta_materials = Array[Resource("res://addons/rmsmartshape/materials/edge_material_metadata.gd")]([ExtResource("1_q6k4p"), ExtResource("2_grbje")])
+fill_textures = Array[Texture2D]([ExtResource("7_vk0xy")])
+fill_texture_z_index = -10
+fill_texture_show_behind_parent = false
+fill_texture_scale = 1.0
+fill_texture_absolute_position = false
+fill_texture_absolute_rotation = false
+fill_texture_offset = Vector2(0, 0)
+fill_texture_angle_offset = 0.0
+fill_mesh_offset = -0.15
+render_offset = -0.9
