@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SS2D_Material_Edge_Metadata" load_steps=5 format=3 uid="uid://c13ydrjwg6omf"]
+
+[ext_resource type="Resource" uid="uid://d252a5cml2oqx" path="res://images/SmartShape2D/orang/walls/walls.tres" id="1_4cfu5"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/normal_range.gd" id="2_gl4k7"]
+[ext_resource type="Script" path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" id="3_hdgq6"]
+
+[sub_resource type="Resource" id="Resource_utxyq"]
+script = ExtResource("2_gl4k7")
+begin = 0.0
+distance = 360.0
+edgeRendering = Vector2(0, 0)
+
+[resource]
+script = ExtResource("3_hdgq6")
+edge_material = ExtResource("1_4cfu5")
+normal_range = SubResource("Resource_utxyq")
+weld = true
+render = true
+z_index = -1
+z_as_relative = true
+offset = 0.0
