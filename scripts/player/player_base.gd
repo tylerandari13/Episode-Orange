@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var camera : Camera2D
 @export var UI : CanvasLayer
 @export var raycast : ShapeCast2D
-@export var afterimage_colors = [
+@export var afterimage_colors : Array[Color] = [
 	Color(1, 0, 0, 0.5),
 	Color(0, 1, 0, 0.5)
 ]

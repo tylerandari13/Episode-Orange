@@ -11,6 +11,7 @@ func on_enter():
 	sliding = true
 	owner.direction = owner.direction * -1
 	owner.sprite.play("machdrift")
+	enemy_collision_mode = 1 if owner.get_mach_speed() < 3 else 2
 
 
 # Called every frame when this state is active.
