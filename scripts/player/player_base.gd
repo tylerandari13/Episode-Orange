@@ -1,6 +1,8 @@
 class_name Player
 extends CharacterBody2D
 
+@export var mach3 = 1500
+@export var walk_speed = 500
 @export var state_machine : FiniteStateMachine
 @export var sprite : AnimatedSprite2D
 @export var afterimage_container : Node2D
@@ -23,6 +25,7 @@ var combo_number = 0
 var current_room : Room
 var secrets = {}
 var respawn_pos : Vector2
+var mach_speed = 0
 
 func _ready():
 	state_machine.state_changed.connect(_on_state_changed)
@@ -40,6 +43,7 @@ func _process(delta):
 		elif(is_finite(afterimage_times[node].time_left)):
 			afterimage_times[node].time_left -= delta
 			afterimage_container.get_node(node).global_position = afterimage_times[node].origin_pos
+			afterimage_container.get_node(node).global_rotation = afterimage_times[node].origin_rot
 	if(Input.is_action_just_pressed("taunt") && can_taunt()): taunt()
 
 	if(combo > 0):
@@ -119,7 +123,8 @@ func add_afterimage(color = Color(Color(), NAN)):
 
 	afterimage_times[afterimage.name] = {
 		time_left = 0.7,
-		origin_pos = afterimage.global_position
+		origin_pos = afterimage.global_position,
+		origin_rot = afterimage.global_rotation
 	}
 
 func update_room(room : Room):
@@ -152,6 +157,27 @@ func add_secret(secret : Room):
 	secrets[secret.get_path()] = secret
 	UI.secret_entered(len(secrets), len(get_tree().get_nodes_in_group("secrets")))
 
+func get_mach_speed(speed = float(mach_speed)):
+	if(speed < mach3 / 2): return 1
+	if(speed < mach3): return 2
+	if(speed < mach3 * 2): return 3
+	return 4
+
+func set_mach_speed(speed):
+	match(speed):
+		1:
+			mach_speed = 0
+		2:
+			mach_speed = mach3 * 0.5
+		3:
+			mach_speed = mach3
+		4:
+			mach_speed = mach3 * 2
+		_:
+			mach_speed = speed
+
+func set_mach_speed_to_velocity():
+	mach_speed = velocity.abs().x - walk_speed
 
 # overwriteable in case someone wants to make a character with a different state machine or no state machine at all
 func has_afterimage() -> bool: return state_machine.current_state.has_afterimage
