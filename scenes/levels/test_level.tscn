@@ -1828,7 +1828,6 @@ shape = SubResource("RectangleShape2D_p87sq")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="secret1" parent="Rooms" instance=ExtResource("5_7ac15")]
-respawn_if_fall = true
 is_secret = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rooms/secret1"]

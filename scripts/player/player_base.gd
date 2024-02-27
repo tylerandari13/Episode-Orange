@@ -127,6 +127,20 @@ func update_room(room : Room):
 	current_room = room
 	update_camera_bounds(room.boundaries)
 
+var BGs = Array(DirAccess.get_files_at("res://addons/UniversalFade/Patterns/")).map(func(element : String):
+	return element.split(".")[0]
+	)
+func room_transition(room : Room):
+	var a = is_instance_valid(current_room)
+	var b = [0.25, Color.BLACK, BGs.pick_random()]
+	set_physics_process(false)
+	set_process(false)
+	if(a): await Fade.fade_out.callv(b).finished
+	update_room(room)
+	if(a): await Fade.fade_in.callv(b).finished
+	set_physics_process(true)
+	set_process(true)
+
 func room_respawn():
 	position = respawn_pos
 
