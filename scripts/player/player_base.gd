@@ -48,7 +48,8 @@ func _process(delta):
 	else:
 		end_combo()
 
-	raycast.target_position = velocity * 0.02
+#	raycast.target_position = velocity * 0.02
+	raycast.target_position = get_real_velocity() * 0.02
 
 func _physics_process(delta):
 	if(!is_on_floor() && use_gravity()): velocity.y += gravity * delta
