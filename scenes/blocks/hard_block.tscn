@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://0oeuxagj5ysl"]
 
-[ext_resource type="Script" path="res://scripts/blocks/block.gd" id="1_ubg0g"]
+[ext_resource type="Script" path="res://scripts/blocks/hard_block.gd" id="1_u6m7r"]
 [ext_resource type="Texture2D" uid="uid://by658g5iu5wdr" path="res://icon.svg" id="2_5mktq"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hfnij"]
@@ -22,7 +22,7 @@ size = Vector2(128, 128)
 
 [node name="HardBlock" type="StaticBody2D" node_paths=PackedStringArray("sprite")]
 position = Vector2(32, 32)
-script = ExtResource("1_ubg0g")
+script = ExtResource("1_u6m7r")
 block_damage = 3
 sprite = NodePath("AnimatedSprite2D")
 

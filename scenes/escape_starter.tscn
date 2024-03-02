@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cypha2lukmdy2"]
+
+[ext_resource type="Script" path="res://scripts/escape_starter.gd" id="1_g0a7c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xf3lg"]
+size = Vector2(192, 128)
+
+[node name="Area2D" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_g0a7c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_xf3lg")

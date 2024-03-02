@@ -51,7 +51,7 @@ func _process(delta):
 	#/e dance
 "
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("taunt_sprite", "stand_collision", "duck_collision", "duck_area", "stand_cast", "duck_cast", "state_machine", "sprite", "afterimage_container", "camera", "UI", "raycast")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("taunt_sprite", "stand_collision", "duck_collision", "duck_area", "stand_cast", "duck_cast", "state_machine", "afterimage_container", "camera", "UI", "raycast", "sprite")]
 collision_layer = 2
 floor_constant_speed = true
 floor_block_on_wall = false
@@ -65,11 +65,12 @@ duck_area = NodePath("DuckDetection")
 stand_cast = NodePath("StandCast2D")
 duck_cast = NodePath("DuckCast2D")
 state_machine = NodePath("StateMachine")
-sprite = NodePath("AnimatedSprite2D")
 afterimage_container = NodePath("AfterImageContainer")
 camera = NodePath("Camera")
 UI = NodePath("UI")
 raycast = NodePath("StandCast2D")
+use_health = false
+sprite = NodePath("AnimatedSprite2D")
 
 [node name="HueShift" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("2_qeobx")

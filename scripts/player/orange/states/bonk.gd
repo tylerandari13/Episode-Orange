@@ -8,6 +8,7 @@ var cur_time
 func on_enter():
 	cur_time = 0
 	owner.mach_speed = 0
+	owner.camera.bump()
 
 
 # Called every frame when this state is active.

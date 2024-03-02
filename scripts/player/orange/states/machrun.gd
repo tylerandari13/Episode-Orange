@@ -22,7 +22,8 @@ func on_process(delta):
 
 # Called every physics frame when this state is active.
 func on_physics_process(delta): if(Input.is_action_pressed("run")):
-	owner.velocity.x = (owner.mach_speed + owner.walk_speed) * owner.direction
+	if(owner.mach_speed <= 0): owner.mach_speed = owner.walk_speed * 0.5
+	owner.velocity.x = owner.mach_speed * owner.direction
 	if(owner.is_on_floor()): if(owner.mach_speed < owner.mach3): # done like this for readability
 		add_mach(owner.acceleration, delta)
 	elif((owner.velocity.x < 0 && Input.is_action_pressed("left")) || (owner.velocity.x > 0 && Input.is_action_pressed("right"))):

@@ -1,8 +1,7 @@
 class_name Player
-extends CharacterBody2D
+extends Entity
 
 @export var state_machine : FiniteStateMachine
-@export var sprite : AnimatedSprite2D
 @export var afterimage_container : Node2D
 @export var camera : Camera2D
 @export var UI : CanvasLayer
@@ -12,9 +11,7 @@ extends CharacterBody2D
 	Color(0, 1, 0, 0.5)
 ]
 
-var direction = 1
 var afterimage_times = {}
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var afterimage_index = 0
 var afterimage_process_index = 0
 var points = 0
@@ -23,12 +20,18 @@ var combo_number = 0
 var current_room : Room
 var secrets = {}
 var respawn_pos : Vector2
+var escape_time : int
 
 func _ready():
 	state_machine.state_changed.connect(_on_state_changed)
 	if(owner is Level): owner.set_player(self)
 
 func _process(delta):
+	_afterimage_process(delta)
+	_combo_process(delta)
+	_time_process(delta)
+
+func _afterimage_process(delta):
 	if(has_afterimage()):
 		if(afterimage_process_index % 10 == 0):
 			add_afterimage()
@@ -40,28 +43,38 @@ func _process(delta):
 		elif(is_finite(afterimage_times[node].time_left)):
 			afterimage_times[node].time_left -= delta
 			afterimage_container.get_node(node).global_position = afterimage_times[node].origin_pos
-	if(Input.is_action_just_pressed("taunt") && can_taunt()): taunt()
 
+func _combo_process(delta):
 	if(combo > 0):
 		combo -= Global.apply_delta_time(0.25, delta)
 		UI.update_combo(combo, combo_number)
 	else:
 		end_combo()
 
-#	raycast.target_position = velocity * 0.02
-	raycast.target_position = get_real_velocity() * 0.02
+func _time_process(delta):
+	escape_time -= delta if escape_time > 0 else 0
+	UI.update_escape(escape_time)
 
 func _physics_process(delta):
-	if(!is_on_floor() && use_gravity()): velocity.y += gravity * delta
-	if(use_friction()): velocity.x = velocity.x * 0.7
+	super(delta)
+	_character_process(delta)
+	_raycast_process(delta)
+
+	move_and_slide()
+
+func _character_process(delta):
+	#if(!is_on_floor() && use_gravity()): velocity.y += gravity * delta
+	#if(use_friction()): velocity.x = velocity.x * 0.7
 	if(decide_direction_based_on_velocity()):
 		if(velocity.x > 0):
 			direction = 1
 		if(velocity.x < 0):
 			direction = -1
+	if(Input.is_action_just_pressed("taunt") && can_taunt()): taunt()
 
 	sprite.flip_h = direction < 0
 
+func _raycast_process(delta):
 	if(raycast.is_colliding()): for i in range(raycast.get_collision_count()):
 		var collider = raycast.get_collider(i)
 		if(collider is Collectible):
@@ -70,8 +83,7 @@ func _physics_process(delta):
 			collider.touch(self)
 		elif(collider is Enemy):
 			collider._on_player_collision(self)
-
-	move_and_slide()
+	raycast.target_position = get_real_velocity() * delta * 1.5
 
 var debughue = 0
 func _input(event):
@@ -79,9 +91,7 @@ func _input(event):
 		debughue += 0.1
 		$HueShift.set_hue(debughue)
 
-func _enemy_touched(enemy) -> bool:
-	camera.bump()
-	return true
+func _enemy_touched(enemy) -> bool: return true
 
 # combo sillies
 func increment_combo(inc = 1):
@@ -167,12 +177,19 @@ func add_secret(secret : Room):
 	secrets[secret.get_path()] = secret
 	UI.secret_entered(len(secrets), len(get_tree().get_nodes_in_group("secrets")))
 
+func enter_level(level : String):
+	get_tree().change_scene_to_file(level)
+
+func escape_sequence(time : int):
+	escape_time += time
+	UI.start_escape(escape_time)
 
 # overwriteable in case someone wants to make a character with a different state machine or no state machine at all
-func has_afterimage() -> bool: return state_machine.current_state.has_afterimage
-func can_taunt() -> bool: return state_machine.current_state.can_taunt
 func use_gravity() -> bool: return state_machine.current_state.use_gravity
 func use_friction() -> bool: return state_machine.current_state.use_friction
+
+func has_afterimage() -> bool: return state_machine.current_state.has_afterimage
+func can_taunt() -> bool: return state_machine.current_state.can_taunt
 func decide_direction_based_on_velocity() -> bool: return state_machine.current_state.decide_direction_based_on_velocity
 
 func get_block_damage() -> int: return state_machine.current_state.block_damage

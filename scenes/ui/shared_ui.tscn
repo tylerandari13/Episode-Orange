@@ -56,8 +56,8 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_left = 24.0
 offset_top = 22.0
-offset_right = -36.0
-offset_bottom = 113.0
+offset_right = 24.0
+offset_bottom = 110.0
 grow_horizontal = 2
 text = "Points: 0"
 label_settings = SubResource("LabelSettings_v5fst")
@@ -74,4 +74,29 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "You've found 69 out of 420 secrets."
 label_settings = SubResource("LabelSettings_32oj5")
+horizontal_alignment = 1
+
+[node name="Escape" type="Label" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 88.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Its Orangen Time"
+label_settings = SubResource("LabelSettings_v5fst")
+horizontal_alignment = 1
+
+[node name="Time" type="Label" parent="."]
+visible = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -88.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "00:00"
+label_settings = SubResource("LabelSettings_v5fst")
 horizontal_alignment = 1

@@ -10,7 +10,7 @@ func on_process(delta):
 	if(Input.is_action_pressed("run")):
 		if(owner.is_on_wall()):
 			owner.mach_speed += owner.acceleration
-			owner.velocity = Vector2(owner.direction, owner.mach_speed * -1)
+			owner.velocity = Vector2(owner.direction, owner.mach_speed * -0.75)
 		else:
 			owner.velocity = Vector2(owner.mach_speed * owner.direction, 0)
 			change_state("none/machrun")
