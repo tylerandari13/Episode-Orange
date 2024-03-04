@@ -33,13 +33,13 @@ func _physics_process(delta):
 
 func _on_player_collision(player : Node2D):
 	if(player is Player && health > 0 && player._enemy_touched(self)):
-		if(player.get_enemy_collision_mode() == 1 && stun(player)):
+		if(player.get_enemy_collision_mode() == PlayerState.EnemyCollisionMode.BUMP && stun(player)):
 			current_time = 0
 			stunned = true
 			velocity = Vector2(player.velocity.x * 2, -100)
 			player.add_combo(combo_amount)
 			combo_amount = combo_amount * 0.5
-		elif(player.get_enemy_collision_mode() == 2 && damage(player, player.get_collision_damage())):
+		elif(player.get_enemy_collision_mode() == PlayerState.EnemyCollisionMode.DAMAGE && damage(player, player.get_collision_damage())):
 			health -= player.get_collision_damage()
 			velocity = Vector2(player.velocity.x, player.velocity.abs().x * -0.5)
 			if(counts_toward_combo):

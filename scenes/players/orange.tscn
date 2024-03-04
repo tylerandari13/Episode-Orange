@@ -145,7 +145,6 @@ can_jump = true
 use_friction = false
 has_afterimage = true
 block_damage = 1
-enemy_collision_mode = 3
 
 [node name="grabslide" type="Node" parent="StateMachine/none"]
 script = ExtResource("7_p224i")
