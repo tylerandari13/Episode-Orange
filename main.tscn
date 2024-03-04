@@ -10,14 +10,14 @@ font_size = 32
 script/source = "extends Button
 
 func _on_pressed():
-	get_tree().change_scene_to_file(\"res://scenes/levels/test_level.tscn\")
+	Global.load_level(\"res://scenes/levels/test_level.tscn\")
 "
 
 [sub_resource type="GDScript" id="GDScript_7wxsk"]
 script/source = "extends Button
 
 func _on_pressed():
-	get_tree().change_scene_to_file(\"res://scenes/levels/potato_test_level.tscn\")
+	Global.load_level(\"res://scenes/levels/potato_test_level.tscn\")
 "
 
 [sub_resource type="GDScript" id="GDScript_f8iuo"]

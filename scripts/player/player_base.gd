@@ -20,11 +20,12 @@ var combo_number = 0
 var current_room : Room
 var secrets = {}
 var respawn_pos : Vector2
+var escaping = false
 var escape_time : int
 
 func _ready():
 	state_machine.state_changed.connect(_on_state_changed)
-	if(owner is Level): owner.set_player(self)
+	if(is_instance_valid(Global.get_level())): Global.get_level().set_player(self)
 
 func _process(delta):
 	_afterimage_process(delta)
@@ -178,11 +179,17 @@ func add_secret(secret : Room):
 	UI.secret_entered(len(secrets), len(get_tree().get_nodes_in_group("secrets")))
 
 func enter_level(level : String):
-	get_tree().change_scene_to_file(level)
+	Global.set_storage("player-pos", global_position)
+	Global.set_storage("last-hub-level", Global.get_storage("last-loaded-level"))
+	Global.load_level(level)
 
 func escape_sequence(time : int):
+	escaping = true
 	escape_time += time
 	UI.start_escape(escape_time)
+
+func finish_level():
+	Global.load_level(Global.get_storage("last-hub-level"), Global.get_storage("player-pos"))
 
 # overwriteable in case someone wants to make a character with a different state machine or no state machine at all
 func use_gravity() -> bool: return state_machine.current_state.use_gravity

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bvlyfhedtijqx"]
+[gd_scene load_steps=4 format=3 uid="uid://bvlyfhedtijqx"]
 
 [ext_resource type="Script" path="res://scripts/level_door.gd" id="1_svhoh"]
+[ext_resource type="Texture2D" uid="uid://4owiu2xmfh2p" path="res://images/creatures/orange/stand/frame0000.png" id="2_vj1ao"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87a34"]
 size = Vector2(384, 576)
@@ -13,3 +14,7 @@ script = ExtResource("1_svhoh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -224)
 shape = SubResource("RectangleShape2D_87a34")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.247059)
+texture = ExtResource("2_vj1ao")

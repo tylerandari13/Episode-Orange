@@ -9,5 +9,5 @@ func _ready():
 
 func _body_entered(body : Node2D):
 	if(body is Player):
-		body.escape_sequence(time * 60 if time > 0 else -1)
+		owner.start_escape(time)
 		collision_mask = 0
