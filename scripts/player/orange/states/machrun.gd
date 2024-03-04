@@ -2,13 +2,14 @@ extends OrangeState
 
 var prevmach
 
-func add_mach(amount, delta):
-	owner.mach_speed += Global.apply_delta_time(amount + (owner.get_floor_angle() * 10), delta)
+func add_mach(amount, delta): owner.mach_speed += Global.apply_delta_time(amount + (owner.get_floor_angle() * 10), delta)
 
 
 # Called when the state machine enters this state.
 func on_enter():
 	prevmach = 0
+
+	owner.velocity.x = owner.mach_speed * owner.direction
 
 
 # Called every frame when this state is active.

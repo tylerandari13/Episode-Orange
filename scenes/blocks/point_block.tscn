@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://bui556vpwvdrw"]
 
+[ext_resource type="PackedScene" uid="uid://doelnfhe4uolh" path="res://scenes/blocks/block.tscn" id="1_0a6c5"]
 [ext_resource type="Script" path="res://scripts/blocks/point_block.gd" id="1_jufhx"]
 [ext_resource type="Texture2D" uid="uid://da6363hqlttu" path="res://images/objects/blocks/small_block.png" id="2_hv3cp"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hfnij"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_lqvnd"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -14,26 +15,30 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_74o70"]
-size = Vector2(128, 128)
-
-[node name="PointBlock" type="StaticBody2D" node_paths=PackedStringArray("point_text", "sprite")]
-scale = Vector2(0.5, 0.5)
+[node name="PointBlock" node_paths=PackedStringArray("point_text") instance=ExtResource("1_0a6c5")]
 script = ExtResource("1_jufhx")
 worth = 10
 point_text = NodePath("Label")
-block_damage = 1
-sprite = NodePath("AnimatedSprite2D")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" parent="." index="0"]
+self_modulate = Color(1, 1, 1, 1)
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_hfnij")
+sprite_frames = SubResource("SpriteFrames_lqvnd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_74o70")
+[node name="Label" parent="AnimatedSprite2D" index="0"]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_right = 86.0
+offset_bottom = 93.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1e-05, 1e-05)
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="." index="2"]
 visible = false
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = -40.0
+offset_top = -24.0
+offset_bottom = -1.0
 scale = Vector2(2, 2)

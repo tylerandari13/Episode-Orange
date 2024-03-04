@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bftmiblv68d65"]
+[gd_scene load_steps=4 format=3 uid="uid://bftmiblv68d65"]
 
-[ext_resource type="Script" path="res://scripts/blocks/point_block.gd" id="1_4jupo"]
+[ext_resource type="PackedScene" uid="uid://bui556vpwvdrw" path="res://scenes/blocks/point_block.tscn" id="1_igftw"]
 [ext_resource type="Texture2D" uid="uid://bd2xtttrgc2v" path="res://images/objects/blocks/block_big.png" id="2_2qocp"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_hfnij"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_wcrh0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -14,24 +14,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_74o70"]
-size = Vector2(128, 128)
-
-[node name="BigPointBlock" type="StaticBody2D" node_paths=PackedStringArray("point_text", "sprite")]
+[node name="BigPointBlock" instance=ExtResource("1_igftw")]
 position = Vector2(32, 32)
-script = ExtResource("1_4jupo")
-worth = 100
-point_text = NodePath("Label")
-block_damage = 1
-sprite = NodePath("AnimatedSprite2D")
+scale = Vector2(1, 1)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_hfnij")
+[node name="AnimatedSprite2D" parent="." index="0"]
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_wcrh0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_74o70")
-
-[node name="Label" type="Label" parent="."]
-visible = false
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Label" parent="." index="2"]
+scale = Vector2(1, 1)
