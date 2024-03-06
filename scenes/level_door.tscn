@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvlyfhedtijqx"]
+[gd_scene load_steps=6 format=3 uid="uid://bvlyfhedtijqx"]
 
 [ext_resource type="Script" path="res://scripts/level_door.gd" id="1_svhoh"]
+[ext_resource type="Texture2D" uid="uid://ci17s62xybpey" path="res://images/doors/placeholder.png" id="2_uusel"]
 [ext_resource type="Texture2D" uid="uid://4owiu2xmfh2p" path="res://images/creatures/orange/stand/frame0000.png" id="2_vj1ao"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_87a34"]
 size = Vector2(384, 576)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_msr4s"]
+viewport_path = NodePath("SubViewport")
 
 [node name="LevelDoor" type="Area2D"]
 collision_layer = 32
@@ -15,6 +19,19 @@ script = ExtResource("1_svhoh")
 position = Vector2(0, -224)
 shape = SubResource("RectangleShape2D_87a34")
 
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-192, -512)
+offset = Vector2(192, 512)
+texture = SubResource("ViewportTexture_msr4s")
+polygon = PackedVector2Array(-192, 63, -185, -141, -161, -306, -141, -376, -118, -430, -80, -482, -39, -505, 0, -513, 44, -504, 79, -481, 112, -441, 144, -370, 162, -306, 186, -140, 191, 63)
+
+[node name="Placeholder" type="Sprite2D" parent="."]
+position = Vector2(0, -224)
+texture = ExtResource("2_uusel")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.247059)
 texture = ExtResource("2_vj1ao")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(384, 576)

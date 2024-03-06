@@ -14,8 +14,11 @@ func _ready():
 	$Sprite2D.visible = false
 
 func _escape_started():
-	if(is_exit):
-		collision_layer = old_layer
+	match(escape_mode):
+		EscapeMode.OPEN:
+			collision_layer = old_layer
+		EscapeMode.HIDE:
+			visible = false
 
 func _entered(player : Player):
 	if(is_exit):
