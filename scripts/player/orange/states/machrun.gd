@@ -2,7 +2,12 @@ extends OrangeState
 
 var prevmach
 
-func add_mach(amount, delta): owner.mach_speed += Global.apply_delta_time(amount + (owner.get_floor_angle() * 10), delta)
+func add_mach(amount, delta):
+	if((owner.get_floor_normal().x > 0 && owner.direction > 0)
+	|| (owner.get_floor_normal().x < 0 && owner.direction < 0)
+	|| owner.get_floor_angle() == 0):
+		print(randi())
+		owner.mach_speed += Global.apply_delta_time(amount + (owner.get_floor_angle() * 10), delta)
 
 
 # Called when the state machine enters this state.
@@ -37,8 +42,11 @@ func on_physics_process(delta): if(Input.is_action_pressed("run")):
 	if(owner.get_mach_speed() > 2 && (Input.is_action_pressed("superjump") || Input.is_action_pressed("up"))): change_state("none/superjumpwindup")
 
 	if(owner.is_on_wall() && owner.is_on_floor() && owner.get_wall_normal().x != owner.direction):
-		owner.sprite.play("machbonk" if owner.get_mach_speed() > 2 else "bonk")
-		change_state("none/bonk")
+		if(owner.get_floor_angle() == 0):
+			owner.sprite.play("machbonk" if owner.get_mach_speed() > 2 else "bonk")
+			change_state("none/bonk")
+		else:
+			change_state("none/wallrun")
 else:
 	change_state("none/machslide")
 

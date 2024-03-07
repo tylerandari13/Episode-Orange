@@ -5,6 +5,7 @@
 
 [node name="HardBlock" instance=ExtResource("1_if2vj")]
 script = ExtResource("1_u6m7r")
+block_damage = 3
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 self_modulate = Color(100, 0, 0, 1)

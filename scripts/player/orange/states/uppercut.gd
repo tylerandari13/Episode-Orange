@@ -11,6 +11,8 @@ func on_enter():
 # Called every frame when this state is active.
 func on_process(delta):
 	if(owner.is_on_floor() && owner.velocity.y >= 0): change_state("none/ground")
+	enemy_collision_mode = EnemyCollisionMode.DAMAGE if owner.velocity.y < 0 else EnemyCollisionMode.PASSTHROUGH
+	has_afterimage = owner.velocity.y < 0
 
 
 # Called every physics frame when this state is active.
