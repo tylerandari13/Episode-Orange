@@ -1,6 +1,7 @@
 class_name Player
 extends Entity
 
+
 @export var state_machine : FiniteStateMachine
 @export var afterimage_container : Node2D
 @export var camera : Camera2D
@@ -10,6 +11,7 @@ extends Entity
 	Color(1, 0, 0, 0.5),
 	Color(0, 1, 0, 0.5)
 ]
+
 
 var afterimage_times = {}
 var afterimage_index = 0
@@ -22,6 +24,10 @@ var secrets = {}
 var respawn_pos : Vector2
 var escaping = false
 var escape_time : int
+var BGs = Array(DirAccess.get_files_at("res://addons/UniversalFade/Patterns/")).map(func(element : String): return element.split(".")[0])
+
+var debughue = 0
+
 
 func _ready():
 	state_machine.state_changed.connect(_on_state_changed)
@@ -32,30 +38,6 @@ func _process(delta):
 	_combo_process(delta)
 	_time_process(delta)
 
-func _afterimage_process(delta):
-	if(has_afterimage()):
-		if(afterimage_process_index % 10 == 0):
-			add_afterimage()
-	afterimage_process_index += 1
-	for node in afterimage_times:
-		if(afterimage_times[node].time_left <= 0):
-			afterimage_container.get_node(node).queue_free()
-			afterimage_times[node].time_left = INF
-		elif(is_finite(afterimage_times[node].time_left)):
-			afterimage_times[node].time_left -= delta
-			afterimage_container.get_node(node).global_position = afterimage_times[node].origin_pos
-
-func _combo_process(delta):
-	if(combo > 0):
-		combo -= Global.apply_delta_time(0.25, delta)
-		UI.update_combo(combo, combo_number)
-	else:
-		end_combo()
-
-func _time_process(delta):
-	escape_time -= delta if escape_time > 0 else 0
-	UI.update_escape(escape_time)
-
 func _physics_process(delta):
 	super(delta)
 	_character_process(delta)
@@ -63,36 +45,11 @@ func _physics_process(delta):
 
 	move_and_slide()
 
-func _character_process(delta):
-	#if(!is_on_floor() && use_gravity()): velocity.y += gravity * delta
-	#if(use_friction()): velocity.x = velocity.x * 0.7
-	if(decide_direction_based_on_velocity()):
-		if(velocity.x > 0):
-			direction = 1
-		if(velocity.x < 0):
-			direction = -1
-	if(Input.is_action_just_pressed("taunt") && can_taunt()): taunt()
-
-	sprite.flip_h = direction < 0
-
-func _raycast_process(delta):
-	if(raycast.is_colliding()): for i in range(raycast.get_collision_count()):
-		var collider = raycast.get_collider(i)
-		if(collider is Collectible):
-			collider.try_collect(self)
-		elif(collider is Block):
-			collider.touch(self)
-		elif(collider is Enemy):
-			collider._on_player_collision(self)
-	raycast.target_position = get_real_velocity() * delta * 1.5
-
-var debughue = 0
 func _input(event):
 	if(event.is_action_pressed("special") && has_node("HueShift")):
 		debughue += 0.1
 		$HueShift.set_hue(debughue)
 
-func _enemy_touched(enemy) -> bool: return true
 
 # combo sillies
 func increment_combo(inc = 1):
@@ -139,9 +96,6 @@ func update_room(room : Room):
 	current_room = room
 	update_camera_bounds(room.boundaries)
 
-var BGs = Array(DirAccess.get_files_at("res://addons/UniversalFade/Patterns/")).map(func(element : String):
-	return element.split(".")[0]
-	)
 func room_transition(room : Room):
 	var a = is_instance_valid(current_room)
 	var b = [0.25, Color.BLACK, BGs.pick_random()]
@@ -211,3 +165,55 @@ func taunt(): pass
 # player specific overwriteable functions
 func _on_transformation(transformation : String): pass
 func _on_state_changed(new_state : StateMachineState): pass
+
+
+func _afterimage_process(delta):
+	if(has_afterimage()):
+		if(afterimage_process_index % 10 == 0):
+			add_afterimage()
+	afterimage_process_index += 1
+	for node in afterimage_times:
+		if(afterimage_times[node].time_left <= 0):
+			afterimage_container.get_node(node).queue_free()
+			afterimage_times[node].time_left = INF
+		elif(is_finite(afterimage_times[node].time_left)):
+			afterimage_times[node].time_left -= delta
+			afterimage_container.get_node(node).global_position = afterimage_times[node].origin_pos
+
+
+func _combo_process(delta):
+	if(combo > 0):
+		combo -= Global.apply_delta_time(0.25, delta)
+		UI.update_combo(combo, combo_number)
+	else:
+		end_combo()
+
+func _time_process(delta):
+	escape_time -= delta if escape_time > 0 else 0
+	UI.update_escape(escape_time)
+
+func _character_process(delta):
+	#if(!is_on_floor() && use_gravity()): velocity.y += gravity * delta
+	#if(use_friction()): velocity.x = velocity.x * 0.7
+	if(decide_direction_based_on_velocity()):
+		if(velocity.x > 0):
+			direction = 1
+		if(velocity.x < 0):
+			direction = -1
+	if(Input.is_action_just_pressed("taunt") && can_taunt()): taunt()
+
+	sprite.flip_h = direction < 0
+
+func _raycast_process(delta):
+	if(raycast.is_colliding()): for i in range(raycast.get_collision_count()):
+		var collider = raycast.get_collider(i)
+		if(collider is Collectible):
+			collider.try_collect(self)
+		elif(collider is Block):
+			collider.touch(self)
+		elif(collider is Enemy):
+			collider._on_player_collision(self)
+	raycast.target_position = get_real_velocity() * delta * 1.5
+
+func _enemy_touched(enemy) -> bool: return true
+
