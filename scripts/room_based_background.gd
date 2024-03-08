@@ -1,7 +1,7 @@
 extends ParallaxLayer
 
 @export_category("Room Based Parallax")
-@export var room_name = ["main"]
+@export var room_name : Array[String] = ["main"]
 @export var speed : Vector2
 
 # Called when the node enters the scene tree for the first time.

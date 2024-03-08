@@ -5,8 +5,7 @@ var prevmach
 func add_mach(amount, delta):
 	if((owner.get_floor_normal().x > 0 && owner.direction > 0)
 	|| (owner.get_floor_normal().x < 0 && owner.direction < 0)
-	|| owner.get_floor_angle() == 0):
-		print(randi())
+	|| owner.get_floor_angle() == 0 || owner.get_mach_speed() < 3):
 		owner.mach_speed += Global.apply_delta_time(amount + (owner.get_floor_angle() * 10), delta)
 
 
