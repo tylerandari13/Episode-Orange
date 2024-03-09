@@ -21,6 +21,7 @@ func on_process(delta):
 	if(prevmach != owner.get_mach_speed() && owner.is_on_floor()):
 		owner.sprite.play("mach" + str(owner.get_mach_speed()))
 	prevmach = owner.get_mach_speed() if owner.is_on_floor() else 0
+	sprite_rotation_mode = SpriteRotationMode.AUTO_FLOOR if owner.is_on_floor() else SpriteRotationMode.OFF
 	enemy_collision_mode = 1 if owner.get_mach_speed() < 3 else 2
 	block_damage = owner.get_mach_speed()
 

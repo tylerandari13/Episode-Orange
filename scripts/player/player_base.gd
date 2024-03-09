@@ -79,6 +79,7 @@ func add_afterimage(color = Color(Color(), NAN)):
 	afterimage.sprite_frames = sprite.sprite_frames
 	afterimage.flip_h = sprite.flip_h
 	afterimage.flip_v = sprite.flip_v
+	afterimage.transform = transform
 	afterimage.modulate = color
 	#afterimage.z_index = -1
 
@@ -88,7 +89,7 @@ func add_afterimage(color = Color(Color(), NAN)):
 
 	afterimage_times[afterimage.name] = {
 		time_left = 0.7,
-		origin_pos = afterimage.global_position
+		origin_trans = global_transform
 	}
 
 func update_room(room : Room):
@@ -155,6 +156,9 @@ func decide_direction_based_on_velocity() -> bool: return state_machine.current_
 
 func get_block_damage() -> int: return state_machine.current_state.block_damage
 
+func get_sprite_rotation_mode() -> int: return state_machine.current_state.sprite_rotation_mode
+func get_sprite_rotation_offset() -> float: return state_machine.current_state.sprite_rotation_offset
+
 func get_enemy_collision_mode() -> int: return state_machine.current_state.enemy_collision_mode
 func get_collision_damage() -> float: return state_machine.current_state.enemy_damage
 
@@ -178,7 +182,7 @@ func _afterimage_process(delta):
 			afterimage_times[node].time_left = INF
 		elif(is_finite(afterimage_times[node].time_left)):
 			afterimage_times[node].time_left -= delta
-			afterimage_container.get_node(node).global_position = afterimage_times[node].origin_pos
+			afterimage_container.get_node(node).global_transform = afterimage_times[node].origin_trans
 
 
 func _combo_process(delta):
@@ -203,6 +207,16 @@ func _character_process(delta):
 	if(Input.is_action_just_pressed("taunt") && can_taunt()): taunt()
 
 	sprite.flip_h = direction < 0
+	if(get_sprite_rotation_mode() != PlayerState.SpriteRotationMode.IGNORE):
+		sprite.rotation = get_floor_normal().angle() + deg_to_rad(get_sprite_rotation_offset()) \
+			if (get_sprite_rotation_mode() == PlayerState.SpriteRotationMode.ON_FLOOR \
+			|| get_sprite_rotation_mode() == PlayerState.SpriteRotationMode.AUTO_FLOOR) \
+			&& is_on_floor() \
+			else get_wall_normal().angle() + deg_to_rad(get_sprite_rotation_offset()) \
+			if (get_sprite_rotation_mode() == PlayerState.SpriteRotationMode.ON_WALL \
+			|| get_sprite_rotation_mode() == PlayerState.SpriteRotationMode.AUTO_WALL) \
+			&& is_on_wall() \
+			else get_sprite_rotation_offset() - 90
 
 func _raycast_process(delta):
 	if(raycast.is_colliding()): for i in range(raycast.get_collision_count()):

@@ -87,9 +87,11 @@ visible = false
 texture = ExtResource("2_0wekc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 34)
 sprite_frames = ExtResource("2_cftru")
 animation = &"grabslide"
 autoplay = "default"
+offset = Vector2(0, -34)
 
 [node name="StandCast2D" type="ShapeCast2D" parent="."]
 modulate = Color(0, 1, 0, 1)
@@ -152,6 +154,7 @@ can_grab = false
 ducking = true
 use_friction = false
 can_taunt = false
+sprite_rotation_mode = 1
 enemy_collision_mode = 1
 
 [node name="duck" type="Node" parent="StateMachine/none"]
@@ -174,6 +177,7 @@ ducking = true
 use_friction = false
 can_taunt = false
 block_damage = 1
+sprite_rotation_mode = 1
 enemy_collision_mode = 1
 
 [node name="dive" type="Node" parent="StateMachine/none"]
@@ -210,6 +214,7 @@ can_wallrun = true
 can_dive = true
 decide_direction_based_on_velocity = false
 has_afterimage = true
+sprite_rotation_mode = 1
 
 [node name="machslide" type="Node" parent="StateMachine/none"]
 script = ExtResource("10_nvxw6")
@@ -217,6 +222,7 @@ can_grab = false
 use_friction = false
 decide_direction_based_on_velocity = false
 can_taunt = false
+sprite_rotation_mode = 1
 enemy_collision_mode = 1
 
 [node name="machdrift" type="Node" parent="StateMachine/none"]
@@ -225,6 +231,7 @@ can_grab = false
 use_friction = false
 decide_direction_based_on_velocity = false
 has_afterimage = true
+sprite_rotation_mode = 1
 enemy_collision_mode = 1
 
 [node name="superjumpwindup" type="Node" parent="StateMachine/none"]
@@ -262,6 +269,7 @@ decide_direction_based_on_velocity = false
 has_afterimage = true
 can_taunt = false
 block_damage = 1
+sprite_rotation_mode = 2
 enemy_collision_mode = 1
 
 [node name="bodyslam" type="Node" parent="StateMachine/none"]
