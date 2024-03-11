@@ -38,3 +38,4 @@ func get_level():
 func set_level(level : Level):
 	set_storage("level", level)
 
+func average(numbers : Array): return numbers.reduce(func(accum, number): return accum + number, 0) / len(numbers)
