@@ -16,14 +16,11 @@ extends Entity
 var afterimage_times = {}
 var afterimage_index = 0
 var afterimage_process_index = 0
-var points = 0
-var combo = 0
-var combo_number = 0
+
+var stats = PlayerStats.new()
+
 var current_room : Room
-var secrets = {}
 var respawn_pos : Vector2
-var escaping = false
-var escape_time : int
 var BGs = Array(DirAccess.get_files_at("res://addons/UniversalFade/Patterns/")).map(func(element : String): return element.split(".")[0])
 
 var debughue = 0
@@ -53,22 +50,22 @@ func _input(event):
 
 # combo sillies
 func increment_combo(inc = 1):
-	combo_number += inc
+	stats.combo_number += inc
 	add_combo(100, true)
 
 func add_combo(percent, forced = false):
-	if((!forced && combo > 0) || forced):
-		combo = min(combo + percent, 100)
+	if((!forced && stats.combo > 0) || forced):
+		stats.combo = min(stats.combo + percent, 100)
 
 func end_combo(give_points = true):
 	if(give_points):
-		add_points(combo_number ** 2 * 10)
-	combo_number = 0
-	UI.update_combo(combo, combo_number)
+		add_points(stats.combo_number ** 2 * 10)
+	stats.combo_number = 0
+	UI.update_combo(stats.combo, stats.combo_number)
 
 func add_points(_points):
-	points += _points
-	UI.update_points(points)
+	stats.points += _points
+	UI.update_points(stats.points)
 
 func add_afterimage(color = Color(Color(), NAN)):
 	if(is_nan(color.a)):
@@ -130,8 +127,8 @@ func enter_secret(spawn : Secret):
 	velocity.y = -1000
 
 func add_secret(secret : Room):
-	secrets[secret.get_path()] = secret
-	UI.secret_entered(len(secrets), len(get_tree().get_nodes_in_group("secrets")))
+	stats.secrets[secret.get_path()] = secret
+	UI.secret_entered(len(stats.secrets), len(get_tree().get_nodes_in_group("stats.secrets")))
 
 func enter_level(level : String):
 	Global.set_storage("player-pos", global_position)
@@ -139,9 +136,9 @@ func enter_level(level : String):
 	Global.load_level(level)
 
 func escape_sequence(time : int):
-	escaping = true
-	escape_time += time
-	UI.start_escape(escape_time)
+	stats.escaping = true
+	stats.escape_time += time
+	UI.start_escape(stats.escape_time)
 
 func finish_level():
 	Global.load_level(Global.get_storage("last-hub-level"), Global.get_storage("player-pos"))
@@ -186,15 +183,15 @@ func _afterimage_process(delta):
 
 
 func _combo_process(delta):
-	if(combo > 0):
-		combo -= Global.apply_delta_time(0.25, delta)
-		UI.update_combo(combo, combo_number)
+	if(stats.combo > 0):
+		stats.combo -= Global.apply_delta_time(0.25, delta)
+		UI.update_combo(stats.combo, stats.combo_number)
 	else:
 		end_combo()
 
 func _time_process(delta):
-	escape_time -= delta if escape_time > 0 else 0
-	UI.update_escape(escape_time)
+	stats.escape_time -= delta if stats.escape_time > 0 else 0
+	UI.update_escape(stats.escape_time)
 
 func _character_process(delta):
 	#if(!is_on_floor() && use_gravity()): velocity.y += gravity * delta

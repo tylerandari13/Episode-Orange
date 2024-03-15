@@ -22,7 +22,7 @@ func _escape_started():
 
 func _entered(player : Player):
 	if(is_exit):
-		if(player.escaping):
+		if(player.stats.escaping):
 			player.finish_level()
 	else:
 		player.enter_level(level)
